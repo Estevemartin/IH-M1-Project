@@ -22,22 +22,24 @@ body {height: 100%; margin: 0;padding:0;font-family: alef;}
 
 /* NAVBAR */
 nav{
-    background-color:blue;
+    background-color:#393e46;
     display:flex;
-    height: 60px;
+    height: 80px;
     justify-content: space-between;
     align-items: center;
 }
 nav .search-bar{
     width:50%;
-    background-color: white;
+    background-color: #eeeeee;
     border:1 solid black;
+    border-radius: 10px;
     padding:0px 10px;
 }
 nav .search-bar input{
     width: 80%;
     height: 30px;
     border: none;
+    background-color: #eeeeee;
 }
 nav .search-bar i{
    color:rgb(141, 141, 141);
@@ -48,11 +50,17 @@ nav .menu{
     justify-content: flex-end;
     align-items: center;
     text-align: center;
+    font-size: 14pt;
+    font-weight: bold;
     
     
 }
 nav .menu p{
-    margin: 0px 15px;
+    margin: 0px 20px;
+    color:#32e0c4;
+}
+nav img {
+    height: 40px;
 }
 
 /* MAIN SECTION */
@@ -64,14 +72,14 @@ nav .menu p{
 
 /*CARDS*/
 .cards-container{
-    background-color: orange;
+    background-color: #eeeeee;
     flex: 1 1 auto;
 }
 
 
 /* PROFILE */
 .profile-container{
-    background-color: greenyellow;
+    background-color: #eeeeee;
     width:20%;
     max-width:250px;
     min-width:150px;
@@ -84,15 +92,18 @@ nav .menu p{
 
 /* FILTER */
 .filter-container{
-    background-color: aqua;
+    background-color: #eeeeee;
     width:20%;
     max-width:250px;
     min-width:150px;
 }
-
 .filter-container p{
    text-align: center;
 }
+.filter-container .filter-apply-changes{
+    text-align: center;
+    margin-top:20px;
+ }
 
 .filter-inputs{
     display:flex;
@@ -101,17 +112,23 @@ nav .menu p{
 .filter-inputs input{
     width: 45%;
 }
-
+::-webkit-input-placeholder {
+    text-align: center;
+ }
 
 /* MOBILE */
 .mobile-filters{
     display:inline-block;
-    background-color: red;
+    background-color: #393e46;
     height: 60px;
     display:none;    
 }
 .mobile-filters p{
     margin:20px;
+    color:#32e0c4;
+}
+.mobile-filters i{
+    color:#32e0c4;
 }
 
 .mobile-menu-filter{
