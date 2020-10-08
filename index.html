@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href='https://fonts.googleapis.com/css?family=Alef' rel='stylesheet'>
     <link rel="stylesheet" href="./styles/style.css">
+    <link rel='shortcut icon' type='image/x-icon' href='img/favicon.png' />
+    <title>Find Your Asset</title>
     <script src="https://kit.fontawesome.com/92166c8bdc.js" crossorigin="anonymous"></script>
     <title>Pisos de Inversión</title>
 </head>
@@ -14,7 +16,8 @@
         <!-- HEADER -->
         <div class="row header">
             <nav>
-                <img src="img/logo.png" alt="Logo">
+                <div class="logo"><img src="img/logo2.png" alt="Logo"></div>
+                
                 <div class="search-bar">
                     <i class="fas fa-search"></i>
                     <input name="search-location" value="" placeholder="Ciudad">
@@ -26,123 +29,93 @@
                 </div>
             </nav>
         </div>
-
+        <!-- HEADER END-->
         <!-- CONTENT -->
         <div class="row content">
             <div class= "main">
-
+                <!-- ASIDE -->
                 <section class="filter-container">
-                    <div class="filter-precio">
-                        <p>Aportación Inicial</p>
-                        <div class="filter-inputs">
-                            <input type="number" id="max-price" name="max-price"  placeholder="Máximo">
-                            <!-- <input type="number" id="min-price" name="min-price"  placeholder="Mínimo"> -->
+                    <div class="panel">
+                        <div class="titulo-apartado">
+                            FILTROS
                         </div>
-                    </div>
-                    <div class = "filtrer-rentabilidad">
-                        <p>Rentabilidad</p>
-                        <div class="filter-inputs">
-                            <!-- <input type="number" id="max-rentabilidad" name="max-rentabilidad"  placeholder="Máxima"> -->
-                            <input type="number" id="min-rentabilidad" name="min-rentabilidad"  placeholder="Mínima">
+                        <div class="filter-precio">
+                            <p>Capital Inicial</p>
+                            <div class="filter-inputs">
+                                <input type="number" id="max-price" name="max-price"  placeholder="Máxima">
+                            </div>
                         </div>
+                        <div class = "filtrer-rentabilidad">
+                            <p>Rentabilidad Mínima</p>
+                            <div class="filter-inputs">
+                                <div id="display-rentabilidad-minima"></div>
+                                <div class="slider-wrapper">
+                                    <input type="range" min="0%" max="100%" step="1%" onchange=updateRentabilidadMinima(this.value)>
+                                </div>
+                            </div>
+                        </div>
+                        <div class = "filter-apply-changes"><button>Buscar</button></div>
                     </div>
-                    <div class = "filter-apply-changes"><button>Buscar</button></div>
+                    <div class="panel">
+                        <div class="titulo-apartado">
+                            <p>PERFIL INVERSOR</p>
+                        </div>  
+                        <P>Fecha de nacimiento</P>
+                        
+                        <div class="filter-inputs">
+                            <input type="date" id="birth-date" name="birth-date" >
+                        </div>
+                        <div class="input-buttons">
+                            <button>Capital Aportado</button>
+                            <button>Porcentaje Financiado</button>
+                        </div>
+                        <div class="filter-inputs">
+                            <input type="number" id="capital-porcentaje" name="capital-porcentaje"  placeholder="Introducir...">
+                        </div>
+                            <!-- <select id="profile-selector-plazo-cuota">
+                            <option value="plazo-hipoteca">Plazo Hipoteca (Años)</option>
+                            <option value="cuota-maxima">Cuota Mensual Máxima (€)</option>
+                        </select> -->
+                        <div class="input-buttons">
+                            <button>Plazo Hipoteca</button>
+                            <button>Cuota Máxima</button>
+                        </div>
+                        <div class="filter-inputs">
+                            <input type="number" id="plazo-cuota" name="plazo-cuota"  placeholder="Introducir...">
+                        </div>
+                        <!-- <div class="input-buttons input-buttons-small"> -->
+                        <p>Seguro Anti-Impagos</p>
+                        <div class="filter-inputs">
+                            <input type="number" id="plazo-cuota" name="plazo-cuota"  placeholder="Introducir...">
+                        </div>
+                        <!-- </div> -->
+                    </div>
+                </section>
+                <!-- ASIDE END -->
+                <!-- CARDS CONTAINES -->
+                <section class="cards-container">
+                    <p> Real Estate Cards</p>
+                </section>
+                <!-- CARDS CONTAINES END -->
+                
+                <section class="profile-container">
                     
                 </section>
-    
-                <section class="cards-container">
-                    <p> hello</p>
-                </section>
-    
-                <section class="profile-container">
-                    <div class="title">
-                        <p>PERFIL INVERSOR</p>
-                    </div>  
-                    <P>Fecha de nacimiento</P>
-                    <input type="date" id="birth-date" name="birth-date">
-                    <select id="profile-selector-capital-porcentaje">
-                        <option value="capital-aportado">Capital Aportado (€)</option>
-                        <option value="porcentaje-financiado">Porcentaje Financiado (%)</option>
-                    </select>
-                    <input type="number" id="capital-porcentaje" name="capital-porcentaje"  placeholder="Introducir...">
-
-                    <select id="profile-selector-plazo-cuota">
-                        <option value="plazo-hipoteca">Plazo Hipoteca (Años)</option>
-                        <option value="cuota-maxima">Cuota Mensual Máxima (€)</option>
-                    </select>
-                    <input type="number" id="plazo-cuota" name="plazo-cuota"  placeholder="Introducir...">
-    
-                </section>
-    
             </div>
-          
         </div>
+        <!-- CONTENT END -->
 
-
-        
+        <!-- FOOTER BUTTONS -->
         <div class="row footer">
             <div class="mobile-filters">
                 <div class="mobile-menu-filter"><i class="fas fa-filter"></i><p>Filtro</p></div>
                 <div class="mobile-menu-profile"><i class="fas fa-user"></i><p>Perfil</p></div>
             </div>
         </div>
+        <!-- FOOTER BUTTONS END -->
       </div>
-    <!-- <div class="main">
-        <nav>
-            <img src="" alt="Logo">
-            <div class="search-bar">
-                <i class="fas fa-search"></i>
-                <input name="search-location" value="" placeholder="Ciudad">
-            </div>
-            <div class="menu">
-                <p>FAQs</p>
-                <p>Log In</p>
-                <p>Sign Up</p>
-            </div>
-        </nav>
-
-        <div class= "main">
-
-            <section class="filter-container">
-                <div class="filter-precio">
-                    <p>Aportación Inicial</p>
-                    <div class="filter-inputs">
-                        <input type="number" id="max-price" name="max-price"  placeholder="Máximo">
-                        <input type="number" id="min-price" name="min-price"  placeholder="Mínimo">
-                    </div>
-                </div>
-                <div class = "filtrer-rentabilidad">
-                    <p>Rentabilidad</p>
-                    <div class="filter-inputs">
-                        <input type="number" id="max-rentabilidad" name="max-rentabilidad"  placeholder="Máxima">
-                        <input type="number" id="min-rentabilidad" name="min-rentabilidad"  placeholder="Mínima">
-                    </div>
-                </div>
-            </section>
-
-            <section class="cards-container">
-                <p> hello</p>
-            </section>
-
-            <section class="profile-container">
-                <div class="title">
-                    <p>PERFIL INVERSOR</p>
-                </div>  
-                <P>Fecha de nacimiento</P>
-                <input type="date" id="birth-date" name="birth-date">
-                <select id="profile-selector-capital-porcentaje">
-                    <option value="capital-aportado">Capital Aportado</option>
-                    <option value="porcentaje-financiado">Porcentaje Financiado</option>
-                </select>
-
-            </section>
-
-        </div>
-    
-        <div class="mobile-filters">
-            <div class="mobile-menu-filter"><i class="fas fa-filter"></i><p>Filtro</p></div>
-            <div class="mobile-menu-profile"><i class="fas fa-user"></i><p>Perfil</p></div>
-        </div>
-    </div> -->
 </body>
+<script>
+    updateRentabilidadMinima=(rentabilidadMnima)=>document.getElementById("display-rentabilidad-minima").innerHTML = rentabilidadMnima + "%";
+</script>
 </html>

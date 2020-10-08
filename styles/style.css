@@ -1,6 +1,6 @@
 
 html,
-body {height: 100%; margin: 0;padding:0;font-family: alef;}
+body {height: 100%; margin: 0;padding:0;font-family: Verdana,Alef;}
 
 .page {
   display: flex;
@@ -57,10 +57,16 @@ nav .menu{
 }
 nav .menu p{
     margin: 0px 20px;
-    color:#32e0c4;
+    color:white;
 }
 nav img {
-    height: 40px;
+    height: 70px;
+    /* width: 30%; */
+    margin-left:40px;
+    margin-right: 20px;
+}
+nav .logo{
+/* width: 400px; */
 }
 
 /* MAIN SECTION */
@@ -76,7 +82,6 @@ nav img {
     flex: 1 1 auto;
 }
 
-
 /* PROFILE */
 .profile-container{
     background-color: #eeeeee;
@@ -91,30 +96,113 @@ nav img {
 
 
 /* FILTER */
+/* FILTER HEADER */
+.panel{
+    /* border:1px solid black; */
+    margin:25px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.43);
+    -moz-box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.43);
+    box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.43);
+    
+}
+.panel p{
+    margin-bottom:5px;
+    margin-top:15px;
+}
+.input-buttons{
+    display:flex;
+}
+.input-buttons button{
+    width:50%;
+    border-radius: 20px;
+    height: 45px;
+    margin-top:20px;
+    background-color: #32e0c4;
+    border: 5px solid #eeeeee;
+}
+.input-buttons-small button{
+    width:20%;
+    height:30px ;
+    border:none;
+    margin-left:10px;
+}
+.titulo-apartado{
+    background-color: #393e46;
+    text-align: center;
+    padding:10px;
+    color:white;
+    border-radius: 5px 5px 0px 0px;
+}
+
 .filter-container{
     background-color: #eeeeee;
     width:20%;
     max-width:250px;
-    min-width:150px;
+    min-width:200px;
+    justify-content: center;
 }
 .filter-container p{
    text-align: center;
 }
-.filter-container .filter-apply-changes{
+.filter-container .filter-apply-changes button{
     text-align: center;
-    margin-top:20px;
+    width:100%;
+    padding:10px 0px;
+    border-radius: 0px 0px 5px 5px;
+    border:none;
+    background-color: #32e0c4;
+ }
+ .filter-container .panel{
+     min-width: 120px;
  }
 
 .filter-inputs{
     display:flex;
     justify-content:space-around;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 .filter-inputs input{
-    width: 45%;
+    width: 80%;
+    border:none;
+    border-bottom: 1px solid #393e46;
+    height: 30px;
+    background-color: #eeeeee;
+    text-align: center;
+}
+.display-rentabilidad-minima{
+    height: 300px;
+}
+.slider-wrapper{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.slider-wrapper input{
+    
 }
 ::-webkit-input-placeholder {
     text-align: center;
- }
+}
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input:focus, textarea:focus, select:focus,button:focus{
+    outline: none;
+}
+#birth-date{
+    width: 85%;
+    background-color: #eeeeee;
+    border:none;
+    font-family: Alef;
+    text-align: center;
+    border-bottom: 1px  solid #393e46;
+}
+
+
 
 /* MOBILE */
 .mobile-filters{
