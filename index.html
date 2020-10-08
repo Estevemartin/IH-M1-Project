@@ -9,39 +9,138 @@
     <title>Pisos de Inversión</title>
 </head>
 <body>
-    <nav>
-        <img src="" alt="Logo">
-        <i class="fas fa-search"></i>
-        <input name="search-location" value="" placeholder="Ciudad">
-        
-    </nav>
-    <main>
-        <!-- <iframe></iframe> -->
-        <section class="filter-container">
-            <p> FILTROS</p>
-            
 
-        </section>
-        <section class="cards-container">
-            <p> hello</p>
-        </section>
-        <section class="profile-container">
-            <p> CONFIGURACIÓN</p>
-        </section>
-        <!-- <iframe></iframe> -->
+    <div class="page">
+        <!-- HEADER -->
+        <div class="row header">
+            <nav>
+                <img src="" alt="Logo">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input name="search-location" value="" placeholder="Ciudad">
+                </div>
+                <div class="menu">
+                    <p>FAQs</p>
+                    <p>Log In</p>
+                    <p>Sign Up</p>
+                </div>
+            </nav>
+        </div>
 
-        
-    </main>
-    <div class="mobile-filters">
-        <div class="mobile-menu-filter">
-            <i class="fas fa-filter"></i>
-            <p>Filtro</p>
-        </div>
-        <div class="mobile-menu-profile">
-            <i class="fas fa-user"></i>
-            <p>Perfil</p>
-        </div>
-    </div>
+        <!-- CONTENT -->
+        <div class="row content">
+            <div class= "main">
+
+                <section class="filter-container">
+                    <div class="filter-precio">
+                        <p>Aportación Inicial</p>
+                        <div class="filter-inputs">
+                            <input type="number" id="max-price" name="max-price"  placeholder="Máximo">
+                            <input type="number" id="min-price" name="min-price"  placeholder="Mínimo">
+                        </div>
+                    </div>
+                    <div class = "filtrer-rentabilidad">
+                        <p>Rentabilidad</p>
+                        <div class="filter-inputs">
+                            <input type="number" id="max-rentabilidad" name="max-rentabilidad"  placeholder="Máxima">
+                            <input type="number" id="min-rentabilidad" name="min-rentabilidad"  placeholder="Mínima">
+                        </div>
+                    </div>
+                </section>
     
+                <section class="cards-container">
+                    <p> hello</p>
+                </section>
+    
+                <section class="profile-container">
+                    <div class="title">
+                        <p>PERFIL INVERSOR</p>
+                    </div>  
+                    <P>Fecha de nacimiento</P>
+                    <input type="date" id="birth-date" name="birth-date">
+                    <select id="profile-selector-capital-porcentaje">
+                        <option value="capital-aportado">Capital Aportado (€)</option>
+                        <option value="porcentaje-financiado">Porcentaje Financiado (%)</option>
+                    </select>
+                    <input type="number" id="capital-porcentaje" name="capital-porcentaje"  placeholder="Introducir...">
+
+                    <select id="profile-selector-plazo-cuota">
+                        <option value="plazo-hipoteca">Plazo Hipoteca (Años)</option>
+                        <option value="cuota-maxima">Cuota Mensual Máxima (€)</option>
+                    </select>
+                    <input type="number" id="plazo-cuota" name="plazo-cuota"  placeholder="Introducir...">
+    
+                </section>
+    
+            </div>
+          
+        </div>
+
+
+        
+        <div class="row footer">
+            <div class="mobile-filters">
+                <div class="mobile-menu-filter"><i class="fas fa-filter"></i><p>Filtro</p></div>
+                <div class="mobile-menu-profile"><i class="fas fa-user"></i><p>Perfil</p></div>
+            </div>
+        </div>
+      </div>
+    <!-- <div class="main">
+        <nav>
+            <img src="" alt="Logo">
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input name="search-location" value="" placeholder="Ciudad">
+            </div>
+            <div class="menu">
+                <p>FAQs</p>
+                <p>Log In</p>
+                <p>Sign Up</p>
+            </div>
+        </nav>
+
+        <div class= "main">
+
+            <section class="filter-container">
+                <div class="filter-precio">
+                    <p>Aportación Inicial</p>
+                    <div class="filter-inputs">
+                        <input type="number" id="max-price" name="max-price"  placeholder="Máximo">
+                        <input type="number" id="min-price" name="min-price"  placeholder="Mínimo">
+                    </div>
+                </div>
+                <div class = "filtrer-rentabilidad">
+                    <p>Rentabilidad</p>
+                    <div class="filter-inputs">
+                        <input type="number" id="max-rentabilidad" name="max-rentabilidad"  placeholder="Máxima">
+                        <input type="number" id="min-rentabilidad" name="min-rentabilidad"  placeholder="Mínima">
+                    </div>
+                </div>
+            </section>
+
+            <section class="cards-container">
+                <p> hello</p>
+            </section>
+
+            <section class="profile-container">
+                <div class="title">
+                    <p>PERFIL INVERSOR</p>
+                </div>  
+                <P>Fecha de nacimiento</P>
+                <input type="date" id="birth-date" name="birth-date">
+                <select id="profile-selector-capital-porcentaje">
+                    <option value="capital-aportado">Capital Aportado</option>
+                    <option value="porcentaje-financiado">Porcentaje Financiado</option>
+                </select>
+
+            </section>
+
+        </div>
+    
+        <div class="mobile-filters">
+            <div class="mobile-menu-filter"><i class="fas fa-filter"></i><p>Filtro</p></div>
+            <div class="mobile-menu-profile"><i class="fas fa-user"></i><p>Perfil</p></div>
+        </div>
+    </div> -->
 </body>
 </html>
