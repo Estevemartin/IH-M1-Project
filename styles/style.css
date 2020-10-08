@@ -1,0 +1,114 @@
+*{
+    margin:0px;
+    padding:0px;
+    font-family: alef;
+}
+body{
+    margin:0px;
+    padding:0px;
+    /* font-family: 'Lucida Console', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
+    height: 100%;
+    /* display:flex;
+    flex-direction: column; */
+    
+}
+nav{
+    background-color:blue;
+    display:flex;
+    height: 60px;
+}
+nav input{
+    width:60%;
+}
+
+main{
+    display:flex;
+    /* min-height: 600px; */
+    /* height: 100%; */
+    flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: stretch;
+    align-content: stretch;
+    
+}
+main>*{
+    /* align-items: stretch; */
+}
+
+.mobile-filters{
+    display:inline-block;
+    background-color: red;
+    height: 60px;
+    display:none;
+    
+}
+.mobile-filters p{
+    margin:20px;
+    
+}
+
+.mobile-menu-filter{
+    width:50%;
+    display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+    align-content: stretch;
+    border-right: solid 1px black;
+}
+.mobile-menu-profile{
+    width:50%;
+    display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: center;
+	align-items: center;
+	align-content: stretch;
+}
+
+.filter-container{
+    background-color: aqua;
+    /* width:250px; */
+    width:20%;
+    max-width:250px;
+    min-width:150px;
+    /* display:none; /*Para tamaños pequeños */  
+    
+}
+.cards-container{
+    background-color: orange;
+    /* width:60%; */
+    flex: 1 1 auto;
+}
+
+.profile-container{
+    background-color: greenyellow;
+    /* width:250px; */
+    width:20%;
+    max-width:250px;
+    min-width:150px;
+}
+
+@media only screen and (max-width: 600px) {
+    .main{
+        flex: 0 1 auto;
+    }
+    .profile-container {
+        display:none;
+    }
+    .filter-container{
+        display:none;
+    }
+    .mobile-filters{
+
+        display:flex;
+        
+    }
+  }
+/* @media only screen and (max-width: 900px, min-width: 600px) {
+    .profile-container {
+        display:none;
+    }
+  } */
