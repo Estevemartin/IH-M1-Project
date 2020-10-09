@@ -22,9 +22,19 @@ body {
     margin-top:80px;
 }
 /* .box .row.footer {flex: 0 1 40px;} */
-
-
-
+a{
+    color:white;
+    text-decoration: none;
+    height: 100%;
+    display:flex;
+    align-items: center;
+}
+a:hover{
+    background-color: #222831;
+}
+.logo a:hover{
+    background-color: #393e46;
+}
 
 
 /* NAVBAR */
@@ -62,6 +72,7 @@ nav .menu{
     text-align: center;
     font-size: 14pt;
     margin:0px 10px;
+    height: 100%;
     /* font-weight: bold; */
     
     
@@ -274,7 +285,7 @@ input:focus, textarea:focus, select:focus,button:focus{
     flex-direction: column;
 }
 .main-forms .panel-forms-login{
-    height: 230px;
+    height: 260px;
 }
 .main-forms .panel-forms-login form{
     display:flex;
@@ -310,6 +321,61 @@ input:focus, textarea:focus, select:focus,button:focus{
     margin-bottom:5px;
     margin-top:15px;
 }
+.panel-forms-login form p{
+    font-size: 8pt;
+    color:#838486;
+}
+form a:hover{
+    background-color: #eeeeee;
+}
+
+/* FAQS */
+.panel-forms-faqs form{
+    flex-direction: column;
+}
+.main-forms .panel-forms-faqs{
+    height: 260px;
+}
+.main-forms .panel-forms-faqs form{
+    display:flex;
+    justify-content: center;
+    padding:0px 30px;
+}
+.main-forms .panel-forms-faqs input{
+    width: 100%;
+    
+    background-color: #eeeeee;
+    border:none;
+    border-bottom: 1px solid #393e46;
+    margin-top:30px;
+}
+.main-forms .panel-forms-faqs form button{
+    background-color: #32e0c4;
+    border:none;
+    margin-top:30px;
+    padding: 10px 0px;
+    border-radius: 5px;
+}
+.panel-forms-faqs{
+    /* border:1px solid black; */
+    margin:25px;
+    margin-top:10%;
+    width:400px;
+    border-radius: 5px;
+    -webkit-box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.43);
+    -moz-box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.43);
+    box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.43);
+    
+}
+.panel-forms-faqs p{
+    margin-bottom:5px;
+    margin-top:15px;
+}
+.panel-forms-faqs form p{
+    font-size: 8pt;
+    color:#838486;
+}
+
 
 
 
