@@ -1,23 +1,37 @@
 // CONNECT TO API
 
-const getProperties = () => {
-    return fetch("https://realtor.p.rapidapi.com/properties/v2/list-for-rent?sort=relevance&city=New%20York%20City&state_code=NY&limit=200&offset=0", {
-      "method": "GET",
-      "headers": {
-          "x-rapidapi-host": "realtor.p.rapidapi.com",
-          "x-rapidapi-key": "e6695a6ac7msh16b37677dff30bap1ed3bbjsn47f7a13414c5"
-      }
-  })
-      .then(response => response.json());// parse JSON
-      // .then(users => users[0]) // pick first user
-      // .then(user => console.log(user)); 
-  };
+let getProperties = async ()=> {
+    try {
+      let response= await fetch("https://find-your-asset.herokuapp.com/properties");
+      let properties = await response.json();
+        return properties;
+    }catch{
+      err=>console.log(err);
+    }
+  }
+  
+const collectProperties = async () =>{
+    const dataSet = await getProperties();
+    document.getElementById('cards-test').innerHTML=dataSet[1].property_id;
+}
 
-  const getProperties2 = () => {
-    return fetch("../db.json")
-      .then(response => response.json());// parse JSON
-      // .then(users => users[0]) // pick first user
-      // .then(user => console.log(user)); 
-  };
 
-  console.log(getProperties2())
+const properties = collectProperties();
+console.log(dataSet)
+console.log(properties)
+
+
+
+
+// class property {
+//     constructor(id,beds,city,country,state,neighborhood,rent,baths,name,pics){
+//         this.id = id;
+//         this.name=name;
+//         this.beds=beds;
+//         this.baths = baths;
+//         this.city = city;
+//         this.rent = rent;
+//         this.pics=pics;
+
+//     }
+// }
