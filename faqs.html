@@ -41,11 +41,24 @@
                     <div class="titulo-apartado">
                         PREGUNTAS FREQUENTES
                     </div>
-                    <form>
-                        <input type="text" placeholder="Correo Electrónico">
-                        <input type="text" placeholder="Contraseña">
-                        <button>Entrar</button>
-                    </form>
+                    <div class="faqs-collapsible">
+                        <button type="button" class="collapsible">¿Qué és <span class="green-font">Find Your Asset</span>?</button>
+                        <div class="content-collapsible">
+                            <p><strong>Find Your Asset</strong> es una herramienta que pone las inversiones immobiliarias al alcance de todos</p>
+                        </div>
+                        <button type="button" class="collapsible">¿Como me puede ayudar <span class="green-font">Find Your Asset</span>?</button>
+                        <div class="content-collapsible">
+                            <p><strong>Find Your Asset</strong> analiza los inmuebles publicados en varios portales immobiliarios y te muestra la rentabilidad de cada uno de ellos. Te ayudamos a elegir <strong>los pisos más rentables</strong> para invertir.</p>
+                        </div>
+                        <button type="button" class="collapsible">Open Collapsible</button>
+                        <div class="content-collapsible">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        </div>
+                        <button type="button" class="collapsible">Open Collapsible</button>
+                        <div class="content-collapsible">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -61,4 +74,20 @@
         <!-- FOOTER BUTTONS END -->
       </div>
 </body>
+<script>
+    var coll = document.getElementsByClassName("collapsible");
+    var i;
+    
+    for (i = 0; i < coll.length; i++) {
+      coll[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        var content = this.nextElementSibling;
+        if (content.style.display === "block") {
+          content.style.display = "none";
+        } else {
+          content.style.display = "block";
+        }
+      });
+    }
+    </script>
 </html>
