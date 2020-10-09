@@ -1,4 +1,3 @@
-# Find Your Asset
 ![Img](img/logo.png)
 ## Description
 **Find Your Asset** is a WebApp that helps real estate investors find the most profitable properties to invest in.
