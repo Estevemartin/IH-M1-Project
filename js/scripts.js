@@ -12,3 +12,12 @@ const getProperties = () => {
       // .then(users => users[0]) // pick first user
       // .then(user => console.log(user)); 
   };
+
+  const getProperties2 = () => {
+    return fetch("../db.json")
+      .then(response => response.json());// parse JSON
+      // .then(users => users[0]) // pick first user
+      // .then(user => console.log(user)); 
+  };
+
+  console.log(getProperties2())
