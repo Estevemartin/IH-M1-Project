@@ -34,4 +34,6 @@ Comming Soon...
 
 [Slides (Coming Soon)]()
 
+## Wireframes
+<img style ="height:400px;" src = "img/WireFrames.jpg" alt="WireFrames">
 

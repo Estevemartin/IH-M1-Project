@@ -110,7 +110,7 @@ nav .menu-hamburger{
     flex: 1 1 auto;
 }
 .card{
-
+    border:1px solid black;
 }
 
 /* PROFILE */
