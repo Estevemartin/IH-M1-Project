@@ -41,12 +41,15 @@
                     <div class="titulo-apartado">
                         LOG IN
                     </div>
-                    <form>
-                        <input type="text" placeholder="Correo Electrónico">
-                        <input type="text" placeholder="Contraseña">
+                    <form class="login-form" action="">
+                        <input type="email" placeholder="Correo Electrónico" id="email">
+                        <input type="password" placeholder="Contraseña" id ="password">
                         <a href="register.html"><p>Crea cuenta</p></a>
-                        <button>Entrar</button>
+                        <button type="submit" class="button" id="login-button">Entrar</button>
+                        <!-- <p class="message-container"></p> -->
                     </form>
+                    <div class="message-container">
+                    </div>
                 </div>
             </div>
         </div>
