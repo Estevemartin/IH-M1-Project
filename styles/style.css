@@ -159,12 +159,13 @@ nav .menu-hamburger{
     height: 200px;
     min-width: 200px;
     max-height:200px;
-    
+    /* min-height: 100%; */
 }
 .img-card-container img{
     height: 100%;
     width:100%;
     object-fit: cover;
+    /* min-height: 100%; */
 }
 
 .card-central{
@@ -284,11 +285,17 @@ nav .menu-hamburger{
     -webkit-box-shadow: 0px 0px 20px 3px rgba(0,0,0,0.22);
 -moz-box-shadow: 0px 0px 20px 3px rgba(0,0,0,0.22);
 box-shadow: 0px 0px 20px 3px rgba(0,0,0,0.22);
-    
+    /* max-height: 200px; */
+}
+.panel.card:hover{
+    background-color: #cac6c6 ;
 }
 .panel p{
     margin-bottom:5px;
     margin-top:15px;
+}
+.active-card{
+    background-color: #a8a7a7 ;
 }
 .input-buttons{
     display:flex;
@@ -435,268 +442,12 @@ input[type=range]:focus::-webkit-slider-runnable-track {
     background: #393e46;
 }
 
-/* REGISTER */
-.panel-forms form{
-    flex-direction: column;
-}
-.main-forms{
-    background-color: #eeeeee;
-    display:flex;
-    height: 100%;
-    justify-content: center;
-    /* padding-top:30px; */
-}
-.main-forms .panel-forms{
-    height: 320px;
-}
-.main-forms .panel-forms form{
-    display:flex;
-    justify-content: center;
-    padding:0px 30px;
-}
-.main-forms .panel-forms input{
-    width: 100%;
-    
-    background-color: #eeeeee;
-    border:none;
-    border-bottom: 1px solid #393e46;
-    margin-top:30px;
-}
-.main-forms .panel-forms form button{
-    background-color: #32e0c4;
-    border:none;
-    margin-top:30px;
-    padding: 10px 0px;
-    border-radius: 5px;
-}
-.panel-forms{
-    /* border:1px solid black; */
-    margin:25px;
-    margin-top:10%;
-    border-radius: 5px;
-    -webkit-box-shadow: 0px 0px 20px 3px rgba(0,0,0,0.22);
--moz-box-shadow: 0px 0px 20px 3px rgba(0,0,0,0.22);
-box-shadow: 0px 0px 20px 3px rgba(0,0,0,0.22);
-    width: 340px;
-}
-.panel-forms p{
-    margin-bottom:5px;
-    margin-top:15px;
-}
-
-/* LOGIN */
-.panel-forms-login form{
-    flex-direction: column;
-}
-.main-forms .panel-forms-login{
-    height: 260px;
-}
-.main-forms .panel-forms-login form{
-    display:flex;
-    justify-content: center;
-    padding:0px 30px;
-}
-.main-forms .panel-forms-login input{
-    width: 100%;
-    
-    background-color: #eeeeee;
-    border:none;
-    border-bottom: 1px solid #393e46;
-    margin-top:30px;
-}
-.main-forms .panel-forms-login form button{
-    background-color: #32e0c4;
-    border:none;
-    margin-top:30px;
-    padding: 10px 0px;
-    border-radius: 5px;
-}
-.panel-forms-login{
-    /* border:1px solid black; */
-    margin:25px;
-    margin-top:10%;
-    border-radius: 5px;
-    -webkit-box-shadow: 0px 0px 20px 3px rgba(0,0,0,0.22);
--moz-box-shadow: 0px 0px 20px 3px rgba(0,0,0,0.22);
-box-shadow: 0px 0px 20px 3px rgba(0,0,0,0.22);
-    width: 340px;
-}
-.panel-forms-login p{
-    margin-bottom:5px;
-    margin-top:15px;
-}
-.panel-forms-login form p{
-    font-size: 8pt;
-    color:#838486;
-}
-form a:hover{
-    background-color: #eeeeee;
-}
-
-/* FAQS */
-.panel-forms-faqs form{
-    flex-direction: column;
-}
-.main-forms .panel-forms-faqs{
-    /* height: 260px; */
-}
-.main-forms .panel-forms-faqs form{
-    display:flex;
-    justify-content: center;
-    padding:0px 30px;
-}
-.main-forms .panel-forms-faqs input{
-    width: 100%;
-    
-    background-color: #eeeeee;
-    border:none;
-    border-bottom: 1px solid #393e46;
-    margin-top:30px;
-}
-.main-forms .panel-forms-faqs form button{
-    background-color: #32e0c4;
-    border:none;
-    margin-top:30px;
-    padding: 10px 0px;
-    border-radius: 5px;
-}
-.panel-forms-faqs{
-    /* border:1px solid black; */
-    margin:25px;
-    margin-top:10%;
-    width:700px;
-    border-radius: 5px;
-    -webkit-box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.43);
-    -moz-box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.43);
-    box-shadow: 0px 0px 15px 5px rgba(0,0,0,0.43);
-    
-}
-.panel-forms-faqs p{
-    margin-bottom:5px;
-    margin-top:15px;
-    font-size: 11pt;
-}
-.panel-forms-faqs form p{
-    font-size: 8pt;
-    color:#838486;
-}
-.green-font{
-    color:#32e0c4;
-}
-
-/* COLLAPSIBLE */
-.faqs-collapsible{
-    display:flex;
-    flex-direction: column;
-    margin:15px;
-}
-.collapsible {
-    background-color: #393e46;
-    border-radius:5px 5px 0px 0x;
-    color: white;
-    cursor: pointer;
-    padding: 15px;
-    /* width: 80%; */
-    border: 3px solid #eeeeee;
-    text-align: left;
-    outline: none;
-    font-size: 15px;
-    margin:0px;
-  }
-  
-  .active, .collapsible:hover {
-    background-color: #222831;
-  }
-  .content-collapsible {
-    padding: 10px 18px;
-    display: none;
-    overflow: hidden;
-    background-color: #eeeeee;
-  }
-  .content-collapsible p {
-    margin:0px;
-  }
 
 
-/* MOBILE */
-.mobile-filters{
-    display:inline-block;
-    background-color: #393e46;
-    height: 60px;
-    display:none;    
-}
-.mobile-filters p{
-    margin:20px;
-    color:#32e0c4;
-}
-.mobile-filters i{
-    color:#32e0c4;
-}
-
-.mobile-menu-filter{
-    width:50%;
-    display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-    border-right: solid 1px black;
-}
-.mobile-menu-profile{
-    width:50%;
-    display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
-}
 
 
-@media only screen and (max-width: 600px) {
 
-    
-    .filter-container{
-        display:none;
-    }
-    .mobile-filters{
-        display:flex;
-    }
-    .cc-info{display:none;}
-    
-    
-}
 
-@media(max-width:900px){
-    .profile-container {
-        display:none;
-    }
-    .menu p{
-        display:none;
-    }
-    nav .menu-hamburger{
-        display: block;
-        color:white;
-    }
-    nav .menu-hamburger i{
-        font-size: 20pt;
-        margin:0px 10px;
-        margin-right: 20px;
-    }
-    nav .logo{
-        display:none;
-    }
-    nav .logo-small{
-        display: flex;
-        height: 100%;
-        align-items: center;
-    }
-    nav .logo-small img{
-        height: 60%;
-    }
-}
-@media(max-width:1660px){
-    .card-right{
-        display:none;
-    }
-}
 
 
 /* @media only screen and (max-width: 900px, min-width: 600px) {

@@ -47,7 +47,7 @@ const collectProperties = async () =>{
 
     result.map(element=>{
       stringToPrint+=`<!-- TARJETA A RELLENAR CON JS -->
-      <div class = "card panel"><div class="img-card-container">
+      <div class = "card panel" onclick='selectProperty(this)'><div class="img-card-container">
               <img src="`+element.mainPicture+`">
       </div><!-- CARD(CENTRAL) --><div class="card-central"><div class="cc-main"><div class="cc-main-sub"><div class="top-tag-label-rentabilidad">Rentabilidad</div>
                       <div class="tag font-green top-card-tag tag-short">
@@ -128,3 +128,40 @@ const properties = collectProperties();
 
 //     }
 // }
+
+// MUESTRA LA RENTABILIDAD MINIMA SELECCIONADA
+updateRentabilidadMinima=(rentabilidadMnima)=>{
+  document.getElementById("display-rentabilidad-minima").innerHTML = rentabilidadMnima + "%";
+}
+
+// SELECCIONA UNA PROPIEDAD AL HACER CLICK EN ELLA
+selectProperty=(propertyCard)=>{
+  // Get all Cards
+  let allCards=document.getElementsByClassName("card panel")
+  console.log(allCards)
+
+  
+  if (propertyCard.classList.contains('active-card')){
+    //Si el elemento seleccionado tiene la clase, se le quita.
+    propertyCard.classList.remove('active-class')
+  } else{
+    // Remove 'active-card' class from every element
+    for (cardId=0;cardId<allCards.length;cardId++){
+      console.log(allCards[cardId].classList.contains('active-card'))
+      if (allCards[cardId].classList.contains('active-card')){
+        allCards[cardId].classList.remove('active-card');
+      }
+    }
+    //Si el elemento seleccionado no tiene la clase, se le transifere la calse.
+    propertyCard.classList.add('active-card');
+  }
+
+  
+
+  //
+  
+  
+  // console.log(allCards)
+  // console.log(propertyCard.style.backgroundColor="#a8a7a7");
+}
+
