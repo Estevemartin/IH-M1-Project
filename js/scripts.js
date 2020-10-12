@@ -134,6 +134,37 @@ updateRentabilidadMinima=(rentabilidadMnima)=>{
   document.getElementById("display-rentabilidad-minima").innerHTML = rentabilidadMnima + "%";
 }
 
+showHideMenu=()=>{
+  let element = document.getElementById("mobile-menu")
+  if(element.style.display==="none"){
+    element.style.display="inline";
+  } else{
+    element.style.display="none";
+  }
+}
+
+showHideFilters =()=>{
+  console.log('clicked');
+  let cardsContainer=document.getElementById("cards-container");
+  let filtrosContainer = document.getElementById("filtros");
+  // let filtersContainer= document.getElementById("perfil");
+  // console.log(cardsContainer.style.display);
+  // console.log(filtrosContainer.style.display);
+  console.log(filtrosContainer.style.display);
+  if(filtrosContainer.style.display==="none"){
+    console.log("Gonna Display Only Filters")
+    cardsContainer.style.display="";
+    filtrosContainer.style.display="inline-block";
+    // filtersContainer.style.display="inline-block";
+  } else{
+    console.log("Gonna Display Only Cards")
+    cardsContainer.style.display="";
+    filtrosContainer.style.display="none";
+    // filtersContainer.style.display="none";
+  }
+
+}
+
 // SELECCIONA UNA PROPIEDAD AL HACER CLICK EN ELLA
 selectProperty=(propertyCard)=>{
   // Get all Cards

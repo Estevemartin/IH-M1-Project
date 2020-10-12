@@ -37,7 +37,7 @@
                     <a href="login.html"><p>Log In</p></a>
                     <a href="register.html"><p>Sign Up</p></a>
                 </div>
-                <div class="menu-hamburger">
+                <div class="menu-hamburger" onclick=showHideMenu()>
                     <i class="fas fa-bars"></i>
                 </div>
             </nav>
@@ -48,8 +48,8 @@
             <!-- MAIN CONTENT -->
             <div class= "main">
                 <!-- ASIDE -->
-                <section class="filter-container">
-                    <div class="panel">
+                <section class="filter-container" id="filter-container">
+                    <div class="panel" id="filtros">
                         <div class="titulo-apartado">
                             FILTROS
                         </div>
@@ -70,7 +70,7 @@
                         </div>
                         <div class = "filter-apply-changes"><button>Buscar</button></div>
                     </div>
-                    <div class="panel">
+                    <div class="panel" id="perfil">
                         <div class="titulo-apartado">
                             <p>PERFIL INVERSOR</p>
                         </div>  
@@ -108,7 +108,7 @@
                 </section>
                 <!-- ASIDE END -->
                 <!-- CARDS CONTAINES -->
-                <section class="cards-container">
+                <section class="cards-container" id="cards-container">
                     <!-- TARJETA A RELLENAR CON JS -->
                     <!-- <div class = "card panel">
                         <div class="img-card-container">
@@ -175,7 +175,7 @@
                 </section>
                 <!-- CARDS CONTAINES END -->
                 
-                <section class="details-container">
+                <section class="details-container" id="details-container">
                    <div class="panel">
                         <div class="details-error-msg tag" style="background-color: #e26767;">
                             Faltan campos por rellenar
@@ -371,10 +371,13 @@
                 </section>
             </div>
             <!-- MOBILE MENU-->
-            <div class="mobile-menu">
-                <a href="faqs.html"><p>FAQs</p></a>
-                <a href="login.html"><p>Log In</p></a>
+            <div class="mobile-menu" id="mobile-menu">
+                <hr>
                 <a href="register.html"><p>Sign Up</p></a>
+                <hr>
+                <a href="login.html"><p>Log In</p></a>
+                <hr>
+                <a href="faqs.html"><p>FAQs</p></a>
             </div>
             <!-- MOBILE FILTERS -->
             <!-- <div class="mobile-filters">
@@ -386,7 +389,7 @@
         <!-- FOOTER BUTTONS -->
         <!-- <div class="row footer"> -->
             <div class="mobile-filters">
-                <div class="mobile-menu-filter"><i class="fas fa-filter"></i><p>Filtro</p></div>
+                <div class="mobile-menu-filter" onclick=showHideFilters()><i class="fas fa-filter"></i><p>Filtro</p></div>
                 <div class="mobile-menu-profile"><i class="fas fa-user"></i><p>Perfil</p></div>
             </div>
         <!-- </div> -->
@@ -395,4 +398,5 @@
       </div>
       
 </body>
+
 </html>

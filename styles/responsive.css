@@ -1,14 +1,36 @@
 
 
 /* MOBILE */
+/* .menu-hamburger{
+    
+} */
 .mobile-menu{
     /* display:flex; */
     /* position: -webkit-sticky; */
     /* position: sticky; */
-    /* top:80px;
+    /* top:80px; */
     position:fixed;
-    top:80px;*/
+    top:80px;
+    right:0px;
+    background-color:#393e46 ;
+    width: 110px;
+    /* animation-name: dropdownMenu;
+    animation-duration:1s; */
+    display:none;
 }
+
+.mobile-menu p{
+    padding:5px 20px;
+    
+    
+}
+.mobile-menu hr{
+    margin:0px
+}
+ /* @keyframes dropdownMenu{
+     from {right:-110px}
+     to{right: 0px;}
+ } */
 
 
 .mobile-filters{
