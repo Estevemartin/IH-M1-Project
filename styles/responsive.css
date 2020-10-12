@@ -70,6 +70,9 @@
 
 
 @media only screen and (max-width: 650px) {
+    .cc-title{
+        margin-top:0px;
+    }
     .img-card-container{
         width: 100px;
         min-width: 100px;
@@ -90,6 +93,9 @@
 @media(max-width:900px){
     html,body{
         font-size: 10pt;
+    }
+    .cards-container{
+        padding:0px;
     }
     .tag-short{
         padding:5px;
@@ -133,3 +139,12 @@
     }
 }
 
+@media(max-width:400px){
+    .cards-container{
+        min-width: 100%;
+    }
+    .cc-main{
+        padding: 5px;
+        /* padding:0px 20px; //EN STYLES.CSS SIN MEDIA QUERY EDICION DANI */
+    }
+}

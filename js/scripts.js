@@ -69,6 +69,7 @@ const collectProperties = async () =>{
               </div>
               <div class="cc-details">
                   <div class="cc-details-icons">
+                      
                       <i class="fas fa-bed"></i>
                       `+element.nHabs+`
                       <i class="fas fa-bath"></i>
@@ -136,7 +137,8 @@ updateRentabilidadMinima=(rentabilidadMnima)=>{
 
 showHideMenu=()=>{
   let element = document.getElementById("mobile-menu")
-  if(element.style.display==="none"){
+  console.log(element.style.display);
+  if(element.style.display==="none" || element.style.display===""){
     element.style.display="inline";
   } else{
     element.style.display="none";
@@ -150,15 +152,16 @@ showHideFilters =()=>{
   // let filtersContainer= document.getElementById("perfil");
   // console.log(cardsContainer.style.display);
   // console.log(filtrosContainer.style.display);
-  console.log(filtrosContainer.style.display);
-  if(filtrosContainer.style.display==="none"){
+  // console.log(filtrosContainer.style.display);
+  console.log ("Display Cards: "+ cardsContainer.style.display + "   | Display Filters: "+filtrosContainer.style.display)
+  if(filtrosContainer.style.display==="none" || filtrosContainer.style.display===""){
     console.log("Gonna Display Only Filters")
-    cardsContainer.style.display="";
-    filtrosContainer.style.display="inline-block";
+    cardsContainer.style.display="none";
+    filtrosContainer.style.display="flex";
     // filtersContainer.style.display="inline-block";
   } else{
     console.log("Gonna Display Only Cards")
-    cardsContainer.style.display="";
+    cardsContainer.style.display="block";
     filtrosContainer.style.display="none";
     // filtersContainer.style.display="none";
   }
@@ -169,7 +172,7 @@ showHideFilters =()=>{
 selectProperty=(propertyCard)=>{
   // Get all Cards
   let allCards=document.getElementsByClassName("card panel")
-  console.log(allCards)
+  // console.log(allCards)
 
   
   if (propertyCard.classList.contains('active-card')){
@@ -178,7 +181,7 @@ selectProperty=(propertyCard)=>{
   } else{
     // Remove 'active-card' class from every element
     for (cardId=0;cardId<allCards.length;cardId++){
-      console.log(allCards[cardId].classList.contains('active-card'))
+      // console.log(allCards[cardId].classList.contains('active-card'))
       if (allCards[cardId].classList.contains('active-card')){
         allCards[cardId].classList.remove('active-card');
       }
