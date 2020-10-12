@@ -13,9 +13,10 @@ let getProperties = async ()=> {
 const collectProperties = async () =>{
     const dataSet = await getProperties();
     // document.getElementById('cards-test').innerHTML=dataSet[1].property_id;
-    console.log(dataSet)
+    // console.log(dataSet)
 
     let result = dataSet.slice(1,30).map((element,index)=>{
+      let propertyId=element.listing_id;
       let title=element.address.line;
       let nBaths=rndBetween(1,4);
       let nHabs=rndBetween(1,4);
@@ -26,8 +27,11 @@ const collectProperties = async () =>{
       let income=rndBetween(500,3000);
       let expenses=0.35*income;
       let balance=income-expenses;
-      let mainPicture=element.photos[0].href
+      let mainPicture=element.photos[0].href;
+      let city=element.address.city;
+
       returnElement ={
+        propertyId:propertyId,
         title:title,
         nBaths:nBaths,
         nHabs:nHabs,
@@ -36,6 +40,7 @@ const collectProperties = async () =>{
         downpayment:downpayment.toFixed(0),
         price:price,
         income:income,
+        city:city,
         expenses:expenses.toFixed(0),
         balance:balance.toFixed(0),
         mainPicture:mainPicture
@@ -46,17 +51,50 @@ const collectProperties = async () =>{
     let stringToPrint="";
     let maxDownPayment=Number(document.getElementById("max-price").value);
     let minimumProfit=Number(document.getElementById("minimum-profit").value);
+    let selectedCity=document.getElementById("city-selector").value;
     // let sortMethod=Number(document.getElementById("sort-method-selector").value);
     // console.log(maxDownPayment);
     // console.log(maxDownPayment);
-    
-
-
+    let regions=[];
+    document.getElementById("city-selector").innerHTML="";
+    let selectorCiudades = document.getElementById("city-selector");
+    let allCitiesOption = document.createElement("Option");
+    allCitiesOption.value = "All Regions";
+    allCitiesOption.innerHTML="All Regions";
+    // console.log(selectorCiudades)
+    selectorCiudades.appendChild(allCitiesOption)
+    result.slice(1,30).map(function(element){
+      //Add city names to city filter
+      
+      if (regions.includes(element.city)===false){
+        regions.push(element.city);
+        let newCity = document.createElement("Option");
+        newCity.value = element.city;
+        newCity.innerHTML=element.city;
+        // console.log(selectorCiudades)
+        selectorCiudades.appendChild(newCity)
+      }
+    });
+    document.getElementById("city-selector").value = selectedCity;
+    // let selectorCiudades = document.getElementById("filtro-ciudades-select")
+    // selectorCiudades.appendChild()
+    // console.log(regions)
     result.filter(element=>{
-      if (filterMaxDownPayment(element.downpayment,maxDownPayment) && filterMinimumProfit(element.profit,minimumProfit)){return true;} else {return false;}
+
+      //DISPLAY PROPERTIES THAT MATCH THE FILTERS
+      if (
+        filterMaxDownPayment(element.downpayment,maxDownPayment) 
+        && 
+        filterMinimumProfit(element.profit,minimumProfit)
+        &&
+        filterCity(element.city,selectedCity)
+        // filterCity(element.city,"Brooklyn")
+        ){return true;} else {return false;}
     }).sort(function(a,b){
+
+      //SORT PROPERTIES ACCORDING TO SORTING CRITERIA
       let sortMethod=document.getElementById("sort-method-selector").value;
-      console.log(sortMethod)
+      // console.log(sortMethod)
         switch (sortMethod){
 
           // case "Mayor Rentabilidad":if(a.profit>b.profit){return 1;} else {return -1;}break;
@@ -74,6 +112,7 @@ const collectProperties = async () =>{
           case "Mayor Balance":return b.balance-a.balance;
         }
     }).map(element=>{
+      //PLOT PROPERTIES INTO THE HTML FILE
       stringToPrint+=`<!-- TARJETA A RELLENAR CON JS -->
       <div class = "card panel" onclick='selectProperty(this)'><div class="img-card-container">
               <img src="`+element.mainPicture+`">
@@ -107,7 +146,7 @@ const collectProperties = async () =>{
                   </div>
               </div>
               <div class="cc-title">
-              `+element.title+`
+              `+element.title+` | `+element.city+`
               </div>
               <div class="cc-info">
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tristique diam pretium est hendrerit, nec varius velit bibendum. Etiam gravida nibh sit amet metus ultricies lacinia.
@@ -132,7 +171,7 @@ const collectProperties = async () =>{
       </div>
       <!-- FIN TARJETA A RELLENAR CON JS -->`;
     })
-    document.getElementsByClassName("cards-container")[0].innerHTML=stringToPrint;
+    document.getElementsByClassName("cards-container")[0].innerHTML+=stringToPrint;
   }
 
   function rndBetween(min,max){
@@ -147,6 +186,11 @@ const collectProperties = async () =>{
     if (maxDP===0){return true;}else{if(curDP>maxDP){return false;} else {return true}}
     
   }
+
+  function filterCity(currCity,selectedCity){
+    if (currCity===selectedCity || selectedCity==="All Regions"){return true;}else{return false;}
+  }
+
   const properties = collectProperties();
 // console.log(dataSet)
 // console.log(properties)
@@ -186,18 +230,21 @@ showHideFilters =()=>{
   console.log('clicked');
   let cardsContainer=document.getElementById("cards-container");
   let filtrosContainer = document.getElementById("filtros");
+  console.log(cardsContainer.style);
   // let filtersContainer= document.getElementById("perfil");
   // console.log(cardsContainer.style.display);
   // console.log(filtrosContainer.style.display);
   // console.log(filtrosContainer.style.display);
-  console.log ("Display Cards: "+ cardsContainer.style.display + "   | Display Filters: "+filtrosContainer.style.display)
+  console.log ("Display Cards: "+ cardsContainer.style.display + "   | Display Filters: "+filtrosContainer.style.display);
+  
+
   if(filtrosContainer.style.display==="none" || filtrosContainer.style.display===""){
-    console.log("Gonna Display Only Filters")
+    console.log("Gonna Display Only Filters");
     cardsContainer.style.display="none";
-    filtrosContainer.style.display="flex";
+    filtrosContainer.style.display="block";
     // filtersContainer.style.display="inline-block";
-  } else{
-    console.log("Gonna Display Only Cards")
+  }else{
+    console.log("Gonna Display Only Cards");
     cardsContainer.style.display="block";
     filtrosContainer.style.display="none";
     // filtersContainer.style.display="none";

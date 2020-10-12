@@ -83,7 +83,7 @@ nav{
     background-color:#393e46;
     display:flex;
     height: 80px;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
     position: fixed;
@@ -457,6 +457,10 @@ box-shadow: 0px 0px 20px 3px rgba(0,0,0,0.22);
     border:none;
     background-color: #32e0c4;
  }
+ .filter-apply-changes>button:hover{
+    background-color: #9ef8e9;
+    cursor: pointer;
+ }
  .filter-container .panel{
      min-width: 120px;
  }
@@ -464,7 +468,7 @@ box-shadow: 0px 0px 20px 3px rgba(0,0,0,0.22);
 .filter-inputs{
     display:flex;
     justify-content:space-around;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
 }
@@ -476,16 +480,32 @@ box-shadow: 0px 0px 20px 3px rgba(0,0,0,0.22);
     background-color: #eeeeee;
     text-align: center;
 }
+.filter-inputs select{
+    background-color: #eeeeee;
+    border:none;
+    border-bottom:  1px solid #393e46;
+    padding:5px;
+    width: 70%;
+    margin-bottom: 15px;
+    
+}   
+.filter-inputs i{
+    color:#393e46;
+    top:0px;
+    margin-left:5px;
+    
+}
+
 .display-rentabilidad-minima{
     height: 300px;
 }
 .slider-wrapper{
     display: flex;
     justify-content: center;
-    width: 100%;
+    width: 60%;
 }
-.slider-wrapper input{
-    
+.slider-wrapper>input{
+    padding:0px;
 }
 ::-webkit-input-placeholder {
     text-align: center;
@@ -510,7 +530,7 @@ input[type=range] {
     -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
     width: 100%; /* Specific width is required for Firefox. */
     background: transparent; /* Otherwise white in Chrome */
-    padding:15px;
+    padding:5px;
     border:none;
 }
   
@@ -601,3 +621,42 @@ input[type=range]:focus::-webkit-slider-runnable-track {
     color: #e26767;
      
 }
+
+
+
+
+
+
+/* PAGINATION */
+.pagination{
+    display: flex;
+	flex-direction: row;
+	/* flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	align-content: flex-end; */
+    margin-left:25px;
+}
+.pagination a{
+    background-color: #393e46;
+    border-left:1px solid #eeeeee;
+}
+.pagination a:hover{
+    background-color: #b9b7b7;
+}
+.pagination p{
+    margin:0px;
+    height: 35px;
+    width: 35px;
+    display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+	align-content: center;
+}
+
+/* #filter-container{
+    position:absolute;
+    z-index: 1;
+} */
