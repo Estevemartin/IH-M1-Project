@@ -13,7 +13,7 @@ let getProperties = async ()=> {
 const collectProperties = async () =>{
     const dataSet = await getProperties();
     // document.getElementById('cards-test').innerHTML=dataSet[1].property_id;
-    console.log(dataSet[3])
+    console.log(dataSet)
 
     let result = dataSet.slice(1,30).map((element,index)=>{
       let title=element.address.line;
@@ -46,20 +46,32 @@ const collectProperties = async () =>{
     let stringToPrint="";
     let maxDownPayment=Number(document.getElementById("max-price").value);
     let minimumProfit=Number(document.getElementById("minimum-profit").value);
-    let sortMethod=Number(document.getElementById("sort-method-selector").value);
+    // let sortMethod=Number(document.getElementById("sort-method-selector").value);
     // console.log(maxDownPayment);
     // console.log(maxDownPayment);
     
+
+
     result.filter(element=>{
       if (filterMaxDownPayment(element.downpayment,maxDownPayment) && filterMinimumProfit(element.profit,minimumProfit)){return true;} else {return false;}
-    }).sort(function(a,b,sortMethod){
+    }).sort(function(a,b){
+      let sortMethod=document.getElementById("sort-method-selector").value;
+      console.log(sortMethod)
         switch (sortMethod){
-          case "Mayor Rentabilidad":if(a.profit>b.profit){return true;} else {return false;}break;
-          case "Menor Capital Inicial":if(a.downpayment<b.downpayment){return true;} else {return false;}break;
-          case "Menor Precio del Inmueble":if(a.price<b.price){return true;} else {return false;}break;
-          case "Mayores Ingresos":if(a.income>b.income){return true;} else {return false;}break;
-          case "Menores Gastos":if(a.expenses<b.expenses){return true;} else {return false;}break;
-          case "Mayor Balance":if(a.balance>b.balance){return true;} else {return false;}break;
+
+          // case "Mayor Rentabilidad":if(a.profit>b.profit){return 1;} else {return -1;}break;
+          // case "Menor Capital Inicial":if(a.downpayment<b.downpayment){return 1;} else {return -1;}break;
+          // case "Menor Precio del Inmueble":if(a.price<b.price){return 1;} else {return -1;}break;
+          // case "Mayores Ingresos":if(a.income>b.income){return 1;} else {return -1;}break;
+          // case "Menores Gastos":if(a.expenses<b.expenses){return 1;} else {return -1;}break;
+          // case "Mayor Balance":if(a.balance<b.balance){return 1;} ;if(a.balance>b.balance) {return -1;}break;
+
+          case "Mayor Rentabilidad":return b.profit-a.profit;
+          case "Menor Capital Inicial":return a.downpayment-b.downpayment;
+          case "Menor Precio del Inmueble":return a.price-b.price;
+          case "Mayores Ingresos":return b.income-a.income;
+          case "Menores Gastos":return a.expenses-b.expenses;
+          case "Mayor Balance":return b.balance-a.balance;
         }
     }).map(element=>{
       stringToPrint+=`<!-- TARJETA A RELLENAR CON JS -->
