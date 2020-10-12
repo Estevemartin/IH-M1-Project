@@ -11,7 +11,7 @@
     /* padding-top:30px; */
 }
 .main-forms .panel-forms{
-    height: 320px;
+    /* height: 320px; */
 }
 .main-forms .panel-forms form{
     display:flex;
@@ -32,6 +32,7 @@
     margin-top:30px;
     padding: 10px 0px;
     border-radius: 5px;
+    margin-bottom: 30px;
 }
 .panel-forms{
     /* border:1px solid black; */

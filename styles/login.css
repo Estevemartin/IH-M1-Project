@@ -4,7 +4,7 @@
     flex-direction: column;
 }
 .main-forms .panel-forms-login{
-    height: 260px;
+    /* height:%; */
 }
 .main-forms .panel-forms-login form{
     display:flex;
@@ -25,6 +25,7 @@
     margin-top:30px;
     padding: 10px 0px;
     border-radius: 5px;
+    margin-bottom: 30px;
 }
 .panel-forms-login{
     /* border:1px solid black; */

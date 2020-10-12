@@ -16,8 +16,9 @@ class Signup {
 
 
   // gestionar cambios del input "email"
-  handleEmailInput = (event) => {
-    const email = event.target.value;
+  handleEmailInput = () => {
+    // const email = event.target.value;
+    const email = this.emailInput;
 
     // validar el texto del input email
     validator.validateValidEmail(email);
@@ -38,7 +39,7 @@ class Signup {
 
   // gestionar cambios del input "password"
   handlePasswordInput = (event) => {
-    const password = event.target.value;
+    const password = this.passwordInput.value;
     const passwordRepeat = this.repeatPasswordInput.value;
 
 
@@ -53,8 +54,8 @@ class Signup {
   }
 
   // gestionar cambios del input "repeat-password"
-  handleRepeatPasswordInput = (event) => {
-    const passwordRepeat = event.target.value;
+  handleRepeatPasswordInput = () => {
+    const passwordRepeat = this.repeatPasswordInput.value;
     const password = this.passwordInput.value;
 
     // validar el texto del input password
@@ -103,9 +104,13 @@ class Signup {
   // registarar funciones para cada input/campo
   addListeners = () => {
     // escucha para los cambios de texto
-    this.emailInput.addEventListener("input", this.handleEmailInput );
-    this.passwordInput.addEventListener("input", this.handlePasswordInput);
-    this.repeatPasswordInput.addEventListener("input", this.handleRepeatPasswordInput);
+    // this.emailInput.addEventListener("input", this.handleEmailInput );
+    // this.passwordInput.addEventListener("input", this.handlePasswordInput);
+    // this.repeatPasswordInput.addEventListener("input", this.handleRepeatPasswordInput);
+
+    this.buttonInput.addEventListener("click", this.handleEmailInput );
+    // this.buttonInput.addEventListener("click", this.handlePasswordInput);
+    // this.buttonInput.addEventListener("click", this.handleRepeatPasswordInput);
 
     this.buttonInput.addEventListener("click", this.saveData);
 
