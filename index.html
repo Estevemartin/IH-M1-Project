@@ -56,7 +56,7 @@
                         <div class="filter-precio">
                             <p>Capital Inicial</p>
                             <div class="filter-inputs">
-                                <input type="number" id="max-price" name="max-price"  placeholder="Máximo">
+                                <input type="number" id="max-price" name="max-price"  placeholder="Máximo" >
                             </div>
                         </div>
                         <div class = "filtrer-rentabilidad">
@@ -64,11 +64,24 @@
                             <div class="filter-inputs">
                                 <div id="display-rentabilidad-minima"></div>
                                 <div class="slider-wrapper">
-                                    <input type="range" min="0" max="30" step="1" value="30" onchange=updateRentabilidadMinima(this.value)>
+                                    <input type="range" id="minimum-profit"min="0" max="30" step="1" value="0" onchange=updateRentabilidadMinima(this.value)>
                                 </div>
                             </div>
                         </div>
-                        <div class = "filter-apply-changes"><button>Buscar</button></div>
+                        <div class="ordenar-por">
+                            <p>Ordenar por</p>
+                            <div class="filter-inputs">
+                                <select id="sort-method-selector">
+                                    <option>Mayor Rentabilidad</option>
+                                    <option>Menor Capital Inicial</option>
+                                    <option>Menor Precio del Inmueble</option>
+                                    <option>Mayores Ingresos</option>
+                                    <option>Menores Gastos</option>
+                                    <option>Mayor Balance</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class = "filter-apply-changes" onclick=collectProperties()><button>Buscar</button></div>
                     </div>
                     <div class="panel" id="perfil">
                         <div class="titulo-apartado">

@@ -44,8 +44,24 @@ const collectProperties = async () =>{
     })
 
     let stringToPrint="";
-
-    result.map(element=>{
+    let maxDownPayment=Number(document.getElementById("max-price").value);
+    let minimumProfit=Number(document.getElementById("minimum-profit").value);
+    let sortMethod=Number(document.getElementById("sort-method-selector").value);
+    // console.log(maxDownPayment);
+    // console.log(maxDownPayment);
+    
+    result.filter(element=>{
+      if (filterMaxDownPayment(element.downpayment,maxDownPayment) && filterMinimumProfit(element.profit,minimumProfit)){return true;} else {return false;}
+    }).sort(function(a,b,sortMethod){
+        switch (sortMethod){
+          case "Mayor Rentabilidad":if(a.profit>b.profit){return true;} else {return false;}break;
+          case "Menor Capital Inicial":if(a.downpayment<b.downpayment){return true;} else {return false;}break;
+          case "Menor Precio del Inmueble":if(a.price<b.price){return true;} else {return false;}break;
+          case "Mayores Ingresos":if(a.income>b.income){return true;} else {return false;}break;
+          case "Menores Gastos":if(a.expenses<b.expenses){return true;} else {return false;}break;
+          case "Mayor Balance":if(a.balance>b.balance){return true;} else {return false;}break;
+        }
+    }).map(element=>{
       stringToPrint+=`<!-- TARJETA A RELLENAR CON JS -->
       <div class = "card panel" onclick='selectProperty(this)'><div class="img-card-container">
               <img src="`+element.mainPicture+`">
@@ -109,8 +125,17 @@ const collectProperties = async () =>{
 
   function rndBetween(min,max){
     return Math.floor(Math.random()*(max-min+1)+min).toFixed(0);
-}
-const properties = collectProperties();
+  }
+
+  function filterMinimumProfit(curProfit,minProfit){
+    if (curProfit>minProfit){return true;}else{return false;}
+  }
+
+  function filterMaxDownPayment(curDP,maxDP){
+    if (maxDP===0){return true;}else{if(curDP>maxDP){return false;} else {return true}}
+    
+  }
+  const properties = collectProperties();
 // console.log(dataSet)
 // console.log(properties)
 
