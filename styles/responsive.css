@@ -6,6 +6,11 @@
     background-color: #393e46;
     height: 60px;
     display:none;    
+    /* position: fixed; */
+    position: -webkit-sticky;
+    position: sticky;
+    bottom: 0;
+    width: 100%;
 }
 .mobile-filters p{
     margin:20px;
@@ -32,8 +37,12 @@
 }
 
 
-@media only screen and (max-width: 600px) {
-
+@media only screen and (max-width: 650px) {
+    .img-card-container{
+        width: 100px;
+        min-width: 100px;
+    }
+    .cc-main-sub-capital-inicial{display: none;}
     
     .filter-container{
         display:none;
@@ -47,6 +56,18 @@
 }
 
 @media(max-width:900px){
+    html,body{
+        font-size: 10pt;
+    }
+    .tag-short{
+        padding:5px;
+        min-width: 0px;
+    }
+    .tag-long{
+        min-width: 90px;
+        padding: 5px;
+    }
+    .cc-info{display:none;}
     .details-container {
         display:none;
     }

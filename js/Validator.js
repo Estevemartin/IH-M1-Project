@@ -10,7 +10,7 @@
 class Validator {
   constructor() {
     // mensajes predeterminados
-    this.invalidEmailError = '- Intorduce un email válido.';
+    this.invalidEmailError = '- Introduce un email válido.';
     this.emailExistsError = '- Ya existe un usuario con ese correo electrónico.';
     this.passwordError = '- Introduce una contraseña de 6 o más caracteres.';
     this.repeatPasswordError = '- Las contraseñas no coinciden.';
@@ -26,6 +26,7 @@ class Validator {
     // validar el nombre del email
     validateValidEmail = (email) => {
       // si el email es valido, quita el mensaje de error
+      console.log(this.emailIsValid(email))
       if (this.emailIsValid(email)) {
         delete this.errors.invalidEmailError;
       }

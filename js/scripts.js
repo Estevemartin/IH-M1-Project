@@ -15,7 +15,7 @@ const collectProperties = async () =>{
     // document.getElementById('cards-test').innerHTML=dataSet[1].property_id;
     console.log(dataSet[3])
 
-    let result = dataSet.slice(0,30).map((element,index)=>{
+    let result = dataSet.slice(1,30).map((element,index)=>{
       let title=element.address.line;
       let nBaths=rndBetween(1,4);
       let nHabs=rndBetween(1,4);
@@ -54,14 +54,14 @@ const collectProperties = async () =>{
                           `+element.profit+`%
                       </div>
                   </div>
-                  <div class="cc-main-sub">
+                  <div class="cc-main-sub ">
                       <div class="top-tag-label-capital-inicial">Capital Inicial</div>
                       <div class="tag font-green top-card-tag tag-long">
                       `+element.downpayment+` €
                       </div>
                   </div>
-                  <div class="cc-main-sub">
-                      <div class="top-tag-label-precio-inmueble">Precio Inmueble</div>
+                  <div class="cc-main-sub cc-main-sub-capital-inicial">
+                      <div class="top-tag-label-precio-inmueble ">Precio Inmueble</div>
                       <div class="tag font-green tag-long">
                       `+element.price+` €
                       </div>
