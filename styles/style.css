@@ -595,3 +595,9 @@ input[type=range]:focus::-webkit-slider-runnable-track {
     color: #32e0c4;
      
 }
+.message-container p.error-message {
+    /* background-color: rgb(47, 164, 93); */
+    /* box-shadow: 0 0 10px #dbf1c1; */
+    color: #e26767;
+     
+}

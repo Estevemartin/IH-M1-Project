@@ -1,9 +1,3 @@
-
-
-
-
-
-
 'use strict'
 
 class Database {
@@ -40,5 +34,6 @@ class Database {
 }
 
 const db = new Database();
+
 
 // console.log('db', db)

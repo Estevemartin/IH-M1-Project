@@ -15,6 +15,7 @@ class Validator {
     this.passwordError = '- Introduce una contraseña de 6 o más caracteres.';
     this.repeatPasswordError = '- Las contraseñas no coinciden.';
 
+    
     // objeto con los errores que vamos a mostrar al usuario
     this.errors = {
       invalidEmailError: this.invalidEmailError,
@@ -26,7 +27,6 @@ class Validator {
     // validar el nombre del email
     validateValidEmail = (email) => {
       // si el email es valido, quita el mensaje de error
-      console.log(this.emailIsValid(email))
       if (this.emailIsValid(email)) {
         delete this.errors.invalidEmailError;
       }

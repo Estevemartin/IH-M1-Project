@@ -1,11 +1,8 @@
-
-
-
-
 'use strict';
 
 class Login {
   constructor() {
+    
     this.emailInput = document.querySelector("#email");
     this.passwordInput = document.querySelector("#password");
 
@@ -23,7 +20,7 @@ class Login {
     const password = this.passwordInput.value;
 
     // Intentar encontrar el usuario
-    const user = usersDB.find( (userObj) => {
+    const user = usersDB.find( userObj => {
       if (userObj.email === email && userObj.password === password) {
         return true;
       }
@@ -45,10 +42,13 @@ class Login {
       // agrega la clase para cambiar el color y sobrescribir el estilo anterior
       message.innerHTML = `Bienvenido, ${user.name}`;
       message.classList.add("correct-message");
+      message.classList.add("tag");
     }
     else {
       // si el inicio de sesión no se ha realizado correctamente
       message.innerHTML = 'El correo electrónico y/o la contraseña son incorrectos.';
+      message.classList.add("tag");
+      message.classList.add("error-message");
     }
 
     this.messageContainer.appendChild(message);
