@@ -94,6 +94,9 @@ const initialLoad = () => {
 }
 document.addEventListener('load',initialLoad())
 
+
+
+
 const plotCurrentPageProperties =(firstPropertyToPrint)=>{
   //USE THIS FUNCTION WITH THE PAGES NUMBERS
   // console.log(document.getElementById('pagination').getElementsByClassName("active-page")[0].textContent)
@@ -105,7 +108,11 @@ const plotCurrentPageProperties =(firstPropertyToPrint)=>{
   let stringToPrint="";
   // let firstPropertyToPrint = getFirstPropertyToPrint(currentPage);
   // console.log("First Property To Print: ",firstPropertyToPrint)
-  dataSet.slice(firstPropertyToPrint,11).map(element=>{
+  // console.log(dataSet)
+  /////////////////////////////////////PROBLEMA CON EL SLICE 
+  // console.log(dataSet.slice(8,10))
+  dataSet.slice(firstPropertyToPrint,firstPropertyToPrint+10).map(element=>{
+    // console.log("Inside the map")
     stringToPrint+=getCardStr(element)
   });
 
@@ -113,6 +120,9 @@ const plotCurrentPageProperties =(firstPropertyToPrint)=>{
   document.getElementsByClassName("cards-container")[0].innerHTML=paginationStr+stringToPrint;
 }
 plotCurrentPageProperties(1)
+
+
+
 
 function saveCurrentFilteredData (){
   //USE THIS FUNCTION WITH "BUSCAR" BUTTON UNDER THE FILTERS
@@ -126,13 +136,6 @@ function saveCurrentFilteredData (){
   if (window.screen.width <= 650){showHideFilters()}
   
   const currentData=dataSet.filter(element=>{
-
-    // if(dato.brand===selectedBrand){
-    //   return true;
-    // } else{
-    //   return false;
-    // }
-
     //DISPLAY PROPERTIES THAT MATCH THE FILTERS
     if (filterMaxDownPayment(element.downpayment,maxDownPayment) && filterMinimumProfit(element.profit,minimumProfit) && filterCity(element.city,selectedCity)){
       return true;
@@ -157,16 +160,6 @@ function saveCurrentFilteredData (){
   
   plotCurrentPageProperties();
 }
-
-
-
-
-
-
-
-
-
-
 
 // const collectProperties = async () =>{
 //     const dataSet = await getProperties();
@@ -338,7 +331,9 @@ function saveCurrentFilteredData (){
   }
   function getSelectedPage(element){
     let selectedPage=element.textContent;
+    // console.log(selectedPage)
+    let firstPropertyToPrint = (Number(selectedPage)-1)*10;
+    // console.log(firstPropertyToPrint)
 
-
-    plotCurrentPageProperties(selectedPage);
+    plotCurrentPageProperties(firstPropertyToPrint);
   }
