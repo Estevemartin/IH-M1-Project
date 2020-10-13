@@ -12,8 +12,8 @@ let getProperties = async ()=> {
   
 const saveAllDataToLS = async()=>{
   const dataSet = await getProperties();
-
-  let result = dataSet.slice(1,49).map((element,index)=>{
+  const numberOfProperties = 49;
+  let result = dataSet.slice(1,numberOfProperties).map((element,index)=>{
       let propertyId=element.listing_id;
       let title=element.address.line;
       let nBaths=rndBetween(1,4);
@@ -64,15 +64,30 @@ const saveAllDataToLS = async()=>{
   selectorCiudades.appendChild(allCitiesOption)
 
   //INSTER CITY NAMES INTO SELECT  
-  result.slice(1,30).map(function(element){
+  result.map(function(element){
     if (regions.includes(element.city)===false){
       regions.push(element.city);
-      let newCity = document.createElement("Option");
-      newCity.value = element.city;
-      newCity.innerHTML=element.city;
-      selectorCiudades.appendChild(newCity)
+      // let newCity = document.createElement("Option");
+      // newCity.value = element.city;
+      // newCity.innerHTML=element.city;
+      // selectorCiudades.appendChild(newCity)
     }
   });
+  
+  //LIST REGIONS AND OCCURRENCIES FOR EACH REGION
+  const regionsCounted = regions.map(region=>{
+    return region +" ("+result.filter(element=>{return (element.city===region)}).length+")";
+  }).sort();
+
+  //CREATE THE OPTION SELECT ELEMENT FOR EACH REGION AND EXTRACT THE NUMBER OF OCCURRENCES FROM VALUE
+  regionsCounted.forEach(region=>{
+    let newCity = document.createElement("Option");
+      newCity.value = region.slice(0,region.indexOf("(")-1);
+      newCity.innerHTML=region;
+      selectorCiudades.appendChild(newCity)
+  });
+
+  // console.log(regionsCounted)
   document.getElementById("city-selector").value = selectedCity;
  
 }
