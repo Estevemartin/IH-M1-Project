@@ -17,18 +17,25 @@
     let filtrosContainer = document.getElementById("filter-container");
     let filtros = document.getElementById("filtros");
     let perfil = document.getElementById("perfil");
+    let details=document.getElementById("details-container")
+    // let cardsContaines=document.getElementById("cards-container")
 
     if(perfil.style.display==="none" || perfil.style.display===""){
       cardsContainer.style.display="none";
       filtrosContainer.style.display="block";
-      filtros.style.display="none";
+      // filtros.style.display="none";
       perfil.style.display="block";
+      // cardsContaines.style.display="none";
     }else{
       cardsContainer.style.display="block";
       filtrosContainer.style.display="none";
-      filtros.style.display="none";
+      // filtros.style.display="none";
       perfil.style.display="none";
+      // cardsContaines.style.display="none";
     }
+    details.style.display="none";
+    filtros.style.display="none";
+
     console.log ("Display Cards: "+ cardsContainer.style.display + "   | Display Filters: "+filtrosContainer.style.display);
   }
   showHideFilters =()=>{
@@ -36,41 +43,64 @@
     let filtrosContainer = document.getElementById("filter-container");
     let filtros = document.getElementById("filtros");
     let perfil = document.getElementById("perfil");
+    let details=document.getElementById("details-container")
 
     if(filtros.style.display==="none" || filtros.style.display===""){
       cardsContainer.style.display="none";
       filtrosContainer.style.display="block";
       filtros.style.display="block";
-      perfil.style.display="none";
+      // perfil.style.display="none";
     }else{
       cardsContainer.style.display="block";
       filtrosContainer.style.display="none";
-      perfil.style.display="none";
       filtros.style.display="none";
+      // perfil.style.display="none";
+      
     }
+    details.style.display="none";
+    perfil.style.display="none";
+      
     console.log ("Display Cards: "+ cardsContainer.style.display + "   | Display Filters: "+filtrosContainer.style.display);
   }
-  
+  goBackDetailsMobilMenu=()=>{
+    let details=document.getElementById("details-container")
+    let cardsContainer=document.getElementById("cards-container");
+    details.style.display="none";
+    cardsContainer.style.display="block";
+  }
   // SELECCIONA UNA PROPIEDAD AL HACER CLICK EN ELLA
   selectProperty=(propertyCard)=>{
     // Get all Cards
     let allCards=document.getElementsByClassName("card panel")
+    let cardsContaines=document.getElementById("cards-container")
     // console.log(allCards)
-  
-    if (propertyCard.classList.contains('active-card')){
-      //Si el elemento seleccionado tiene la clase, se le quita.
-      propertyCard.classList.remove('active-class')
+    console.log(window.screen.width)
+    if(window.screen.width <= 650){
+      let details=document.getElementById("details-container")
+      details.style.display="flex";
+      cardsContaines.style.display="none";
+
+
     } else{
-      // Remove 'active-card' class from every element
-      for (cardId=0;cardId<allCards.length;cardId++){
-        // console.log(allCards[cardId].classList.contains('active-card'))
-        if (allCards[cardId].classList.contains('active-card')){
-          allCards[cardId].classList.remove('active-card');
-        }
-      }
-      //Si el elemento seleccionado no tiene la clase, se le transifere la calse.
-      propertyCard.classList.add('active-card');
+        if (propertyCard.classList.contains('active-card')){
+              //Si el elemento seleccionado tiene la clase, se le quita.
+              propertyCard.classList.remove('active-class')
+            } else{
+              // Remove 'active-card' class from every element
+              for (cardId=0;cardId<allCards.length;cardId++){
+                // console.log(allCards[cardId].classList.contains('active-card'))
+                if (allCards[cardId].classList.contains('active-card')){
+                  allCards[cardId].classList.remove('active-card');
+                }
+              }
+              //Si el elemento seleccionado no tiene la clase, se le transifere la calse.
+              propertyCard.classList.add('active-card');
+            }
+
+
+
     }
+    
   
   }
 

@@ -89,6 +89,10 @@ const initialLoad = () => {
     stringToPrint+=getCardStr(element)
   });
   
+  let detailsSection = document.getElementById("details-container")
+  // detailsSection.style.display="flex";
+
+
   const paginationStr = createPagination(numPages,1)
   document.getElementsByClassName("cards-container")[0].innerHTML=paginationStr+stringToPrint;
 }
@@ -111,6 +115,7 @@ const plotCurrentPageProperties =(firstPropertyToPrint)=>{
   // console.log(dataSet)
   /////////////////////////////////////PROBLEMA CON EL SLICE 
   // console.log(dataSet.slice(8,10))
+  if (firstPropertyToPrint===null||firstPropertyToPrint===undefined){firstPropertyToPrint=0;}
   dataSet.slice(firstPropertyToPrint,firstPropertyToPrint+10).map(element=>{
     // console.log("Inside the map")
     stringToPrint+=getCardStr(element)
@@ -160,6 +165,10 @@ function saveCurrentFilteredData (){
   
   plotCurrentPageProperties();
 }
+
+
+
+
 
 // const collectProperties = async () =>{
 //     const dataSet = await getProperties();
@@ -331,7 +340,18 @@ function saveCurrentFilteredData (){
   }
   function getSelectedPage(element){
     let selectedPage=element.textContent;
-    // console.log(selectedPage)
+    let pagination=element.parentElement
+    // console.log(pagination.getElementsByTagName('a').length)
+    for (i=0;i<pagination.getElementsByTagName('a').length;i++){
+      let page = pagination.getElementsByTagName('a')[i]
+      if (page.classList.contains('active-page')){
+        page.classList.remove('active-page');
+      }
+      if (page.textContent===selectedPage){
+        page.classList.add('active-page')
+      }
+    }
+
     let firstPropertyToPrint = (Number(selectedPage)-1)*10;
     // console.log(firstPropertyToPrint)
 
