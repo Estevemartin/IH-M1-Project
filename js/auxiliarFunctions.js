@@ -6,7 +6,7 @@ updateRentabilidadMinima=(rentabilidadMnima)=>{
   
   showHideMenu=()=>{
     let element = document.getElementById("mobile-menu")
-    console.log(element.style.display);
+    // console.log(element.style.display);
     if(element.style.display==="none" || element.style.display===""){
       element.style.display="inline";
     } else{
@@ -14,30 +14,45 @@ updateRentabilidadMinima=(rentabilidadMnima)=>{
     }
   }
   
-  showHideFilters =()=>{
-    console.log('clicked');
+
+  showHideProfile=()=>{
     let cardsContainer=document.getElementById("cards-container");
-    let filtrosContainer = document.getElementById("filtros");
-    console.log(cardsContainer.style);
-    // let filtersContainer= document.getElementById("perfil");
-    // console.log(cardsContainer.style.display);
-    // console.log(filtrosContainer.style.display);
-    // console.log(filtrosContainer.style.display);
-    console.log ("Display Cards: "+ cardsContainer.style.display + "   | Display Filters: "+filtrosContainer.style.display);
-    
-  
-    if(filtrosContainer.style.display==="none" || filtrosContainer.style.display===""){
-      console.log("Gonna Display Only Filters");
+    let filtrosContainer = document.getElementById("filter-container");
+    let filtros = document.getElementById("filtros");
+    let perfil = document.getElementById("perfil");
+
+    if(perfil.style.display==="none" || perfil.style.display===""){
       cardsContainer.style.display="none";
       filtrosContainer.style.display="block";
-      // filtersContainer.style.display="inline-block";
+      filtros.style.display="none";
+      perfil.style.display="block";
     }else{
-      console.log("Gonna Display Only Cards");
       cardsContainer.style.display="block";
       filtrosContainer.style.display="none";
-      // filtersContainer.style.display="none";
+      filtros.style.display="none";
+      perfil.style.display="none";
     }
-  
+    console.log ("Display Cards: "+ cardsContainer.style.display + "   | Display Filters: "+filtrosContainer.style.display);
+  }
+
+  showHideFilters =()=>{
+    let cardsContainer=document.getElementById("cards-container");
+    let filtrosContainer = document.getElementById("filter-container");
+    let filtros = document.getElementById("filtros");
+    let perfil = document.getElementById("perfil");
+
+    if(filtrosContainer.style.display==="none" || filtrosContainer.style.display===""){
+      cardsContainer.style.display="none";
+      filtrosContainer.style.display="block";
+      filtros.style.display="block";
+      perfil.style.display="none";
+    }else{
+      cardsContainer.style.display="block";
+      filtrosContainer.style.display="none";
+      perfil.style.display="none";
+      filtros.style.display="none";
+    }
+    console.log ("Display Cards: "+ cardsContainer.style.display + "   | Display Filters: "+filtrosContainer.style.display);
   }
   
   // SELECCIONA UNA PROPIEDAD AL HACER CLICK EN ELLA

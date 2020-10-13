@@ -43,6 +43,7 @@
     position: sticky;
     bottom: 0;
     width: 100%;
+    
 }
 .mobile-filters p{
     margin:20px;
@@ -84,6 +85,8 @@
     
     .filter-container{
         display:none;
+        width: 100%;
+        max-width: 650px;
     }
     .mobile-filters{
         display:flex;

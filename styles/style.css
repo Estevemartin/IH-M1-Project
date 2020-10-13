@@ -371,8 +371,8 @@ nav .menu-hamburger{
 .button-option>.active>input{
     border-bottom:1px solid  #222831;
 }
- .button-option>button :not(.active) :hover{
-    border:2px solid greenyellow;
+ .button-option>button:not(.active):hover{
+    background-color: #32e0c4;
 
 }
 .details-fields>button>.small-input{
@@ -399,8 +399,8 @@ nav .menu-hamburger{
     margin:25px;
     border-radius: 5px;
     -webkit-box-shadow: 0px 0px 20px 3px rgba(0,0,0,0.22);
--moz-box-shadow: 0px 0px 20px 3px rgba(0,0,0,0.22);
-box-shadow: 0px 0px 20px 3px rgba(0,0,0,0.22);
+    -moz-box-shadow: 0px 0px 20px 3px rgba(0,0,0,0.22);
+    box-shadow: 0px 0px 20px 3px rgba(0,0,0,0.22);
     /* max-height: 200px; */
 }
 .panel.card:hover{
@@ -664,3 +664,7 @@ input[type=range]:focus::-webkit-slider-runnable-track {
     position:absolute;
     z-index: 1;
 } */
+
+.no-display{
+    display:none;
+}

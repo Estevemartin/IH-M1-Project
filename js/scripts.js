@@ -99,12 +99,12 @@ const plotCurrentPageProperties =()=>{
   // console.log(document.getElementById('pagination').getElementsByClassName("active-page")[0].textContent)
   const currentPage=document.getElementById('pagination').getElementsByClassName("active-page")[0].textContent;
   
-  console.log("Current Page: ",currentPage)
+  // console.log("Current Page: ",currentPage)
   const dataSet = JSON.parse(localStorage.getItem("currentDataSet"));
-  console.log("Data Set About to be Shown: ",dataSet)
+  // console.log("Data Set About to be Shown: ",dataSet)
   let stringToPrint="";
   let firstPropertyToPrint = getFirstPropertyToPrint(currentPage);
-  console.log("First Property To Print: ",firstPropertyToPrint)
+  // console.log("First Property To Print: ",firstPropertyToPrint)
   dataSet.slice(firstPropertyToPrint,11).map(element=>{
     stringToPrint+=getCardStr(element)
   })
@@ -121,7 +121,9 @@ function saveCurrentFilteredData (){
   let maxDownPayment=Number(document.getElementById("max-price").value);
   let minimumProfit=Number(document.getElementById("minimum-profit").value);
   let selectedCity=document.getElementById("city-selector").value;
-  console.log("Main Data Set: ",dataSet)
+  // console.log("Main Data Set: ",dataSet)
+
+  if (window.screen.width <= 650){showHideFilters()}
 
   const currentData=dataSet.filter(element=>{
     //DISPLAY PROPERTIES THAT MATCH THE FILTERS
@@ -145,7 +147,7 @@ function saveCurrentFilteredData (){
     }
 
   })
-  console.log("Main Data Set Filtered and About to be Saved: ",currentData)
+  // console.log("Main Data Set Filtered and About to be Saved: ",currentData)
   localStorage.setItem("currentDataSet",JSON.stringify(currentData));
   
   plotCurrentPageProperties();
@@ -299,7 +301,7 @@ const collectProperties = async () =>{
   }
   function createPagination(numPages,activePage){
     let paginationStr = `<div class="pagination" id="pagination">`;
-    console.log("Page to be Active: ",activePage)
+    // console.log("Page to be Active: ",activePage)
     for (i=1;i<=numPages;i++){
       if (i===Number(activePage)){
         paginationStr+=`<a class="active-page"><p>`+i+`</p></a>`;
@@ -308,10 +310,9 @@ const collectProperties = async () =>{
       }
     }
     paginationStr+=`</div>`;
-    console.log(paginationStr)
+    // console.log(paginationStr)
     return paginationStr;
   }
-
   function getFirstPropertyToPrint(currentPage){
     // if (Number(currentPage)===1){
     //   return 1;
@@ -320,7 +321,6 @@ const collectProperties = async () =>{
       return firstProp
     // }
   }
-
   function getCardStr(element){
     return `<!-- TARJETA A RELLENAR CON JS --><div class = "card panel" onclick='selectProperty(this)'><div class="img-card-container"><img src="`+element.mainPicture+`">
     </div><!-- CARD(CENTRAL) --><div class="card-central"><div class="cc-main"><div class="cc-main-sub"><div class="top-tag-label-rentabilidad">Rentabilidad</div>
