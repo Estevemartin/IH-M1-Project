@@ -1,20 +1,17 @@
 
 // MUESTRA LA RENTABILIDAD MINIMA SELECCIONADA
-updateRentabilidadMinima=(rentabilidadMnima)=>{
+  updateRentabilidadMinima=(rentabilidadMnima)=>{
     document.getElementById("display-rentabilidad-minima").innerHTML = rentabilidadMnima + "%";
   }
-  
   showHideMenu=()=>{
     let element = document.getElementById("mobile-menu")
     // console.log(element.style.display);
-    if(element.style.display==="none" || element.style.display===""){
+    if(element.style.display==="none" || element.style.display==="" ){
       element.style.display="inline";
     } else{
       element.style.display="none";
     }
   }
-  
-
   showHideProfile=()=>{
     let cardsContainer=document.getElementById("cards-container");
     let filtrosContainer = document.getElementById("filter-container");
@@ -34,14 +31,13 @@ updateRentabilidadMinima=(rentabilidadMnima)=>{
     }
     console.log ("Display Cards: "+ cardsContainer.style.display + "   | Display Filters: "+filtrosContainer.style.display);
   }
-
   showHideFilters =()=>{
     let cardsContainer=document.getElementById("cards-container");
     let filtrosContainer = document.getElementById("filter-container");
     let filtros = document.getElementById("filtros");
     let perfil = document.getElementById("perfil");
 
-    if(filtrosContainer.style.display==="none" || filtrosContainer.style.display===""){
+    if(filtros.style.display==="none" || filtros.style.display===""){
       cardsContainer.style.display="none";
       filtrosContainer.style.display="block";
       filtros.style.display="block";
@@ -61,7 +57,6 @@ updateRentabilidadMinima=(rentabilidadMnima)=>{
     let allCards=document.getElementsByClassName("card panel")
     // console.log(allCards)
   
-    
     if (propertyCard.classList.contains('active-card')){
       //Si el elemento seleccionado tiene la clase, se le quita.
       propertyCard.classList.remove('active-class')
@@ -78,3 +73,28 @@ updateRentabilidadMinima=(rentabilidadMnima)=>{
     }
   
   }
+
+
+  switchButtons=(element)=>{
+    let buttonGroup=element.parentElement;
+    let activeButton
+    let disabledButton
+
+    // console.log(buttonGroup.getElementsByTagName("button")[0].classList)
+    if(buttonGroup.getElementsByTagName("button")[0].classList.contains('active')){
+       activeButton = buttonGroup.getElementsByTagName("button")[0];
+       disabledButton =  buttonGroup.getElementsByTagName("button")[1];
+       
+    } else{
+       activeButton = buttonGroup.getElementsByTagName("button")[1];
+       disabledButton =  buttonGroup.getElementsByTagName("button")[0];
+    }
+    console.log("BEFORE CHANGES: Active Button: ",activeButton,"  |  Disabled Button: ",disabledButton)
+    activeButton.classList.remove('active');
+    activeButton.addEventListener('click',function(){switchButtons(activeButton);});
+
+    disabledButton.removeEventListener('click',switchButtons);
+    disabledButton.classList.add('active');
+    console.log("AFTER CHANGES: Active Button: ",activeButton,"  |  Disabled Button: ",disabledButton)
+  }
+
