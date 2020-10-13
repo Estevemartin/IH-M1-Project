@@ -14,3 +14,9 @@ class User {
   }
   
 }
+
+class PropertyDataSet{
+  constructor(dataSet){
+    this.dataSet = dataSet;
+  }
+}

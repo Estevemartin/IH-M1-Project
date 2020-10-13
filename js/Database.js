@@ -32,6 +32,6 @@ class propertyDataBase{
 
     }
 }
-constr dbProp = new propertyDataBase();
+const dbProp = new propertyDataBase();
 
 // console.log('db', db)

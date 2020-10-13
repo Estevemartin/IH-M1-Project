@@ -655,6 +655,10 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 	align-items: center;
 	align-content: center;
 }
+.pagination>.active-page{
+    background-color: #32e0c4;
+    color: #393e46;
+}
 
 /* #filter-container{
     position:absolute;
