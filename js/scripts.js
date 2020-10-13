@@ -171,7 +171,14 @@ const collectProperties = async () =>{
       </div>
       <!-- FIN TARJETA A RELLENAR CON JS -->`;
     })
-    document.getElementsByClassName("cards-container")[0].innerHTML+=stringToPrint;
+    let paginationStr = `<div class="pagination">
+                              <a><p>1</p></a>
+                              <a><p>2</p></a>
+                              <a><p>3</p></a>
+                              <a><p>4</p></a>
+                              <a><p>5</p></a>
+                          </div>`;
+    document.getElementsByClassName("cards-container")[0].innerHTML=paginationStr+stringToPrint;
   }
 
   function rndBetween(min,max){
@@ -274,12 +281,5 @@ selectProperty=(propertyCard)=>{
     propertyCard.classList.add('active-card');
   }
 
-  
-
-  //
-  
-  
-  // console.log(allCards)
-  // console.log(propertyCard.style.backgroundColor="#a8a7a7");
 }
 
