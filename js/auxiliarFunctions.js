@@ -74,36 +74,32 @@
     let allCards=document.getElementsByClassName("card panel")
     let cardsContaines=document.getElementById("cards-container")
     // console.log(allCards)
-    console.log(window.screen.width)
+    // console.log(window.screen.width)
     if(window.screen.width <= 650){
       let details=document.getElementById("details-container")
       details.style.display="flex";
       cardsContaines.style.display="none";
-
-
     } else{
-        if (propertyCard.classList.contains('active-card')){
-              //Si el elemento seleccionado tiene la clase, se le quita.
-              propertyCard.classList.remove('active-class')
-            } else{
-              // Remove 'active-card' class from every element
-              for (cardId=0;cardId<allCards.length;cardId++){
-                // console.log(allCards[cardId].classList.contains('active-card'))
-                if (allCards[cardId].classList.contains('active-card')){
-                  allCards[cardId].classList.remove('active-card');
-                }
-              }
-              //Si el elemento seleccionado no tiene la clase, se le transifere la calse.
-              propertyCard.classList.add('active-card');
-            }
-
-
-
+      if (propertyCard.classList.contains('active-card')){
+        //Si el elemento seleccionado tiene la clase, se le quita.
+        propertyCard.classList.remove('active-card')
+      } else{
+        // Remove 'active-card' class from every element
+        for (cardId=0;cardId<allCards.length;cardId++){
+          // console.log(allCards[cardId].classList.contains('active-card'))
+          if (allCards[cardId].classList.contains('active-card')){
+            allCards[cardId].classList.remove('active-card');
+          }
+        }
+        //Si el elemento seleccionado no tiene la clase, se le transifere la calse.
+        propertyCard.classList.add('active-card');
+      }
     }
     
+    const propId=document.getElementsByClassName("card panel active-card")[0].getElementsByClassName("property-id")[0].textContent;
+    console.log(propId)
   
   }
-
 
   switchButtons=(element)=>{
     let buttonGroup=element.parentElement;

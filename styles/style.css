@@ -146,6 +146,9 @@ nav .menu-hamburger{
 }
 
 /*CARDS*/
+.property-id{
+    display:none;
+}
 .card{
     /* border:1px solid black; */
     display:flex;

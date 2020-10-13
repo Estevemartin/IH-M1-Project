@@ -67,10 +67,6 @@ const saveAllDataToLS = async()=>{
   result.map(function(element){
     if (regions.includes(element.city)===false){
       regions.push(element.city);
-      // let newCity = document.createElement("Option");
-      // newCity.value = element.city;
-      // newCity.innerHTML=element.city;
-      // selectorCiudades.appendChild(newCity)
     }
   });
   
@@ -113,9 +109,6 @@ const initialLoad = () => {
 }
 document.addEventListener('load',initialLoad())
 
-
-
-
 const plotCurrentPageProperties =(firstPropertyToPrint)=>{
   //USE THIS FUNCTION WITH THE PAGES NUMBERS
   // console.log(document.getElementById('pagination').getElementsByClassName("active-page")[0].textContent)
@@ -140,9 +133,6 @@ const plotCurrentPageProperties =(firstPropertyToPrint)=>{
   document.getElementsByClassName("cards-container")[0].innerHTML=paginationStr+stringToPrint;
 }
 plotCurrentPageProperties(1)
-
-
-
 
 function saveCurrentFilteredData (){
   //USE THIS FUNCTION WITH "BUSCAR" BUTTON UNDER THE FILTERS
@@ -180,10 +170,6 @@ function saveCurrentFilteredData (){
   
   plotCurrentPageProperties();
 }
-
-
-
-
 
 // const collectProperties = async () =>{
 //     const dataSet = await getProperties();
@@ -342,7 +328,7 @@ function saveCurrentFilteredData (){
     // }
   }
   function getCardStr(element){
-    return `<!-- TARJETA A RELLENAR CON JS --><div class = "card panel" onclick='selectProperty(this)'><div class="img-card-container"><img src="`+element.mainPicture+`">
+    return `<!-- TARJETA A RELLENAR CON JS --><div class = "card panel" onclick='selectProperty(this)'><div class="property-id">`+element.propertyId+`</div><div class="img-card-container"><img src="`+element.mainPicture+`">
     </div><!-- CARD(CENTRAL) --><div class="card-central"><div class="cc-main"><div class="cc-main-sub"><div class="top-tag-label-rentabilidad">Rentabilidad</div>
     <div class="tag font-green top-card-tag tag-short">`+element.profit+`%</div></div><div class="cc-main-sub "><div class="top-tag-label-capital-inicial">Capital Inicial</div>
     <div class="tag font-green top-card-tag tag-long">`+element.downpayment+` €</div></div><div class="cc-main-sub cc-main-sub-capital-inicial"><div class="top-tag-label-precio-inmueble ">
@@ -371,4 +357,11 @@ function saveCurrentFilteredData (){
     // console.log(firstPropertyToPrint)
 
     plotCurrentPageProperties(firstPropertyToPrint);
+  }
+
+  function fillDetails(propertyId){
+    
+
+
+
   }
