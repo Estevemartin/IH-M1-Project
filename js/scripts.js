@@ -541,6 +541,9 @@ function saveCurrentFilteredData (){
     calcularInteresesHipoteca()
     //GASTOS DE COMPRAVENTA
     calculateITP()
+    calcuarGastosDeApertura()
+    calcularGastosDeCompraVenta()
+    calcularTotalGastosMensuales()
     // // console.log(getNumber("20%"))
     // // console.log(prop[0].price)
     // let precioOfertado = new parameter("precioOfertado","details-precio-ofertado",prop[0].price,false)
@@ -633,6 +636,7 @@ function saveCurrentFilteredData (){
     let cuotaMensual = (((numeroCapitalFinanciado*tae)/(1-(1+tae)**(-años)))/12).toFixed(2);
     // console.log(cuotaMensual)
     document.getElementById("details-cuota-mensual").textContent = numberToCurrency(cuotaMensual)
+    document.getElementById("details-cuota-hipoteca").textContent = numberToCurrency(cuotaMensual)
   }
 
   function calcularTotalHipoteca(){
@@ -666,5 +670,76 @@ function saveCurrentFilteredData (){
   }
 
   function calculateITP(){
-    
+    let birthDate = document.getElementById("birth-date").value
+    // console.log(birthDate)
+    let age = calcAge(birthDate)
+    // console.log(age)
+    if (age<32){var porcentajeITP = 0.05} else{var porcentajeITP = 0.1}
+    // console.log(porcentajeITP)
+    let precioDeCompra = document.getElementById("details-precio-compra").textContent;
+    // console.log(precioDeCompra)
+    let numeroPrecioDeCompra = Number(precioDeCompra.replace(/\D/g,''))
+    // console.log(numeroPrecioDeCompra)
+    let itp = numeroPrecioDeCompra * porcentajeITP
+    // console.log(itp)
+    document.getElementById("details-itp").textContent= numberToCurrency(itp)
   }
+
+  function calcAge(dateString) {
+    var birthday = +new Date(dateString);
+    return ~~((Date.now() - birthday) / (31557600000));
+  }
+
+  function calcuarGastosDeApertura(){
+    let capitalFinanciado = document.getElementById("details-capital-financiado").textContent
+    // console.log(capitalFinanciado)
+    let numeroCapitalFinanciado = Number(capitalFinanciado.replace(/\D/g,''))
+    // console.log(numeroCapitalFinanciado)
+    let comisionApertura = document.getElementById("details-comision-apertura").value
+    // console.log(comisionApertura)
+    let numerocomisionApertura = Number(comisionApertura.replace(/\D/g,''))/100
+    // console.log(numerocomisionApertura)
+    let gastosDeApertura = numerocomisionApertura*numeroCapitalFinanciado
+    // console.log(gastosDeApertura)
+    document.getElementById("details-gastos-apertura").textContent = numberToCurrency(gastosDeApertura)
+  }
+
+  function calcularGastosDeCompraVenta(){
+    let itp = document.getElementById("details-itp").textContent;
+    // console.log(itp)
+    let numeroItp = Number(itp.replace(/\D/g,''))
+    // console.log(numeroItp)
+    let tasacion = Number(document.getElementById("details-tasacion").value)
+    // console.log(tasacion)
+    let nota = Number(document.getElementById("details-nota-simple").value)
+    // console.log(nota)
+    let registro = Number(document.getElementById("details-registro").value)
+    // console.log(registro)
+    let gastosDeApertura = document.getElementById("details-gastos-apertura").textContent 
+    // console.log(gastosDeApertura)
+    let numeroGastosDeApertura = Number(gastosDeApertura.replace(/\D/g,''))
+    // console.log(numeroGastosDeApertura)
+    let gastosDeCompraventa = numeroItp + tasacion + nota +registro+numeroGastosDeApertura
+    // console.log(gastosDeCompraventa)
+    document.getElementById("details-gastos-compraventa").textContent =numberToCurrency(gastosDeCompraventa)
+  }
+
+  function calcularTotalGastosMensuales(){
+    let ibi=Number(document.getElementById("details-ibi").value)
+    console.log(ibi)
+    let basuras=Number(document.getElementById("details-impuesto-basuras").value)
+    console.log(basuras)
+    let comunidad=Number(document.getElementById("details-gastos-comunidad").value)
+    console.log(comunidad)
+    let seguro=Number(document.getElementById("details-seguro").value)
+    console.log(seguro)
+    let cuotaHipoteca = document.getElementById("details-cuota-hipoteca").textContent
+    console.log(cuotaHipoteca)
+    let numeroCuotaHipoteca = Number(cuotaHipoteca.replace(/\D/g,''))
+    console.log(numeroCuotaHipoteca)
+    let totalGastosMensuales = ibi+basuras+comunidad+seguro+numeroCuotaHipoteca
+    console.log(totalGastosMensuales)
+    document.getElementById("details-total-gastos-mensuales").textContent = numberToCurrency(totalGastosMensuales)
+  }
+
+  

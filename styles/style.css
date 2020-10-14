@@ -415,14 +415,17 @@ nav .menu-hamburger{
     /* max-height: 200px; */
 }
 .panel.card:hover{
-    background-color: #cac6c6 ;
+    /* background-color: #cac6c6 ; */
 }
 .panel p{
     margin-bottom:5px;
     margin-top:15px;
 }
 .active-card{
-    background-color: #a8a7a7 ;
+    /* background-color: #393e46 ; */
+    /* color:#eeeeee; */
+    border:5px solid white;
+    outline:5px solid  #32e0c4;
 }
 .input-buttons{
     display:flex;
@@ -456,6 +459,7 @@ nav .menu-hamburger{
     max-width:250px;
     min-width:200px;
     justify-content: center;
+    margin-bottom: 60px;
 }
 .filter-container p{
    text-align: center;
