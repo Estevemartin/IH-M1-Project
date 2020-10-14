@@ -14,6 +14,8 @@
     <script src="https://kit.fontawesome.com/92166c8bdc.js" crossorigin="anonymous"></script>
     <script defer src="js/scripts.js"></script>
     <script defer src="js/auxiliarFunctions.js"></script>
+    <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script> -->
+
     <!-- <script defer src="js/Login.js"></script> -->
     <!-- <script defer src="js/Database.js"></script> -->
     <!-- <script defer src="js/Signup.js"></script> -->
@@ -108,12 +110,12 @@
                         <!-- <hr> -->
                         <div class="details-fields button-option">
                             <button class="active">
-                                Porcentaje Financiado
-                                <input class="small-input" type="number" max="100">
+                                Porcentaje Financiación (%)
+                                <input class="small-input percent" type="number" max="100" id="profile-porcentaje-financiado" value="20">
                             </button>
                             <button onclick=switchButtons(this)>
                                 Capital Aportado
-                                <input class="small-input" type="number">
+                                <input class="small-input" type="number" id="profile-capital-aportado" value = 10000>
                             </button>
                         </div>
                         <br><br>
@@ -126,6 +128,12 @@
                                 Cuota Máxima
                                 <input class="small-input" type="number">
                             </button>
+                        </div>
+                        <div class="filter-precio">
+                        <p>Rebaja Negociación (%)</p>
+                            <div class="filter-inputs">
+                                <input type="number" id="profile-rebaja-negociacion" name="profile-rebaja-negociacion"  placeholder="Porcentaje" value=10 class="percent">
+                            </div>
                         </div>
                         <!-- <div class="filter-inputs">
                             <input type="number" id="capital-porcentaje" name="capital-porcentaje"  placeholder="Introducir...">
@@ -171,58 +179,58 @@
                             Hipoteca
                         </div>
                         <div class="details-section">
-                            <div class="details-fields">
+                            <div class="details-fields" >
                                 <p>Precio Ofertado</p>
-                                <p><b>100.000€</b></p>
+                                <p><b id="details-precio-ofertado">100.000€</b></p>
                             </div>
                             <div class="details-fields">
                                 <p>Rebaja Negociación</p>
-                                <p><b>- 20.000€</b></p>
+                                <div class= "details-fields"><input class="small-input" type="text" id="details-rebaja-negociacion" > <b>€</b></div>
                             </div>
                             <!-- <hr> -->
                             <div class="details-fields">
                                 <p>Precio de Compra</p>
-                                <p><b>80.000€</b></p>
+                                <p><b id="details-precio-compra">80.000€</b></p>
                             </div>
                             <div class="details-fields button-option">
                                 <button class="active">
-                                    Porcentaje Financiado
-                                    <input class="small-input" type="number" max=100> 
+                                    Porcentaje Financiación (%)
+                                    <input class="small-input percent" type="number" max=100 id="details-porcentaje-financiado" >  
                                 </button>
                                 <button>
                                     Capital Aportado
-                                    <input class="big-input" type="number">
+                                    <input class="big-input" type="number" id="details-capital-aportado" >
                                 </button>
                             </div>
                             <div class="details-fields">
                                 <p>Capital Financiado</p>
-                                <p><b>60.000€</b></p>
+                                <p><b id="details-capital-financiado" >60.000€</b></p>
                             </div>
                             <div class="details-fields">
                                 <p>TAE</p>
-                                <input class="small-input" type="number">
+                                <input class="small-input percent" type="number" id="details-tae">
                             </div>
                             <div class="details-fields button-option">
                                 <button class="active">
                                     Plazo Hipoteca
-                                    <input class="small-input" type="number">
+                                    <input class="small-input" type="number" id="details-plazo-hipoteca">
                                 </button>
                                 <button>
                                     Cuota Máxima
-                                    <input class="small-input" type="number">
+                                    <input class="small-input" type="number" id="details-cuota-maxima">
                                 </button>
                             </div>
                             <div class="details-fields">
                                 <p>Cuota Mensual</p>
-                                <p><b>500€</b></p>
+                                <p><b id="details-cuota-mensual">500€</b></p>
                             </div>
                             <div class="details-fields">
                                 <p>Intereses Hipoteca</p>
-                                <p><b>37.000€</b></p>
+                                <p><b id="details-intereses-hipoteca">37.000€</b></p>
                             </div>
                             <div class="details-fields">
                                 <p>Total Hipoteca</p>
-                                <p><b>97.000€</b></p>
+                                <p><b id="details-total-hipoteca">97.000€</b></p>
                             </div>
 
 
@@ -233,31 +241,31 @@
                         <div class="details-section">
                             <div class="details-fields">
                                 <p>ITP</p>
-                                <p><b>8.000€</b></p>
+                                <p><b id="details-itp">8.000€</b></p>
                             </div>
                             <div class="details-fields">
                                 <p>Tasación</p>
-                                <input class="small-input" type="text" value="300 €">
+                                <input class="small-input" type="text" value="300 €" id="details-tasacion">
                             </div>
                             <div class="details-fields">
                                 <p>Nota Simple</p>
-                                <input class="small-input" type="text" value="18 €">
+                                <input class="small-input" type="text" value="18 €" id="details-nota-simple">
                             </div>
                             <div class="details-fields">
                                 <p>Registro</p>
-                                <input class="small-input" type="text" value="30 €">
+                                <input class="small-input" type="text" value="30 €" id="details-registro">
                             </div>
                             <div class="details-fields">
                                 <p>Comisión Apertura</p>
-                                <input class="small-input" type="text" value="1%">
+                                <input class="small-input percent" type="text" value="1%" id="details-comision-apertura">
                             </div>
                             <div class="details-fields">
                                 <p>Gastos de Apertura</p>
-                                <p><b>800€</b></p>
+                                <p><b id="details-gastos-apertura">800€</b></p>
                             </div>
                             <div class="details-fields">
                                 <p>Gastos de Compraventa</p>
-                                <p><b>9.148€</b></p>
+                                <p><b id="details-gastos-compraventa">9.148€</b></p>
                             </div>
 
 
@@ -268,27 +276,27 @@
                         <div class="details-section">
                             <div class="details-fields">
                                 <p>IBI (Anual)</p>
-                                <input class="small-input" type="text" value="100€">
+                                <input class="small-input" type="text" value="100€" id="details-ibi">
                             </div>
                             <div class="details-fields">
                                 <p>Impuesto de Basuras</p>
-                                <input class="small-input" type="text" value="0€">
+                                <input class="small-input" type="text" value="0€" id="details-impuesto-basuras">
                             </div>
                             <div class="details-fields">
                                 <p>Gastos de Comunidad</p>
-                                <input class="small-input" type="text" value="50€">
+                                <input class="small-input" type="text" value="50€" id="details-gastos-comunidad">
                             </div>
                             <div class="details-fields">
                                 <p>Seguro</p>
-                                <input class="small-input" type="text" value="0€">
+                                <input class="small-input" type="text" value="0€" id="details-seguro">
                             </div>
                             <div class="details-fields">
                                 <p>Cuota Hipoteca</p>
-                                <p><b>500€</b></p>
+                                <p><b id="details-cuota-hipoteca">500€</b></p>
                             </div>
                             <div class="details-fields">
                                 <p>Total de Gastos Mensuales</p>
-                                <p><b>650€</b></p>
+                                <p><b id="details-total-gastos-mensuales">650€</b></p>
                             </div>
 
 
@@ -299,19 +307,19 @@
                         <div class="details-section">
                             <div class="details-fields">
                                 <p>Alquiler por m<sup>2</sup> de la Zona</p>
-                                <p><b>30€</b></p>
+                                <p><b id="details-alquilerm2">30€</b></p>
                             </div>
                             <div class="details-fields">
                                 <p>Superficie del Piso</p>
-                                <p><b>60m<sup>2</sup> </b></p>
+                                <p><b id="details-superficie-piso">60m<sup>2</sup> </b></p>
                             </div>
                             <div class="details-fields">
                                 <p>Ingresos Mensuales</p>
-                                <p><b>1.800€</b></p>
+                                <p><b id="details-ingresos-mensuales">1.800€</b></p>
                             </div>
                             <div class="details-fields">
                                 <p>Ocupación</p>
-                                <input class="small-input" type="text" value="80%">
+                                <input class="small-input percent" type="text" value="80%" id="details-ocupacion">
                             </div>
                         </div>
                         <div class="tag details-title font-green">
@@ -320,39 +328,37 @@
                         <div class="details-section">
                             <div class="details-fields">
                                 <p>Inversión Inicial</p>
-                                <p><b>9.148€</b></p>
+                                <p><b id="details-inversion-inicial">9.148€</b></p>
                             </div>
                             <div class="details-fields">
                                 <p>Gastos Anuales</p>
-                                <p><b>7.800€ </b></p>
+                                <p><b id="details-gastos-anuales">7.800€ </b></p>
                             </div>
                             <div class="details-fields">
                                 <p>Ingresos Anuales</p>
-                                <p><b>17.280€</b></p>
+                                <p><b id="details-ingresos-anuales">17.280€</b></p>
                             </div>
                             <div class="details-fields">
-                                <p>Balance Anuales</p>
-                                <p><b>9.480€</b></p>
+                                <p>Balance Anual</p>
+                                <p><b id="details-balance-anual">9.480€</b></p>
                             </div>
                             <hr>
                             <div class="details-fields">
                                 <p>Rentabilidad Neta</p>
-                                <p><b>11,85%</b></p>
+                                <p><b id="details-rentabilidad-neta">11,85%</b></p>
                             </div>
                             <div class="details-fields">
                                 <p>ROI</p>
-                                <p><b>8,43%</b></p>
+                                <p><b id="details-roi">8,43%</b></p>
                             </div>
                             <div class="details-fields">
                                 <p>PayBack</p>
-                                <p><b>0,9 Años</b></p>
+                                <p><b id="details-payback">0,9 Años</b></p>
                             </div>
                             <div class="details-fields">
                                 <p>PER</p>
-                                <p><b>4,6 Años</b></p>
+                                <p><b id="details-per">4,6 Años</b></p>
                             </div>
-                           
-                            
                         </div>
                     </div>
                 </section>

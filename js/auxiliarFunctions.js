@@ -95,10 +95,16 @@
         propertyCard.classList.add('active-card');
       }
     }
+    const proper=document.getElementsByClassName("card panel active-card")[0]
+    if (proper !==undefined){
+      const propId=proper.getElementsByClassName("property-id")[0].textContent;
+      // console.log(propId)
+      fillDetails(propId)
+    } else {
+      //Ocultar el panel de detalles si no hay una propiedad seleccionada
+      // document.getElementById("details-container").display="none";
+    }
     
-    const propId=document.getElementsByClassName("card panel active-card")[0].getElementsByClassName("property-id")[0].textContent;
-    console.log(propId)
-  
   }
 
   switchButtons=(element)=>{

@@ -1,3 +1,5 @@
+
+/*jshint -W033 */
 // CONNECT TO API
 
 let getProperties = async ()=> {
@@ -20,10 +22,11 @@ const saveAllDataToLS = async()=>{
       let nHabs=rndBetween(1,4);
       let surface=rndBetween(40,300);
       let profit=rndBetween(3,18);
-      let price=rndBetween(80000,28000);
+      let price=rndBetween(80,28)*1000;
       let downpayment=0.2*price;
-      let income=rndBetween(500,3000);
+      let income=rndBetween(50,300)*10;
       let expenses=0.35*income;
+      income = income
       let balance=income-expenses;
       let mainPicture=element.photos[0].href;
       let city=element.address.city;
@@ -35,12 +38,12 @@ const saveAllDataToLS = async()=>{
           nHabs:nHabs,
           surface:surface,
           profit:profit,
-          downpayment:downpayment.toFixed(0),
-          price:price,
-          income:income,
+          downpayment:numberToCurrency(downpayment.toFixed(0)),
+          price:numberToCurrency(price),
+          income:numberToCurrency(income),
           city:city,
-          expenses:expenses.toFixed(0),
-          balance:balance.toFixed(0),
+          expenses:numberToCurrency(expenses.toFixed(0)),
+          balance:numberToCurrency(balance.toFixed(0)),
           mainPicture:mainPicture
       };
 
@@ -331,13 +334,13 @@ function saveCurrentFilteredData (){
     return `<!-- TARJETA A RELLENAR CON JS --><div class = "card panel" onclick='selectProperty(this)'><div class="property-id">`+element.propertyId+`</div><div class="img-card-container"><img src="`+element.mainPicture+`">
     </div><!-- CARD(CENTRAL) --><div class="card-central"><div class="cc-main"><div class="cc-main-sub"><div class="top-tag-label-rentabilidad">Rentabilidad</div>
     <div class="tag font-green top-card-tag tag-short">`+element.profit+`%</div></div><div class="cc-main-sub "><div class="top-tag-label-capital-inicial">Capital Inicial</div>
-    <div class="tag font-green top-card-tag tag-long">`+element.downpayment+` €</div></div><div class="cc-main-sub cc-main-sub-capital-inicial"><div class="top-tag-label-precio-inmueble ">
-    Precio Inmueble</div><div class="tag font-green tag-long">`+element.price+` €</div></div></div><div class="cc-details"><div class="cc-details-icons"><i class="fas fa-bed"></i>
+    <div class="tag font-green top-card-tag tag-long">`+element.downpayment+`</div></div><div class="cc-main-sub cc-main-sub-capital-inicial"><div class="top-tag-label-precio-inmueble ">
+    Precio Inmueble</div><div class="tag font-green tag-long">`+element.price+`</div></div></div><div class="cc-details"><div class="cc-details-icons"><i class="fas fa-bed"></i>
     `+element.nHabs+`<i class="fas fa-bath"></i>`+element.nBaths+`<i class="fas fa-ruler-combined"></i>`+element.surface+`m<sup>2</sup></div></div><div class="cc-title">
     `+element.title+` | `+element.city+`</div><div class="cc-info">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tristique diam pretium est hendrerit, nec varius velit bibendum. Etiam gravida nibh sit amet metus ultricies lacinia.
     </div></div><!-- CARD(RIGHT) --><div class="card-right"><b>Analisis Mensual</b><div class="cr-container"><div class="cr-tags"><div class="white-card-tag">Ingresos</div>
-    <div class="white-card-tag">Gastos</div><div class="white-card-tag">Balance</div></div><div class="cr-amounts"><div class="tag font-blue">+`+element.income+`€</div>
-    <div class="tag font-red">-`+element.expenses+`€</div><div class="tag font-green">+`+element.balance+`€</div></div></div></div></div><!-- FIN TARJETA A RELLENAR CON JS -->`;
+    <div class="white-card-tag">Gastos</div><div class="white-card-tag">Balance</div></div><div class="cr-amounts"><div class="tag font-blue">+`+element.income+`</div>
+    <div class="tag font-red">-`+element.expenses+`</div><div class="tag font-green">+`+element.balance+`</div></div></div></div></div><!-- FIN TARJETA A RELLENAR CON JS -->`;
   }
   function getSelectedPage(element){
     let selectedPage=element.textContent;
@@ -358,10 +361,252 @@ function saveCurrentFilteredData (){
 
     plotCurrentPageProperties(firstPropertyToPrint);
   }
+  function numberToCurrency(number){
+    // console.log(number)
+    result = new Intl.NumberFormat("de-DE" ,{style: "currency", currency: "EUR"}).format(number)
+    // console.log(result)
+    result=result.slice(0,result.indexOf(","))+result.slice(result.indexOf(",")+3,100)
+    return result
+  }
+  function currencyToNumber(number){
+    // console.log("Inside currencyToNumber: ",number)
+
+    if (typeof number === "number" || number.indexOf(" ")===-1){
+      result = Number(number);
+    } else {
+      console.log(number.indexOf(" "))
+      result= Number(number.slice(0,number.indexOf(" ")-1).replace(".",""));
+    }
+   return result;
+  }
 
   function fillDetails(propertyId){
+    const dataSet = JSON.parse(localStorage.getItem("currentDataSet"));
+    const prop=dataSet.filter(data=>{return data.propertyId===propertyId})
     
 
+    rellenarDetails(prop)
 
 
+  }
+  
+
+  // function getNumber(element,valor,esPorcentaje){
+   
+  //   // // console.log("Inicio de getNumber => localeName: "+element.localName+" | Es porcentaje: " + esPorcentaje + " | Element: "+element)
+  //   // if(element.localName==="input"){
+  //   //   // console.log(element.value)
+  //   //   if (esPorcentaje===true){
+  //   //     var number = Number(valor.value.replace(/\D/g,''))/100
+  //   //   } else if(esPorcentaje===false) {
+  //   //     var number = Number(valor.value.replace(/\D/g,''));
+  //   //   }
+  //   // } else if (element.localName!=="input"){
+  //   //   // console.log(element.textContent)
+  //   //   if (esPorcentaje===true){
+  //   //     var number = Number(valor.textContent.replace(/\D/g,''))/100
+  //   //   } else if(esPorcentaje===false) {
+  //   //     //Caso 60m^2
+  //   //     var number = Number(valor.textContent.replace(/\D/g,''));
+  //   //   }
+  //   // }
+
+  //   try{
+  //     if (esPorcentaje===true){
+  //       var number = Number(valor.value.replace(/\D/g,''))/100
+  //     } else if(esPorcentaje===false) {
+  //       var number = Number(valor.value.replace(/\D/g,''));
+  //     }
+  //   } catch{
+  //     if (esPorcentaje===true){
+  //       var number = Number(valor.textContent.replace(/\D/g,''))/100
+  //     } else if(esPorcentaje===false) {
+  //       //Caso 60m^2
+  //       var number = Number(valor.textContent.replace(/\D/g,''));
+  //     }
+  //   }
+
+
+  //   // console.log("Fin de getNumber => localeName: "+element.localName+" | Es porcentaje: " + esPorcentaje + " | Number: "+number + " | Element: ",element)
+  //   return number;
+  // }
+
+  
+
+  function actualizarCalculos(){
+
+  }
+
+
+  function addEventListener(){
+    // document.getElementById("details-rebaja-negociacion").addEventListener('onblur',actualizarCalculos())
+
+  }
+
+  // class parameter{
+  //     constructor(name,elementId,value,esPorcentaje){
+  //       // console.log("------START-----")
+  //       // console.log(getNumber(value))
+  //       // console.log(inputType)
+  //       this.name=name;
+        
+  //       // console.log("Constrcutor Input Value: ", value)
+  //       // console.log(inputType)
+  //       // this.formType=formType;
+  //       // console.log(value)
+  //       this.element=document.getElementById(elementId);
+  //       // console.log(getNumber(this.element,false))
+  //       // console.log(element)
+  //       // if (inputType === "%"){
+  //       //   this.numericValue = value/100;
+  //       //   this.unitsValue=value+"%";
+  //       // }else if(inputType === "€"){
+  //         // console.log("Value inside Constructor: ",value)
+  //         // console.log(currencyToNumber(value))
+  //       this.value = value;
+  //         // this.numericValue = currencyToNumber(value);
+  //         this.numericValue=getNumber(this.element,value,esPorcentaje)
+  //         // this.unitsValue=numberToCurrency(this.numericValue);
+  //         // console.log(this.numericValue ,this.unitsValue)
+  //       // }
+  //       // console.log(this.numericValue ,this.unitsValue)
+  //       console.log(this)
+  //     }
+
+  //     // printInput(){
+  //     //   this.element.value=this.numericValue
+  //     // }
+
+  //     // printText(){
+  //     //   this.element.textContent=this.unitsValue
+  //     // }
+
+  //     print(){
+
+  //       // // console.log(this)
+  //       // if (this.element.localName==="b"){
+  //       //   // ES UNA ETIQUETA Y SOLO HAY QUE MOSTRAR EL NUMERO Y UNIDADES
+  //       //   this.element.textContent=this.unitsValue
+  //       // } else if(this.element.localName==="input"){
+  //       //   //ES UN INPUT
+  //       //   // if (this.inputType==="%"){
+  //       //   //   this.element.value=this.numericValue*100
+  //       //   // } else {
+  //       //     this.element.value=this.numericValue
+  //       //   // }
+          
+  //       // }
+  //     }
+
+
+  //     getVariableFromElementId(elementId){
+  //       //Get the value of the input or label contained in the ID.
+  //       let element=document.getElementById(elementId)
+  //       let result
+  //       if (element.localName==="input"){
+  //         result = element.value
+  //       } else{
+  //         result = element.textContent
+  //       }
+  //       if (element.classList.contains("percent")){
+  //         result=result/100;
+  //       }
+  //       console.log(result)
+  //       return result;
+  //     }
+
+  //     convertToNumber(variable){
+  //       let result = variable.replace(/\D/g,'');
+  //       this.numericValue=result;
+  //       console.log(result)
+  //       return result;
+  //     }
+
+
+
+
+  // }
+
+
+
+  function rellenarDetails(prop){
+
+    calcularPrecioOfertado(prop)
+    calcularRebajaEnNegociacion()
+    calcularPrecioDeCompra()
+    calcularProcentajeFinanciadoDetails()
+    calcularCapitalFinanciado()
+    // // console.log(getNumber("20%"))
+    // // console.log(prop[0].price)
+    // let precioOfertado = new parameter("precioOfertado","details-precio-ofertado",prop[0].price,false)
+    // // precioOfertado.print()
+    // // console.log(precioOfertado)
+    // let porcentajeNegociacion = new parameter("porcentajeNegociacion","profile-rebaja-negociacion",document.getElementById("profile-rebaja-negociacion").value,true)
+    // // console.log(porcentajeNegociacion)
+    // // console.log(precioOfertado.numericValue)
+    // // console.log(porcentajeNegociacion.numericValue)
+    // // console.log(precioOfertado.numericValue*porcentajeNegociacion.numericValue)
+    // let rebajaNegociacion = new parameter("rebajaNegociacion","details-rebaja-negociacion",precioOfertado.numericValue*porcentajeNegociacion.numericValue,false)
+    // // rebajaNegociacion.print()
+    // // console.log("precio Ofertado",precioOfertado.numericValue)
+    // // console.log("rebaja negociacion",rebajaNegociacion.numericValue)
+    // // console.log(precioOfertado.numericValue-rebajaNegociacion.numericValue)
+    // let precioDeCompra = new parameter("precioDeCompra","details-precio-compra",precioOfertado.numericValue-rebajaNegociacion.numericValue,false)
+    // // precioDeCompra.print()
+    
+    // let porcentajeFinanciado = new parameter("porcentajeFinanciado","details-porcentaje-financiado",document.getElementById("profile-porcentaje-financiado").value,true)
+    // // porcentajeFinanciado.print()
+
+    // let capitalAportado = new parameter("capitalAportado","details-capital-aportado",document.getElementById("profile-capital-aportado").value,false)
+    // // console.log(capitalAportado)
+    // // capitalAportado.print()
+
+  }
+
+
+  function calcularPrecioOfertado(prop){
+    let price = prop[0].price;
+    // console.log(price)
+    document.getElementById("details-precio-ofertado").textContent = price;
+  }
+  
+  function calcularRebajaEnNegociacion(){
+    let porcentajeRebaja = Number(document.getElementById("profile-rebaja-negociacion").value)
+    // console.log(porcentajeRebaja)
+    let precioOfertado=document.getElementById("details-precio-ofertado").textContent
+    // console.log(precioOfertado)
+    let numeroPrecioOfertado = Number(precioOfertado.replace(/\D/g,''))
+    // console.log(numeroPrecioOfertado)
+    let importeRebaja = numeroPrecioOfertado * (porcentajeRebaja/100)
+    // console.log(importeRebaja)
+    document.getElementById("details-rebaja-negociacion").value = importeRebaja;
+  }
+
+  function calcularPrecioDeCompra(){
+    let precioOfertado= document.getElementById("details-precio-ofertado").textContent
+    // console.log(precioOfertado)
+    let numeroPrecioOfertado = Number(precioOfertado.replace(/\D/g,''))
+    // console.log(numeroPrecioOfertado)
+    let importeRebaja= document.getElementById("details-rebaja-negociacion").value
+    // console.log(precioOfertado)
+    let numeroImporteRebaja = Number(importeRebaja.replace(/\D/g,''))
+    // console.log(numeroImporteRebaja)
+    let precioDeCompra = numeroPrecioOfertado-numeroImporteRebaja;
+    // console.log(precioDeCompra)
+    document.getElementById("details-precio-compra").textContent = numberToCurrency(precioDeCompra)
+  }
+
+  function calcularProcentajeFinanciadoDetails(){
+    let porcentajeFinanciado = Number(document.getElementById("profile-porcentaje-financiado").value)
+    // console.log(porcentajeFinanciado)
+    document.getElementById("details-porcentaje-financiado").value = porcentajeFinanciado
+  }
+
+  function calcularCapitalFinanciado(){
+    let precioDeCompra = document.getElementById("details-precio-compra").textContent;
+    console.log(precioDeCompra)
+    let numeroPrecioDeCompra = Number(precioDeCompra.replace(/\D/g,''))
+    console.log(numeroPrecioDeCompra)
+    let porcentajeFinanciado = Number(document.getElementById("details-porcentaje-financiado").value)/100
+    console.log(porcentajeFinanciado)
   }
