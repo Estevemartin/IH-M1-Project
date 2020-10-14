@@ -111,7 +111,7 @@
                         <div class="details-fields button-option">
                             <button class="active">
                                 Porcentaje Financiación (%)
-                                <input class="small-input percent" type="number" max="100" id="profile-porcentaje-financiado" value="20">
+                                <input class="small-input percent update-changes" type="number" max="100" id="profile-porcentaje-financiado" value="20">
                             </button>
                             <button onclick=switchButtons(this)>
                                 Capital Aportado
@@ -122,7 +122,7 @@
                         <div class="details-fields button-option">
                             <button class="active">
                                Plazo Hipoteca
-                                <input class="small-input" type="number" max="40">
+                                <input class="small-input update-changes" type="number" max="40">
                             </button>
                             <button>
                                 Cuota Máxima
@@ -132,7 +132,7 @@
                         <div class="filter-precio">
                         <p>Rebaja Negociación (%)</p>
                             <div class="filter-inputs">
-                                <input type="number" id="profile-rebaja-negociacion" name="profile-rebaja-negociacion"  placeholder="Porcentaje" value=10 class="percent">
+                                <input type="number" id="profile-rebaja-negociacion" name="profile-rebaja-negociacion"  placeholder="Porcentaje" value=10 class="percent update-changes">
                             </div>
                         </div>
                         <!-- <div class="filter-inputs">
@@ -185,7 +185,7 @@
                             </div>
                             <div class="details-fields">
                                 <p>Rebaja Negociación</p>
-                                <div class= "details-fields"><input class="small-input" type="text" id="details-rebaja-negociacion" > <b>€</b></div>
+                                <div class= "details-fields"><input class="small-input update-changes" type="text" id="details-rebaja-negociacion" onblur=actualizarCalculos()> <b>€</b></div>
                             </div>
                             <!-- <hr> -->
                             <div class="details-fields">
@@ -195,11 +195,11 @@
                             <div class="details-fields button-option">
                                 <button class="active">
                                     Porcentaje Financiación (%)
-                                    <input class="small-input percent" type="number" max=100 id="details-porcentaje-financiado" >  
+                                    <input class="small-input percent update-changes" type="number" max=100 id="details-porcentaje-financiado" >  
                                 </button>
                                 <button>
                                     Capital Aportado
-                                    <input class="big-input" type="number" id="details-capital-aportado" >
+                                    <input class="big-input update-changes" type="number" id="details-capital-aportado" >
                                 </button>
                             </div>
                             <div class="details-fields">
@@ -208,16 +208,16 @@
                             </div>
                             <div class="details-fields">
                                 <p>TAE (%)</p>
-                                <input class="small-input percent" type="number" id="details-tae" value=2>
+                                <input class="small-input percent update-changes" type="number" id="details-tae" value=2>
                             </div>
                             <div class="details-fields button-option">
                                 <button class="active">
                                     Años Hipoteca
-                                    <input class="small-input" type="number" id="details-plazo-hipoteca" value=40>
+                                    <input class="small-input update-changes" type="number" id="details-plazo-hipoteca" value=40>
                                 </button>
                                 <button>
                                     Cuota Máxima
-                                    <input class="small-input" type="number" id="details-cuota-maxima">
+                                    <input class="small-input update-changes" type="number" id="details-cuota-maxima">
                                 </button>
                             </div>
                             <div class="details-fields">
@@ -245,20 +245,20 @@
                             </div>
                             <div class="details-fields">
                                 <p>Tasación</p>
-                                <div class="details-fields"><input class="small-input" type="text" value="300" id="details-tasacion"> <b>€</b></div>
+                                <div class="details-fields"><input class="small-input update-changes" type="text" value="300" id="details-tasacion"> <b>€</b></div>
                                 
                             </div>
                             <div class="details-fields">
                                 <p>Nota Simple</p>
-                                <div class="details-fields"><input class="small-input" type="text" value="18" id="details-nota-simple"><b>€</b></div>
+                                <div class="details-fields"><input class="small-input update-changes" type="text" value="18" id="details-nota-simple"><b>€</b></div>
                             </div>
                             <div class="details-fields">
                                 <p>Registro</p>
-                                <div class="details-fields"><input class="small-input" type="text" value="30" id="details-registro"><b>€</b></div>
+                                <div class="details-fields"><input class="small-input update-changes" type="text" value="30" id="details-registro"><b>€</b></div>
                             </div>
                             <div class="details-fields">
                                 <p>Comisión Apertura</p>
-                                <div class="details-fields"><input class="small-input percent" type="text" value="1" id="details-comision-apertura"><b>%</b></div>
+                                <div class="details-fields"><input class="small-input percent update-changes" type="text" value="1" id="details-comision-apertura"><b>%</b></div>
                             </div>
                             <div class="details-fields">
                                 <p>Gastos de Apertura</p>
@@ -277,19 +277,19 @@
                         <div class="details-section">
                             <div class="details-fields">
                                 <p>IBI (Anual)</p>
-                                <div class="details-fields"><input class="small-input" type="text" value="100" id="details-ibi"><b>€</b></div>
+                                <div class="details-fields"><input class="small-input update-changes" type="text" value="100" id="details-ibi"><b>€</b></div>
                             </div>
                             <div class="details-fields">
                                 <p>Impuesto de Basuras</p>
-                                <div class="details-fields"><input class="small-input" type="text" value="0" id="details-impuesto-basuras"><b>€</b></div>
+                                <div class="details-fields"><input class="small-input update-changes" type="text" value="0" id="details-impuesto-basuras"><b>€</b></div>
                             </div>
                             <div class="details-fields">
                                 <p>Gastos de Comunidad</p>
-                                <div class="details-fields"><input class="small-input" type="text" value="50" id="details-gastos-comunidad"><b>€</b></div>
+                                <div class="details-fields"><input class="small-input update-changes" type="text" value="50" id="details-gastos-comunidad"><b>€</b></div>
                             </div>
                             <div class="details-fields">
                                 <p>Seguro</p>
-                                <div class="details-fields"><input class="small-input" type="text" value="0" id="details-seguro"><b>€</b></div>
+                                <div class="details-fields"><input class="small-input update-changes"  type="text" value="0" id="details-seguro"><b>€</b></div>
                             </div>
                             <div class="details-fields">
                                 <p>Cuota Hipoteca</p>
@@ -308,7 +308,7 @@
                         <div class="details-section">
                             <div class="details-fields">
                                 <p>Alquiler por m<sup>2</sup> de la Zona</p>
-                                <p><b id="details-alquilerm2">30€</b></p>
+                                <p><b id="details-alquilerm2">20€</b></p>
                             </div>
                             <div class="details-fields">
                                 <p>Superficie del Piso</p>
@@ -320,7 +320,7 @@
                             </div>
                             <div class="details-fields">
                                 <p>Ocupación</p>
-                                <input class="small-input percent" type="text" value="80%" id="details-ocupacion">
+                                <div class="details-fields"><input class="small-input percent update-changes" type="text" value="80" id="details-ocupacion"><b>%</b></div>
                             </div>
                         </div>
                         <div class="tag details-title font-green">

@@ -391,142 +391,51 @@ function saveCurrentFilteredData (){
   }
   
 
-  // function getNumber(element,valor,esPorcentaje){
-   
-  //   // // console.log("Inicio de getNumber => localeName: "+element.localName+" | Es porcentaje: " + esPorcentaje + " | Element: "+element)
-  //   // if(element.localName==="input"){
-  //   //   // console.log(element.value)
-  //   //   if (esPorcentaje===true){
-  //   //     var number = Number(valor.value.replace(/\D/g,''))/100
-  //   //   } else if(esPorcentaje===false) {
-  //   //     var number = Number(valor.value.replace(/\D/g,''));
-  //   //   }
-  //   // } else if (element.localName!=="input"){
-  //   //   // console.log(element.textContent)
-  //   //   if (esPorcentaje===true){
-  //   //     var number = Number(valor.textContent.replace(/\D/g,''))/100
-  //   //   } else if(esPorcentaje===false) {
-  //   //     //Caso 60m^2
-  //   //     var number = Number(valor.textContent.replace(/\D/g,''));
-  //   //   }
-  //   // }
-
-  //   try{
-  //     if (esPorcentaje===true){
-  //       var number = Number(valor.value.replace(/\D/g,''))/100
-  //     } else if(esPorcentaje===false) {
-  //       var number = Number(valor.value.replace(/\D/g,''));
-  //     }
-  //   } catch{
-  //     if (esPorcentaje===true){
-  //       var number = Number(valor.textContent.replace(/\D/g,''))/100
-  //     } else if(esPorcentaje===false) {
-  //       //Caso 60m^2
-  //       var number = Number(valor.textContent.replace(/\D/g,''));
-  //     }
-  //   }
-
-
-  //   // console.log("Fin de getNumber => localeName: "+element.localName+" | Es porcentaje: " + esPorcentaje + " | Number: "+number + " | Element: ",element)
-  //   return number;
-  // }
-
-  
 
   function actualizarCalculos(){
-
+    console.log("Update function was trigered")
+    //HIPOTECA
+    // calcularPrecioOfertado(prop)
+    calcularRebajaEnNegociacion()
+    calcularPrecioDeCompra()
+    calcularProcentajeFinanciadoDetails()
+    calcularCapitalFinanciado()
+    calcularCuotaMensual()
+    calcularTotalHipoteca()
+    calcularInteresesHipoteca()
+    //GASTOS DE COMPRAVENTA
+    calculateITP()
+    calcuarGastosDeApertura()
+    calcularGastosDeCompraVenta()
+    //GASTOS MENSUALES
+    calcularTotalGastosMensuales()
+    //INGRESOS MENSUALES
+    // calcularSuperficiePiso(prop)
+    // calcularIngresosMensuales(prop)
+    //RENTABILIDAD (PARTE SUPERIOR)
+    calcularInversionInicial()
+    calcularGastosAnuales()
+    calcularIngresosAnuales()
+    calcularBalanceAnual()
+    //RENTABILIDAD (PARTE INFERIOR)
+    calcularRentabilidadNeta()
+    calcularRoi()
+    calcularPayback()
+    calcularPer()
   }
 
 
   function addEventListener(){
     // document.getElementById("details-rebaja-negociacion").addEventListener('onblur',actualizarCalculos())
+    let elementsToListent = document.getElementsByClassName("update-changes")//.map(element=>{element.addEventListener('onblur',actualizarCalculos())})
 
+    for (i=0;i<elementsToListent.length;i++){
+      console.log(elementsToListent[i])
+      elementsToListent[i].addEventListener('onblur',actualizarCalculos())
+
+    }
   }
-
-  // class parameter{
-  //     constructor(name,elementId,value,esPorcentaje){
-  //       // console.log("------START-----")
-  //       // console.log(getNumber(value))
-  //       // console.log(inputType)
-  //       this.name=name;
-        
-  //       // console.log("Constrcutor Input Value: ", value)
-  //       // console.log(inputType)
-  //       // this.formType=formType;
-  //       // console.log(value)
-  //       this.element=document.getElementById(elementId);
-  //       // console.log(getNumber(this.element,false))
-  //       // console.log(element)
-  //       // if (inputType === "%"){
-  //       //   this.numericValue = value/100;
-  //       //   this.unitsValue=value+"%";
-  //       // }else if(inputType === "€"){
-  //         // console.log("Value inside Constructor: ",value)
-  //         // console.log(currencyToNumber(value))
-  //       this.value = value;
-  //         // this.numericValue = currencyToNumber(value);
-  //         this.numericValue=getNumber(this.element,value,esPorcentaje)
-  //         // this.unitsValue=numberToCurrency(this.numericValue);
-  //         // console.log(this.numericValue ,this.unitsValue)
-  //       // }
-  //       // console.log(this.numericValue ,this.unitsValue)
-  //       console.log(this)
-  //     }
-
-  //     // printInput(){
-  //     //   this.element.value=this.numericValue
-  //     // }
-
-  //     // printText(){
-  //     //   this.element.textContent=this.unitsValue
-  //     // }
-
-  //     print(){
-
-  //       // // console.log(this)
-  //       // if (this.element.localName==="b"){
-  //       //   // ES UNA ETIQUETA Y SOLO HAY QUE MOSTRAR EL NUMERO Y UNIDADES
-  //       //   this.element.textContent=this.unitsValue
-  //       // } else if(this.element.localName==="input"){
-  //       //   //ES UN INPUT
-  //       //   // if (this.inputType==="%"){
-  //       //   //   this.element.value=this.numericValue*100
-  //       //   // } else {
-  //       //     this.element.value=this.numericValue
-  //       //   // }
-          
-  //       // }
-  //     }
-
-
-  //     getVariableFromElementId(elementId){
-  //       //Get the value of the input or label contained in the ID.
-  //       let element=document.getElementById(elementId)
-  //       let result
-  //       if (element.localName==="input"){
-  //         result = element.value
-  //       } else{
-  //         result = element.textContent
-  //       }
-  //       if (element.classList.contains("percent")){
-  //         result=result/100;
-  //       }
-  //       console.log(result)
-  //       return result;
-  //     }
-
-  //     convertToNumber(variable){
-  //       let result = variable.replace(/\D/g,'');
-  //       this.numericValue=result;
-  //       console.log(result)
-  //       return result;
-  //     }
-
-
-
-
-  // }
-
+  addEventListener()
 
 
   function rellenarDetails(prop){
@@ -543,32 +452,21 @@ function saveCurrentFilteredData (){
     calculateITP()
     calcuarGastosDeApertura()
     calcularGastosDeCompraVenta()
+    //GASTOS MENSUALES
     calcularTotalGastosMensuales()
-    // // console.log(getNumber("20%"))
-    // // console.log(prop[0].price)
-    // let precioOfertado = new parameter("precioOfertado","details-precio-ofertado",prop[0].price,false)
-    // // precioOfertado.print()
-    // // console.log(precioOfertado)
-    // let porcentajeNegociacion = new parameter("porcentajeNegociacion","profile-rebaja-negociacion",document.getElementById("profile-rebaja-negociacion").value,true)
-    // // console.log(porcentajeNegociacion)
-    // // console.log(precioOfertado.numericValue)
-    // // console.log(porcentajeNegociacion.numericValue)
-    // // console.log(precioOfertado.numericValue*porcentajeNegociacion.numericValue)
-    // let rebajaNegociacion = new parameter("rebajaNegociacion","details-rebaja-negociacion",precioOfertado.numericValue*porcentajeNegociacion.numericValue,false)
-    // // rebajaNegociacion.print()
-    // // console.log("precio Ofertado",precioOfertado.numericValue)
-    // // console.log("rebaja negociacion",rebajaNegociacion.numericValue)
-    // // console.log(precioOfertado.numericValue-rebajaNegociacion.numericValue)
-    // let precioDeCompra = new parameter("precioDeCompra","details-precio-compra",precioOfertado.numericValue-rebajaNegociacion.numericValue,false)
-    // // precioDeCompra.print()
-    
-    // let porcentajeFinanciado = new parameter("porcentajeFinanciado","details-porcentaje-financiado",document.getElementById("profile-porcentaje-financiado").value,true)
-    // // porcentajeFinanciado.print()
-
-    // let capitalAportado = new parameter("capitalAportado","details-capital-aportado",document.getElementById("profile-capital-aportado").value,false)
-    // // console.log(capitalAportado)
-    // // capitalAportado.print()
-
+    //INGRESOS MENSUALES
+    calcularSuperficiePiso(prop)
+    calcularIngresosMensuales(prop)
+    //RENTABILIDAD (PARTE SUPERIOR)
+    calcularInversionInicial()
+    calcularGastosAnuales()
+    calcularIngresosAnuales()
+    calcularBalanceAnual()
+    //RENTABILIDAD (PARTE INFERIOR)
+    calcularRentabilidadNeta()
+    calcularRoi()
+    calcularPayback()
+    calcularPer()
   }
 
 
@@ -726,20 +624,146 @@ function saveCurrentFilteredData (){
 
   function calcularTotalGastosMensuales(){
     let ibi=Number(document.getElementById("details-ibi").value)
-    console.log(ibi)
+    // console.log(ibi)
     let basuras=Number(document.getElementById("details-impuesto-basuras").value)
-    console.log(basuras)
+    // console.log(basuras)
     let comunidad=Number(document.getElementById("details-gastos-comunidad").value)
-    console.log(comunidad)
+    // console.log(comunidad)
     let seguro=Number(document.getElementById("details-seguro").value)
-    console.log(seguro)
+    // console.log(seguro)
     let cuotaHipoteca = document.getElementById("details-cuota-hipoteca").textContent
-    console.log(cuotaHipoteca)
+    // console.log(cuotaHipoteca)
     let numeroCuotaHipoteca = Number(cuotaHipoteca.replace(/\D/g,''))
-    console.log(numeroCuotaHipoteca)
+    // console.log(numeroCuotaHipoteca)
     let totalGastosMensuales = ibi+basuras+comunidad+seguro+numeroCuotaHipoteca
-    console.log(totalGastosMensuales)
+    // console.log(totalGastosMensuales)
     document.getElementById("details-total-gastos-mensuales").textContent = numberToCurrency(totalGastosMensuales)
   }
 
-  
+  function calcularSuperficiePiso(prop){
+    let superifice = prop[0].surface;
+    // console.log(superifice)
+    document.getElementById("details-superficie-piso").innerHTML=superifice+"m<sup>2</sup>"
+  }
+
+  function calcularIngresosMensuales(prop){
+    let superifice = Number(prop[0].surface);
+    // console.log(superifice)
+    let alquilerm2 = document.getElementById("details-alquilerm2").textContent
+    // console.log(alquilerm2)
+    let numeroAlquilerm2 =  Number(alquilerm2.replace(/\D/g,''))
+    // console.log(numeroAlquilerm2)
+    let ingresosMensuales = numeroAlquilerm2 * superifice
+    // console.log(ingresosMensuales)
+    document.getElementById("details-ingresos-mensuales").textContent = numberToCurrency(ingresosMensuales)
+
+  }
+
+  function calcularInversionInicial(){
+    let precioDeCompra = document.getElementById("details-precio-compra").textContent;
+    // console.log(precioDeCompra)
+    let numeroPrecioDeCompra = Number(precioDeCompra.replace(/\D/g,''))
+    // console.log(numeroPrecioDeCompra)
+    let capitalFinanciado = document.getElementById("details-capital-financiado").textContent
+    // console.log(capitalFinanciado)
+    let numeroCapitalFinanciado = Number(capitalFinanciado.replace(/\D/g,''))
+    // console.log(numeroCapitalFinanciado)
+    let gastosDeCompraVenta = document.getElementById("details-gastos-compraventa").textContent
+    // console.log(gastosDeCompraVenta)
+    let numerogastosDeCompraVenta = Number(gastosDeCompraVenta.replace(/\D/g,''))
+    // console.log(numerogastosDeCompraVenta)
+    let inversionInicial = (numeroPrecioDeCompra-numeroCapitalFinanciado)+numerogastosDeCompraVenta
+    // console.log(inversionInicial)
+    document.getElementById("details-inversion-inicial").textContent = numberToCurrency(inversionInicial)
+  }
+
+  function calcularGastosAnuales(){
+    let gastosMensuales = document.getElementById("details-total-gastos-mensuales").textContent
+    // console.log(gastosMensuales)
+    let numeroGastosMensuales = Number(gastosMensuales.replace(/\D/g,''))
+    // console.log(numeroGastosMensuales)
+    let gastosAnuales = 12*numeroGastosMensuales
+    // console.log(gastosAnuales)
+    document.getElementById("details-gastos-anuales").textContent = numberToCurrency(gastosAnuales)
+  }
+
+  function calcularIngresosAnuales(){
+    let ingresosMensuales = document.getElementById("details-ingresos-mensuales").textContent
+    // console.log(ingresosMensuales)
+    let numeroIngresosMensuales = Number(ingresosMensuales.replace(/\D/g,''))
+    // console.log(numeroIngresosMensuales)
+    let ocupacion = document.getElementById("details-ocupacion").value
+    // console.log(ocupacion)
+    let numeroOcupacion = Number(ocupacion.replace(/\D/g,''))/100
+    // console.log(numeroOcupacion)
+    let ingresosAnuales = numeroIngresosMensuales * numeroOcupacion*12
+    document.getElementById("details-ingresos-anuales").textContent = numberToCurrency(ingresosAnuales)
+  }
+
+  function calcularBalanceAnual(){
+    let ingreosAnuales = document.getElementById("details-ingresos-anuales").textContent
+    // console.log(ingreosAnuales)
+    let numeroingreosAnuales = Number(ingreosAnuales.replace(/\D/g,''))
+    // console.log(numeroingreosAnuales)
+    let gastosAnuales = document.getElementById("details-gastos-anuales").textContent
+    // console.log(gastosAnuales)
+    let numerogastosAnuales = Number(gastosAnuales.replace(/\D/g,''))
+    // console.log(numerogastosAnuales)
+    let balanceAnual = numeroingreosAnuales-numerogastosAnuales
+    // console.log(balanceAnual)
+    document.getElementById("details-balance-anual").textContent = numberToCurrency(balanceAnual)
+  }
+
+  function calcularRentabilidadNeta(){
+    let gastosMensuales = document.getElementById("details-total-gastos-mensuales").textContent
+    // console.log(gastosMensuales)
+    let numeroGastosMensuales = Number(gastosMensuales.replace(/\D/g,''))
+    // console.log(numeroGastosMensuales)
+    let ingreosAnuales = document.getElementById("details-ingresos-anuales").textContent
+    // console.log(ingreosAnuales)
+    let numeroingreosAnuales = Number(ingreosAnuales.replace(/\D/g,''))
+    // console.log(numeroingreosAnuales)
+    let precioDeCompra = document.getElementById("details-precio-compra").textContent;
+    // console.log(precioDeCompra)
+    let numeroPrecioDeCompra = Number(precioDeCompra.replace(/\D/g,''))
+    // console.log(numeroPrecioDeCompra)
+    let rentabilidadNeta=(((numeroingreosAnuales-(numeroGastosMensuales*12))/numeroPrecioDeCompra)*100).toFixed(0)
+    // console.log(rentabilidadNeta)
+    document.getElementById("details-rentabilidad-neta").textContent = (rentabilidadNeta+"%")
+  }
+
+  function calcularRoi(){
+    let rentabilidadNeta =  document.getElementById("details-rentabilidad-neta").textContent
+    // console.log(rentabilidadNeta)
+    let numerorentabilidadNeta = Number(rentabilidadNeta.replace(/\D/g,''))
+    // console.log(numerorentabilidadNeta)
+    let roi = ((1/numerorentabilidadNeta)*100).toFixed(0)
+    // console.log(roi)
+    document.getElementById("details-roi").textContent = (roi+"%")
+  }
+
+  function calcularPayback(){
+    let inversionInicial=document.getElementById("details-inversion-inicial").textContent
+    // console.log(inversionInicial)
+    let numeroinversionInicial = Number(inversionInicial.replace(/\D/g,''))
+    // console.log(numeroinversionInicial)
+    let balanceAnual = document.getElementById("details-balance-anual").textContent
+    // console.log(balanceAnual)
+    let numerobalanceAnual = Number(balanceAnual.replace(/\D/g,''))
+    // console.log(numerobalanceAnual)
+    let payback = (numeroinversionInicial / numerobalanceAnual).toFixed(1)
+    document.getElementById("details-payback").textContent = payback+" Años"
+  }
+
+  function calcularPer() {
+    let ingreosAnuales = document.getElementById("details-ingresos-anuales").textContent
+    // console.log(ingreosAnuales)
+    let numeroingreosAnuales = Number(ingreosAnuales.replace(/\D/g,''))
+    // console.log(numeroingreosAnuales)
+    let precioDeCompra = document.getElementById("details-precio-compra").textContent;
+    // console.log(precioDeCompra)
+    let numeroPrecioDeCompra = Number(precioDeCompra.replace(/\D/g,''))
+    // console.log(numeroPrecioDeCompra)
+    let per = (numeroPrecioDeCompra/numeroingreosAnuales).toFixed(1)
+    document.getElementById("details-per").textContent = per+" Años"
+  }
