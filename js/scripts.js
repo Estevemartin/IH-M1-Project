@@ -530,12 +530,17 @@ function saveCurrentFilteredData (){
 
 
   function rellenarDetails(prop){
-
+    //HIPOTECA
     calcularPrecioOfertado(prop)
     calcularRebajaEnNegociacion()
     calcularPrecioDeCompra()
     calcularProcentajeFinanciadoDetails()
     calcularCapitalFinanciado()
+    calcularCuotaMensual()
+    calcularTotalHipoteca()
+    calcularInteresesHipoteca()
+    //GASTOS DE COMPRAVENTA
+    calculateITP()
     // // console.log(getNumber("20%"))
     // // console.log(prop[0].price)
     // let precioOfertado = new parameter("precioOfertado","details-precio-ofertado",prop[0].price,false)
@@ -604,9 +609,62 @@ function saveCurrentFilteredData (){
 
   function calcularCapitalFinanciado(){
     let precioDeCompra = document.getElementById("details-precio-compra").textContent;
-    console.log(precioDeCompra)
+    // console.log(precioDeCompra)
     let numeroPrecioDeCompra = Number(precioDeCompra.replace(/\D/g,''))
-    console.log(numeroPrecioDeCompra)
+    // console.log(numeroPrecioDeCompra)
     let porcentajeFinanciado = Number(document.getElementById("details-porcentaje-financiado").value)/100
-    console.log(porcentajeFinanciado)
+    // console.log(porcentajeFinanciado)
+    let capitalFinanciado = numeroPrecioDeCompra*(1-porcentajeFinanciado)
+    // console.log(capitalFinanciado)
+    let printCapitalFinanciado = numberToCurrency(capitalFinanciado)
+    // console.log(printCapitalFinanciado)
+    document.getElementById("details-capital-financiado").textContent = printCapitalFinanciado
+  }
+
+  function calcularCuotaMensual(){
+    let capitalFinanciado = document.getElementById("details-capital-financiado").textContent
+    // console.log(capitalFinanciado)
+    let numeroCapitalFinanciado = Number(capitalFinanciado.replace(/\D/g,''))
+    // console.log(numeroCapitalFinanciado)
+    let años = Number(document.getElementById("details-plazo-hipoteca").value)
+    // console.log(años)
+    let tae = Number(document.getElementById("details-tae").value/100)
+    // console.log(tae)
+    let cuotaMensual = (((numeroCapitalFinanciado*tae)/(1-(1+tae)**(-años)))/12).toFixed(2);
+    // console.log(cuotaMensual)
+    document.getElementById("details-cuota-mensual").textContent = numberToCurrency(cuotaMensual)
+  }
+
+  function calcularTotalHipoteca(){
+    let capitalFinanciado = document.getElementById("details-capital-financiado").textContent
+    // console.log(capitalFinanciado)
+    let numeroCapitalFinanciado = Number(capitalFinanciado.replace(/\D/g,''))
+    // console.log(numeroCapitalFinanciado)
+    let años = Number(document.getElementById("details-plazo-hipoteca").value)
+    // console.log(años)
+    let tae = Number(document.getElementById("details-tae").value/100)
+    // console.log(tae)
+    let cuotaMensual = Number((((numeroCapitalFinanciado*tae)/(1-(1+tae)**(-años)))/12).toFixed(2));
+    // console.log(cuotaMensual)
+    let totalHipoteca = cuotaMensual*años*12;
+    // console.log(TotalHipoteca);
+    document.getElementById("details-total-hipoteca").textContent = numberToCurrency(totalHipoteca)
+  }
+
+  function calcularInteresesHipoteca(){
+    let totalHipoteca = document.getElementById("details-total-hipoteca").textContent
+    // console.log(totalHipoteca)
+    let numberTotalHipoteca = Number(totalHipoteca.replace(/\D/g,''))
+    // console.log(numberTotalHipoteca)
+    let capitalFinanciado = document.getElementById("details-capital-financiado").textContent
+    // console.log(capitalFinanciado)
+    let numeroCapitalFinanciado = Number(capitalFinanciado.replace(/\D/g,''))
+    // console.log(numeroCapitalFinanciado)
+    let interesesHipoteca = numberTotalHipoteca-numeroCapitalFinanciado
+    // console.log(interesesHipoteca)
+    document.getElementById("details-intereses-hipoteca").textContent = numberToCurrency(interesesHipoteca)
+  }
+
+  function calculateITP(){
+    
   }
