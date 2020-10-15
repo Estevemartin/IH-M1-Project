@@ -80,7 +80,7 @@
     let cardsContaines=document.getElementById("cards-container")
     // console.log(allCards)
     // console.log(window.screen.width)
-    if(window.screen.width <= 650){
+    if(window.screen.width <= 950){
       //MOBILE
       let details=document.getElementById("details-container")
       // console.log(details)

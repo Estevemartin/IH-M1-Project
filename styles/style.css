@@ -183,7 +183,7 @@ nav .menu-hamburger{
     flex-direction: column;
     background-color: #dbdadaad;
     width: 100%;
-    min-width: 190px;
+    /* min-width: 190px; */
 }
 .cc-main{
     /* display:flex;

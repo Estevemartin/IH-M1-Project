@@ -79,26 +79,19 @@
 }
 
 @media only screen and (max-width: 650px) {
-    .details-field input{
+    .details-fields input{
         font-size: 10pt !important;
+    }
+    .details-fields>.small-input{
+
+        font-size: 10pt;
+
     }
     .details-container{
         width:100%;
         margin-bottom:60px;
     }
-    .mobile-menu-go-back{
-        display:flex;
-        padding:20px;
-        margin-top:0px;
-        margin-bottom:0px;
-        justify-content: center;
-        align-items: center;
-        font-size: 16pt;
-    }
-    .mobile-menu-go-back i{
-        margin-right: 15px;
-        font-size: 25pt;
-    }
+    
 
 
     .cc-title{
@@ -126,12 +119,32 @@
 }
 
 @media(max-width:940px){
+    .details-container{
+        width:100%;
+        margin-bottom:60px;
+    }
     html,body{
         font-size: 10pt;
+    }
+    .mobile-menu-go-back{
+        display:flex;
+        padding:20px;
+        margin-top:0px;
+        margin-bottom:0px;
+        justify-content: center;
+        align-items: center;
+        font-size: 16pt;
+    }
+    .mobile-menu-go-back i{
+        margin-right: 15px;
+        font-size: 25pt;
     }
     .cards-container{
         padding:0px;
         padding-bottom:60px;
+    }
+    .cc-main{
+        /* padding:0px 5px; */
     }
     .tag-short{
         padding:5px;
