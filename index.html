@@ -97,7 +97,7 @@
                             </select>
                             <i class="fas fa-map-marker-alt"></i>
                         </div>
-                        <div class = "filter-apply-changes" onclick=saveCurrentFilteredData()><button>Buscar</button></div>
+                        <div class = "filter-apply-changes" onclick=saveCurrentFilteredData(this)><button>Buscar</button></div>
                     </div>
                     <div class="panel" id="perfil">
                         <div class="titulo-apartado">
@@ -210,7 +210,7 @@
                             </div>
                             <div class="details-fields">
                                 <p>TAE (%)</p>
-                                <input class="small-input percent update-changes" type="number" id="details-tae" value=2>
+                                <input class="small-input percent update-changes" type="number" id="details-tae" value=2 onblur=actualizarCalculos(this)>
                             </div>
                             <div class="details-fields button-option">
                                 <button class="active">

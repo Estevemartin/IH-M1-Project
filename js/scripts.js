@@ -1,6 +1,4 @@
-
 /*jshint -W033 */
-// CONNECT TO API
 
 let getProperties = async ()=> {
   try {
@@ -10,8 +8,7 @@ let getProperties = async ()=> {
   }catch{
     err=>console.log(err);
   }
-}
-  
+} 
 const saveAllDataToLS = async()=>{
   const dataSet = await getProperties();
   const numberOfProperties = 49;
@@ -115,7 +112,13 @@ document.addEventListener('load',initialLoad())
 const plotCurrentPageProperties =(firstPropertyToPrint)=>{
   //USE THIS FUNCTION WITH THE PAGES NUMBERS
   // console.log(document.getElementById('pagination').getElementsByClassName("active-page")[0].textContent)
-  const currentPage=document.getElementById('pagination').getElementsByClassName("active-page")[0].textContent;
+  if (firstPropertyToPrint===999){
+    var currentPage=1
+    firstPropertyToPrint=0
+  } else {
+    var currentPage=document.getElementById('pagination').getElementsByClassName("active-page")[0].textContent;
+  }
+  // const currentPage=document.getElementById('pagination').getElementsByClassName("active-page")[0].textContent;
   
   // console.log("Current Page: ",currentPage)
   const dataSet = JSON.parse(localStorage.getItem("currentDataSet"));
@@ -126,7 +129,11 @@ const plotCurrentPageProperties =(firstPropertyToPrint)=>{
   // console.log(dataSet)
   /////////////////////////////////////PROBLEMA CON EL SLICE 
   // console.log(dataSet.slice(8,10))
-  if (firstPropertyToPrint===null||firstPropertyToPrint===undefined){firstPropertyToPrint=0;}
+  console.log(firstPropertyToPrint)
+  if (firstPropertyToPrint===null||firstPropertyToPrint===undefined){
+    firstPropertyToPrint=0;
+    
+  }
   dataSet.slice(firstPropertyToPrint,firstPropertyToPrint+10).map(element=>{
     // console.log("Inside the map")
     stringToPrint+=getCardStr(element)
@@ -171,9 +178,8 @@ function saveCurrentFilteredData (){
   // console.log("Main Data Set Filtered and About to be Saved: ",currentData)
   localStorage.setItem("currentDataSet",JSON.stringify(currentData));
   
-  plotCurrentPageProperties();
+  plotCurrentPageProperties(999);
 }
-
 // const collectProperties = async () =>{
 //     const dataSet = await getProperties();
 
@@ -379,19 +385,11 @@ function saveCurrentFilteredData (){
     }
    return result;
   }
-
   function fillDetails(propertyId){
     const dataSet = JSON.parse(localStorage.getItem("currentDataSet"));
     const prop=dataSet.filter(data=>{return data.propertyId===propertyId})
-    
-
-    rellenarDetails(prop)
-
-
+      rellenarDetails(prop)
   }
-  
-
-
   function actualizarCalculos(element){
     console.log("Update function was trigered")
     let id = element.id
@@ -605,47 +603,8 @@ function saveCurrentFilteredData (){
       
     }
 
-    // calcularPrecioDeCompra()
-    // calcularProcentajeFinanciadoDetails()
-    // calcularCapitalFinanciado()
-    // calcularCuotaMensual()
-    // calcularTotalHipoteca()
-    // calcularInteresesHipoteca()
-    // //GASTOS DE COMPRAVENTA
-    // calculateITP()
-    // calcuarGastosDeApertura()
-    // calcularGastosDeCompraVenta()
-    // //GASTOS MENSUALES
-    // calcularTotalGastosMensuales()
-    // //INGRESOS MENSUALES
-    // // calcularSuperficiePiso(prop)
-    // // calcularIngresosMensuales(prop)
-    // //RENTABILIDAD (PARTE SUPERIOR)
-    // calcularInversionInicial()
-    // calcularGastosAnuales()
-    // calcularIngresosAnuales()
-    // calcularBalanceAnual()
-    // //RENTABILIDAD (PARTE INFERIOR)
-    // calcularRentabilidadNeta()
-    // calcularRoi()
-    // calcularPayback()
-    // calcularPer()
+   
   }
-
-
-  // function addEventListener(){
-  //   // document.getElementById("details-rebaja-negociacion").addEventListener('onblur',actualizarCalculos())
-  //   let elementsToListent = document.getElementsByClassName("update-changes")//.map(element=>{element.addEventListener('onblur',actualizarCalculos())})
-
-  //   for (i=0;i<elementsToListent.length;i++){
-  //     console.log(elementsToListent[i])
-  //     elementsToListent[i].addEventListener('onblur',actualizarCalculos())
-
-  //   }
-  // }
-  // addEventListener()
-
-
   function rellenarDetails(prop){
     //HIPOTECA
     calcularPrecioOfertado(prop)
@@ -676,14 +635,11 @@ function saveCurrentFilteredData (){
     calcularPayback()
     calcularPer()
   }
-
-
   function calcularPrecioOfertado(prop){
     let price = prop[0].price;
     // console.log(price)
     document.getElementById("details-precio-ofertado").textContent = price;
   }
-  
   function calcularRebajaEnNegociacion(){
     let porcentajeRebaja = Number(document.getElementById("profile-rebaja-negociacion").value)
     // console.log(porcentajeRebaja)
@@ -695,7 +651,6 @@ function saveCurrentFilteredData (){
     // console.log(importeRebaja)
     document.getElementById("details-rebaja-negociacion").value = importeRebaja;
   }
-
   function calcularPrecioDeCompra(){
     let precioOfertado= document.getElementById("details-precio-ofertado").textContent
     // console.log(precioOfertado)
