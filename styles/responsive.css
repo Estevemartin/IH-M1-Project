@@ -16,9 +16,13 @@
     width: 110px;
     /* animation-name: dropdownMenu;
     animation-duration:1s; */
-    display:none;
+    /* display:none; */
+    transition: 0.3s ease-out;
+    transform: translateX(110px);
 }
-
+.mobile-menu.active{
+    transform: translateX(0px);
+}
 .mobile-menu p{
     padding:5px 20px;
     

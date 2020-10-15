@@ -1,3 +1,4 @@
+/*jshint -W033 */
 
 // MUESTRA LA RENTABILIDAD MINIMA SELECCIONADA
   updateRentabilidadMinima=(rentabilidadMnima)=>{
@@ -6,11 +7,15 @@
   showHideMenu=()=>{
     let element = document.getElementById("mobile-menu")
     // console.log(element.style.display);
-    if(element.style.display==="none" || element.style.display==="" ){
-      element.style.display="inline";
+    // if(element.style.display==="none" || element.style.display==="" ){
+    if (element.classList.contains("active")){
+      element.classList.remove("active")
+      // element.style.display="inline";
     } else{
-      element.style.display="none";
+      element.classList.add("active")
+      // element.style.display="none";
     }
+    // console.log(element)
   }
   showHideProfile=()=>{
     let cardsContainer=document.getElementById("cards-container");
@@ -76,7 +81,9 @@
     // console.log(allCards)
     // console.log(window.screen.width)
     if(window.screen.width <= 650){
+      //MOBILE
       let details=document.getElementById("details-container")
+      // console.log(details)
       details.style.display="flex";
       cardsContaines.style.display="none";
       if (propertyCard.classList.contains('active-card')){
@@ -94,13 +101,22 @@
         propertyCard.classList.add('active-card');
       }
     } else{
+      //DESKTOP
       let details=document.getElementById("details-container")
+      // details.classList.add("active-animation")
+      // animation=details.getElementsByClassName("panel")
+      // animation[1].classList.add("active-animation")
+      
+      // console.log(animation)
       details.style.display="flex";
+
       if (propertyCard.classList.contains('active-card')){
         //Si el elemento seleccionado tiene la clase, se le quita.
         propertyCard.classList.remove('active-card')
-        let details=document.getElementById("details-container")
+        // let details=document.getElementById("details-container")
         details.style.display="none";
+        // animation=details.getElementsByClassName("panel")
+        // details.classList.remove("active-animation")
       } else{
         // Remove 'active-card' class from every element
         for (cardId=0;cardId<allCards.length;cardId++){
@@ -139,13 +155,13 @@
        activeButton = buttonGroup.getElementsByTagName("button")[1];
        disabledButton =  buttonGroup.getElementsByTagName("button")[0];
     }
-    console.log("BEFORE CHANGES: Active Button: ",activeButton,"  |  Disabled Button: ",disabledButton)
+    // console.log("BEFORE CHANGES: Active Button: ",activeButton,"  |  Disabled Button: ",disabledButton)
     activeButton.classList.remove('active');
     activeButton.addEventListener('click',function(){switchButtons(activeButton);});
 
     disabledButton.removeEventListener('click',switchButtons);
     disabledButton.classList.add('active');
-    console.log("AFTER CHANGES: Active Button: ",activeButton,"  |  Disabled Button: ",disabledButton)
+    // console.log("AFTER CHANGES: Active Button: ",activeButton,"  |  Disabled Button: ",disabledButton)
   }
 
 

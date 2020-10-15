@@ -314,6 +314,17 @@ nav .menu-hamburger{
 
 #details-container{
     display:none;
+    /* margin:-100px; */
+    /* position: fixed;
+    right: ; */
+    
+}
+#details-container.panel{
+    transition: 1s ease;
+    transform: translateX(120%);
+}
+#details-container.panel.active-animation{
+    transform: translateX(0%);
 }
 
 .details-error-msg{
@@ -409,7 +420,7 @@ nav .menu-hamburger{
     font-family: Verdana,Alef;
     text-align: center;
 }
-#profile-porcentaje-financiado, #details-porcentaje-financiado, #details-plazo-hipoteca{
+#profile-porcentaje-financiado, #details-porcentaje-financiado, #details-plazo-hipoteca, #profile-años-hipoteca, #profile-cuota-maxima{
     text-align: center;
 }
 
