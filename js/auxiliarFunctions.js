@@ -79,6 +79,20 @@
       let details=document.getElementById("details-container")
       details.style.display="flex";
       cardsContaines.style.display="none";
+      if (propertyCard.classList.contains('active-card')){
+        //Si el elemento seleccionado tiene la clase, se le quita.
+        propertyCard.classList.remove('active-card')
+      } else{
+        // Remove 'active-card' class from every element
+        for (cardId=0;cardId<allCards.length;cardId++){
+          // console.log(allCards[cardId].classList.contains('active-card'))
+          if (allCards[cardId].classList.contains('active-card')){
+            allCards[cardId].classList.remove('active-card');
+          }
+        }
+        //Si el elemento seleccionado no tiene la clase, se le transifere la calse.
+        propertyCard.classList.add('active-card');
+      }
     } else{
       if (propertyCard.classList.contains('active-card')){
         //Si el elemento seleccionado tiene la clase, se le quita.

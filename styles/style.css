@@ -183,7 +183,7 @@ nav .menu-hamburger{
     flex-direction: column;
     background-color: #dbdadaad;
     width: 100%;
-    min-width: 230px;
+    min-width: 190px;
 }
 .cc-main{
     /* display:flex;
@@ -331,6 +331,10 @@ nav .menu-hamburger{
     justify-content: space-between;
     /* height: 40px; */
     /* align-items: center; */
+}
+.details-fields input{
+    font-weight: bold;
+    font-size: 12pt;
 }
 .details-fields>p{
     margin:5px !important;

@@ -392,50 +392,258 @@ function saveCurrentFilteredData (){
   
 
 
-  function actualizarCalculos(){
+  function actualizarCalculos(element){
     console.log("Update function was trigered")
-    //HIPOTECA
-    // calcularPrecioOfertado(prop)
-    calcularRebajaEnNegociacion()
-    calcularPrecioDeCompra()
-    calcularProcentajeFinanciadoDetails()
-    calcularCapitalFinanciado()
-    calcularCuotaMensual()
-    calcularTotalHipoteca()
-    calcularInteresesHipoteca()
-    //GASTOS DE COMPRAVENTA
-    calculateITP()
-    calcuarGastosDeApertura()
-    calcularGastosDeCompraVenta()
-    //GASTOS MENSUALES
-    calcularTotalGastosMensuales()
-    //INGRESOS MENSUALES
-    // calcularSuperficiePiso(prop)
-    // calcularIngresosMensuales(prop)
-    //RENTABILIDAD (PARTE SUPERIOR)
-    calcularInversionInicial()
-    calcularGastosAnuales()
-    calcularIngresosAnuales()
-    calcularBalanceAnual()
-    //RENTABILIDAD (PARTE INFERIOR)
-    calcularRentabilidadNeta()
-    calcularRoi()
-    calcularPayback()
-    calcularPer()
-  }
+    let id = element.id
+    console.log(id)
+    if (id==="details-rebaja-negociacion" ){
+      //HIPOTECA
+        calcularPrecioDeCompra()
+      calcularProcentajeFinanciadoDetails()
+      calcularCapitalFinanciado()
+      calcularCuotaMensual()
+      calcularTotalHipoteca()
+      calcularInteresesHipoteca()
+      //GASTOS DE COMPRAVENTA
+      calculateITP()
+      calcuarGastosDeApertura()
+      calcularGastosDeCompraVenta()
+      //GASTOS MENSUALES
+      calcularTotalGastosMensuales()
+      //INGRESOS MENSUALES
+      //RENTABILIDAD (PARTE SUPERIOR)
+      calcularInversionInicial()
+      calcularGastosAnuales()
+      calcularIngresosAnuales()
+      calcularBalanceAnual()
+      //RENTABILIDAD (PARTE INFERIOR)
+      calcularRentabilidadNeta()
+      calcularRoi()
+      calcularPayback()
+      calcularPer()
 
-
-  function addEventListener(){
-    // document.getElementById("details-rebaja-negociacion").addEventListener('onblur',actualizarCalculos())
-    let elementsToListent = document.getElementsByClassName("update-changes")//.map(element=>{element.addEventListener('onblur',actualizarCalculos())})
-
-    for (i=0;i<elementsToListent.length;i++){
-      console.log(elementsToListent[i])
-      elementsToListent[i].addEventListener('onblur',actualizarCalculos())
-
+    } else if (id==="details-porcentaje-financiado"){
+      //HIPOTECA
+      calcularCapitalFinanciado()
+      calcularCuotaMensual()
+      calcularTotalHipoteca()
+      calcularInteresesHipoteca()
+      //GASTOS DE COMPRAVENTA
+      calculateITP()
+      calcuarGastosDeApertura()
+      calcularGastosDeCompraVenta()
+      //GASTOS MENSUALES
+      calcularTotalGastosMensuales()
+      //INGRESOS MENSUALES
+      //RENTABILIDAD (PARTE SUPERIOR)
+      calcularInversionInicial()
+      calcularGastosAnuales()
+      calcularIngresosAnuales()
+      calcularBalanceAnual()
+      //RENTABILIDAD (PARTE INFERIOR)
+      calcularRentabilidadNeta()
+      calcularRoi()
+      calcularPayback()
+      calcularPer()
+    } else if("details-tae"){
+      calcularCuotaMensual()
+      calcularTotalHipoteca()
+      calcularInteresesHipoteca()
+      //GASTOS DE COMPRAVENTA
+      calculateITP()
+      calcuarGastosDeApertura()
+      calcularGastosDeCompraVenta()
+      //GASTOS MENSUALES
+      calcularTotalGastosMensuales()
+      //RENTABILIDAD (PARTE SUPERIOR)
+      calcularInversionInicial()
+      calcularGastosAnuales()
+      calcularIngresosAnuales()
+      calcularBalanceAnual()
+      //RENTABILIDAD (PARTE INFERIOR)
+      calcularRentabilidadNeta()
+      calcularRoi()
+      calcularPayback()
+      calcularPer()
+    }else if("details-plazo-hipoteca"){
+      calcularCuotaMensual()
+      calcularTotalHipoteca()
+      calcularInteresesHipoteca()
+      //GASTOS DE COMPRAVENTA
+      calculateITP()
+      calcuarGastosDeApertura()
+      calcularGastosDeCompraVenta()
+      //GASTOS MENSUALES
+      calcularTotalGastosMensuales()
+      //RENTABILIDAD (PARTE SUPERIOR)
+      calcularInversionInicial()
+      calcularGastosAnuales()
+      calcularIngresosAnuales()
+      calcularBalanceAnual()
+      //RENTABILIDAD (PARTE INFERIOR)
+      calcularRentabilidadNeta()
+      calcularRoi()
+      calcularPayback()
+      calcularPer()
+    }else if("details-tasacion"){
+      calcularGastosDeCompraVenta()
+      //GASTOS MENSUALES
+      calcularTotalGastosMensuales()
+      //RENTABILIDAD (PARTE SUPERIOR)
+      calcularInversionInicial()
+      calcularGastosAnuales()
+      calcularIngresosAnuales()
+      calcularBalanceAnual()
+      //RENTABILIDAD (PARTE INFERIOR)
+      calcularRentabilidadNeta()
+      calcularRoi()
+      calcularPayback()
+      calcularPer()
+    }else if("details-nota-simple"){
+      calcularGastosDeCompraVenta()
+      //GASTOS MENSUALES
+      calcularTotalGastosMensuales()
+      //RENTABILIDAD (PARTE SUPERIOR)
+      calcularInversionInicial()
+      calcularGastosAnuales()
+      calcularIngresosAnuales()
+      calcularBalanceAnual()
+      //RENTABILIDAD (PARTE INFERIOR)
+      calcularRentabilidadNeta()
+      calcularRoi()
+      calcularPayback()
+      calcularPer()
+    }else if("details-registro"){
+      calcularGastosDeCompraVenta()
+      //GASTOS MENSUALES
+      calcularTotalGastosMensuales()
+      //RENTABILIDAD (PARTE SUPERIOR)
+      calcularInversionInicial()
+      calcularGastosAnuales()
+      calcularIngresosAnuales()
+      calcularBalanceAnual()
+      //RENTABILIDAD (PARTE INFERIOR)
+      calcularRentabilidadNeta()
+      calcularRoi()
+      calcularPayback()
+      calcularPer()
+    }else if("details-comision-apertura"){
+      calcuarGastosDeApertura()
+      calcularGastosDeCompraVenta()
+      //GASTOS MENSUALES
+      calcularTotalGastosMensuales()
+      //RENTABILIDAD (PARTE SUPERIOR)
+      calcularInversionInicial()
+      calcularGastosAnuales()
+      calcularIngresosAnuales()
+      calcularBalanceAnual()
+      //RENTABILIDAD (PARTE INFERIOR)
+      calcularRentabilidadNeta()
+      calcularRoi()
+      calcularPayback()
+      calcularPer()
+    }else if("details-ibi"){
+      //GASTOS MENSUALES
+      calcularTotalGastosMensuales()
+      //RENTABILIDAD (PARTE SUPERIOR)
+      calcularInversionInicial()
+      calcularGastosAnuales()
+      calcularIngresosAnuales()
+      calcularBalanceAnual()
+      //RENTABILIDAD (PARTE INFERIOR)
+      calcularRentabilidadNeta()
+      calcularRoi()
+      calcularPayback()
+      calcularPer()
+    }else if("details-impuesto-basuras"){
+      //GASTOS MENSUALES
+      calcularTotalGastosMensuales()
+      //RENTABILIDAD (PARTE SUPERIOR)
+      calcularInversionInicial()
+      calcularGastosAnuales()
+      calcularIngresosAnuales()
+      calcularBalanceAnual()
+      //RENTABILIDAD (PARTE INFERIOR)
+      calcularRentabilidadNeta()
+      calcularRoi()
+      calcularPayback()
+      calcularPer()
+    }else if("details-gastos-comunidad"){
+      //GASTOS MENSUALES
+      calcularTotalGastosMensuales()
+      //RENTABILIDAD (PARTE SUPERIOR)
+      calcularInversionInicial()
+      calcularGastosAnuales()
+      calcularIngresosAnuales()
+      calcularBalanceAnual()
+      //RENTABILIDAD (PARTE INFERIOR)
+      calcularRentabilidadNeta()
+      calcularRoi()
+      calcularPayback()
+      calcularPer()
+    }else if("details-seguro"){
+      //GASTOS MENSUALES
+      calcularTotalGastosMensuales()
+      //RENTABILIDAD (PARTE SUPERIOR)
+      calcularInversionInicial()
+      calcularGastosAnuales()
+      calcularIngresosAnuales()
+      calcularBalanceAnual()
+      //RENTABILIDAD (PARTE INFERIOR)
+      calcularRentabilidadNeta()
+      calcularRoi()
+      calcularPayback()
+      calcularPer()
+    }else if("details-ocupacion"){
+      calcularIngresosAnuales()
+      calcularBalanceAnual()
+      //RENTABILIDAD (PARTE INFERIOR)
+      calcularRentabilidadNeta()
+      calcularRoi()
+      calcularPayback()
+      calcularPer()
+      
     }
+
+    // calcularPrecioDeCompra()
+    // calcularProcentajeFinanciadoDetails()
+    // calcularCapitalFinanciado()
+    // calcularCuotaMensual()
+    // calcularTotalHipoteca()
+    // calcularInteresesHipoteca()
+    // //GASTOS DE COMPRAVENTA
+    // calculateITP()
+    // calcuarGastosDeApertura()
+    // calcularGastosDeCompraVenta()
+    // //GASTOS MENSUALES
+    // calcularTotalGastosMensuales()
+    // //INGRESOS MENSUALES
+    // // calcularSuperficiePiso(prop)
+    // // calcularIngresosMensuales(prop)
+    // //RENTABILIDAD (PARTE SUPERIOR)
+    // calcularInversionInicial()
+    // calcularGastosAnuales()
+    // calcularIngresosAnuales()
+    // calcularBalanceAnual()
+    // //RENTABILIDAD (PARTE INFERIOR)
+    // calcularRentabilidadNeta()
+    // calcularRoi()
+    // calcularPayback()
+    // calcularPer()
   }
-  addEventListener()
+
+
+  // function addEventListener(){
+  //   // document.getElementById("details-rebaja-negociacion").addEventListener('onblur',actualizarCalculos())
+  //   let elementsToListent = document.getElementsByClassName("update-changes")//.map(element=>{element.addEventListener('onblur',actualizarCalculos())})
+
+  //   for (i=0;i<elementsToListent.length;i++){
+  //     console.log(elementsToListent[i])
+  //     elementsToListent[i].addEventListener('onblur',actualizarCalculos())
+
+  //   }
+  // }
+  // addEventListener()
 
 
   function rellenarDetails(prop){

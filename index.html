@@ -14,6 +14,8 @@
     <script src="https://kit.fontawesome.com/92166c8bdc.js" crossorigin="anonymous"></script>
     <script defer src="js/scripts.js"></script>
     <script defer src="js/auxiliarFunctions.js"></script>
+    
+    
     <!-- <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script> -->
 
     <!-- <script defer src="js/Login.js"></script> -->
@@ -185,7 +187,7 @@
                             </div>
                             <div class="details-fields">
                                 <p>Rebaja Negociación</p>
-                                <div class= "details-fields"><input class="small-input update-changes" type="text" id="details-rebaja-negociacion" onblur=actualizarCalculos()> <b>€</b></div>
+                                <div class= "details-fields"><input class="small-input update-changes" type="text" id="details-rebaja-negociacion" onblur=actualizarCalculos(this)> <b>€</b></div>
                             </div>
                             <!-- <hr> -->
                             <div class="details-fields">
@@ -195,7 +197,7 @@
                             <div class="details-fields button-option">
                                 <button class="active">
                                     Porcentaje Financiación (%)
-                                    <input class="small-input percent update-changes" type="number" max=100 id="details-porcentaje-financiado" >  
+                                    <input class="small-input percent update-changes" type="number" max=100 id="details-porcentaje-financiado" onblur=actualizarCalculos(this)>  
                                 </button>
                                 <button>
                                     Capital Aportado
@@ -213,7 +215,7 @@
                             <div class="details-fields button-option">
                                 <button class="active">
                                     Años Hipoteca
-                                    <input class="small-input update-changes" type="number" id="details-plazo-hipoteca" value=40>
+                                    <input class="small-input update-changes" type="number" id="details-plazo-hipoteca" value=40 onblur=actualizarCalculos(this)>
                                 </button>
                                 <button>
                                     Cuota Máxima
@@ -245,20 +247,20 @@
                             </div>
                             <div class="details-fields">
                                 <p>Tasación</p>
-                                <div class="details-fields"><input class="small-input update-changes" type="text" value="300" id="details-tasacion"> <b>€</b></div>
+                                <div class="details-fields"><input class="small-input update-changes" type="text" value="300" id="details-tasacion" onblur=actualizarCalculos(this)> <b>€</b></div>
                                 
                             </div>
                             <div class="details-fields">
                                 <p>Nota Simple</p>
-                                <div class="details-fields"><input class="small-input update-changes" type="text" value="18" id="details-nota-simple"><b>€</b></div>
+                                <div class="details-fields"><input class="small-input update-changes" type="text" value="18" id="details-nota-simple" onblur=actualizarCalculos(this)><b>€</b></div>
                             </div>
                             <div class="details-fields">
                                 <p>Registro</p>
-                                <div class="details-fields"><input class="small-input update-changes" type="text" value="30" id="details-registro"><b>€</b></div>
+                                <div class="details-fields"><input class="small-input update-changes" type="text" value="30" id="details-registro" onblur=actualizarCalculos(this)><b>€</b></div>
                             </div>
                             <div class="details-fields">
-                                <p>Comisión Apertura</p>
-                                <div class="details-fields"><input class="small-input percent update-changes" type="text" value="1" id="details-comision-apertura"><b>%</b></div>
+                                <p>Com. Apertura</p>
+                                <div class="details-fields"><input class="small-input percent update-changes" type="text" value="1" id="details-comision-apertura" onblur=actualizarCalculos(this)><b>%</b></div>
                             </div>
                             <div class="details-fields">
                                 <p>Gastos de Apertura</p>
@@ -277,19 +279,19 @@
                         <div class="details-section">
                             <div class="details-fields">
                                 <p>IBI (Anual)</p>
-                                <div class="details-fields"><input class="small-input update-changes" type="text" value="100" id="details-ibi"><b>€</b></div>
+                                <div class="details-fields"><input class="small-input update-changes" type="text" value="100" id="details-ibi" onblur=actualizarCalculos(this)><b>€</b></div>
                             </div>
                             <div class="details-fields">
-                                <p>Impuesto de Basuras</p>
-                                <div class="details-fields"><input class="small-input update-changes" type="text" value="0" id="details-impuesto-basuras"><b>€</b></div>
+                                <p>Imp. Basuras</p>
+                                <div class="details-fields"><input class="small-input update-changes" type="text" value="0" id="details-impuesto-basuras" onblur=actualizarCalculos(this)><b>€</b></div>
                             </div>
                             <div class="details-fields">
-                                <p>Gastos de Comunidad</p>
-                                <div class="details-fields"><input class="small-input update-changes" type="text" value="50" id="details-gastos-comunidad"><b>€</b></div>
+                                <p>Comunidad</p>
+                                <div class="details-fields"><input class="small-input update-changes" type="text" value="50" id="details-gastos-comunidad" onblur=actualizarCalculos(this)><b>€</b></div>
                             </div>
                             <div class="details-fields">
                                 <p>Seguro</p>
-                                <div class="details-fields"><input class="small-input update-changes"  type="text" value="0" id="details-seguro"><b>€</b></div>
+                                <div class="details-fields"><input class="small-input update-changes"  type="text" value="0" id="details-seguro" onblur=actualizarCalculos(this)><b>€</b></div>
                             </div>
                             <div class="details-fields">
                                 <p>Cuota Hipoteca</p>
@@ -307,7 +309,7 @@
                         </div>
                         <div class="details-section">
                             <div class="details-fields">
-                                <p>Alquiler por m<sup>2</sup> de la Zona</p>
+                                <p>Alquiler por m<sup>2</sup></p>
                                 <p><b id="details-alquilerm2">20€</b></p>
                             </div>
                             <div class="details-fields">
@@ -320,7 +322,7 @@
                             </div>
                             <div class="details-fields">
                                 <p>Ocupación</p>
-                                <div class="details-fields"><input class="small-input percent update-changes" type="text" value="80" id="details-ocupacion"><b>%</b></div>
+                                <div class="details-fields"><input class="small-input percent update-changes" type="text" value="80" id="details-ocupacion"  onblur=actualizarCalculos(this)><b>%</b></div>
                             </div>
                         </div>
                         <div class="tag details-title font-green">
