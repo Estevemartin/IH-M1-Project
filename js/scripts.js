@@ -1,297 +1,307 @@
 /*jshint -W033 */
-
-let getProperties = async ()=> {
-  try {
-    let response= await fetch("https://find-your-asset.herokuapp.com/properties");
-    let properties = await response.json();
-      return properties;
-  }catch{
-    err=>console.log(err);
-  }
-} 
-const saveAllDataToLS = async()=>{
-  const dataSet = await getProperties();
-  const numberOfProperties = 49;
-  let result = dataSet.slice(1,numberOfProperties).map((element,index)=>{
-      let propertyId=element.listing_id;
-      let title=element.address.line;
-      let nBaths=rndBetween(1,4);
-      let nHabs=rndBetween(1,4);
-      let surface=rndBetween(40,300);
-      let profit=rndBetween(3,18);
-      let price=rndBetween(80,28)*1000;
-      let downpayment=0.2*price;
-      let income=rndBetween(50,300)*10;
-      let expenses=0.35*income;
-      income = income
-      let balance=income-expenses;
-      let mainPicture=element.photos[0].href;
-      let city=element.address.city;
-
-      returnElement ={
-          propertyId:propertyId,
-          title:title,
-          nBaths:nBaths,
-          nHabs:nHabs,
-          surface:surface,
-          profit:profit,
-          downpayment:numberToCurrency(downpayment.toFixed(0)),
-          price:numberToCurrency(price),
-          income:numberToCurrency(income),
-          city:city,
-          expenses:numberToCurrency(expenses.toFixed(0)),
-          balance:numberToCurrency(balance.toFixed(0)),
-          mainPicture:mainPicture
-      };
-
-      return returnElement;
-  })
-
-  localStorage.setItem("dataSet",JSON.stringify(result));
-
-  //GET FILTERS VARIABLES
-  let selectedCity=document.getElementById("city-selector").value;
-
-  //GET AUXILIAR VARIABLES
-  let regions=[];
-
-  //INSERT "All Regions" OPTION INTO SELECT
-  document.getElementById("city-selector").innerHTML="";
-  let selectorCiudades = document.getElementById("city-selector");
-  let allCitiesOption = document.createElement("Option");
-  allCitiesOption.value = "All Regions";
-  allCitiesOption.innerHTML="All Regions";
-  selectorCiudades.appendChild(allCitiesOption)
-
-  //INSTER CITY NAMES INTO SELECT  
-  result.map(function(element){
-    if (regions.includes(element.city)===false){
-      regions.push(element.city);
+  // function  startPage () { 
+  //   console.log("pageloaded");
+  //   initialLoad();
+  //   // plotCurrentPageProperties(1);
+  // }
+  let getProperties = async ()=> {
+    try {
+      let response= await fetch("https://find-your-asset.herokuapp.com/properties");
+      let properties = await response.json();
+        return properties;
+    }catch{
+      err=>console.log(err);
     }
-  });
-  
-  //LIST REGIONS AND OCCURRENCIES FOR EACH REGION
-  const regionsCounted = regions.map(region=>{
-    return region +" ("+result.filter(element=>{return (element.city===region)}).length+")";
-  }).sort();
+  } 
+  const saveAllDataToLS = async()=>{
+    const dataSet = await getProperties();
+    const numberOfProperties = 49;
+    let result = dataSet.slice(1,numberOfProperties).map((element,index)=>{
+        let propertyId=element.listing_id;
+        let title=element.address.line;
+        let nBaths=rndBetween(1,4);
+        let nHabs=rndBetween(1,4);
+        let surface=rndBetween(40,300);
+        let profit=rndBetween(3,18);
+        let price=rndBetween(80,28)*1000;
+        let downpayment=0.2*price;
+        let income=rndBetween(50,300)*10;
+        let expenses=0.35*income;
+        income = income
+        let balance=income-expenses;
+        let mainPicture=element.photos[0].href;
+        let city=element.address.city;
 
-  //CREATE THE OPTION SELECT ELEMENT FOR EACH REGION AND EXTRACT THE NUMBER OF OCCURRENCES FROM VALUE
-  regionsCounted.forEach(region=>{
-    let newCity = document.createElement("Option");
-      newCity.value = region.slice(0,region.indexOf("(")-1);
-      newCity.innerHTML=region;
-      selectorCiudades.appendChild(newCity)
-  });
+        returnElement ={
+            propertyId:propertyId,
+            title:title,
+            nBaths:nBaths,
+            nHabs:nHabs,
+            surface:surface,
+            profit:profit,
+            downpayment:numberToCurrency(downpayment.toFixed(0)),
+            price:numberToCurrency(price),
+            income:numberToCurrency(income),
+            city:city,
+            expenses:numberToCurrency(expenses.toFixed(0)),
+            balance:numberToCurrency(balance.toFixed(0)),
+            mainPicture:mainPicture
+        };
 
-  // console.log(regionsCounted)
-  document.getElementById("city-selector").value = selectedCity;
- 
-}
-const tr=saveAllDataToLS();
+        return returnElement;
+    })
 
-const initialLoad = () => {
-  const dataSet = JSON.parse(localStorage.getItem("dataSet"));
+    localStorage.setItem("dataSet",JSON.stringify(result));
 
-  let stringToPrint="";
-  const numPages =countPagesNeeded(dataSet)
-  dataSet.sort(function(a,b){return b.profit-a.profit;}).slice(1,11).map(
-    element=>{
-    //PLOT PROPERTIES INTO THE HTML FILE
-    stringToPrint+=getCardStr(element)
-  });
-  
-  let detailsSection = document.getElementById("details-container")
-  // detailsSection.style.display="flex";
+    //GET FILTERS VARIABLES
+    let selectedCity=document.getElementById("city-selector").value;
 
+    //GET AUXILIAR VARIABLES
+    let regions=[];
 
-  const paginationStr = createPagination(numPages,1)
-  document.getElementsByClassName("cards-container")[0].innerHTML=paginationStr+stringToPrint;
-}
-document.addEventListener('load',initialLoad())
+    //INSERT "All Regions" OPTION INTO SELECT
+    document.getElementById("city-selector").innerHTML="";
+    let selectorCiudades = document.getElementById("city-selector");
+    let allCitiesOption = document.createElement("Option");
+    allCitiesOption.value = "All Regions";
+    allCitiesOption.innerHTML="All Regions";
+    selectorCiudades.appendChild(allCitiesOption)
 
-const plotCurrentPageProperties =(firstPropertyToPrint)=>{
-  //USE THIS FUNCTION WITH THE PAGES NUMBERS
-  // console.log(document.getElementById('pagination').getElementsByClassName("active-page")[0].textContent)
-  if (firstPropertyToPrint===999){
-    var currentPage=1
-    firstPropertyToPrint=0
-  } else {
-    var currentPage=document.getElementById('pagination').getElementsByClassName("active-page")[0].textContent;
-  }
-  // const currentPage=document.getElementById('pagination').getElementsByClassName("active-page")[0].textContent;
-  
-  // console.log("Current Page: ",currentPage)
-  const dataSet = JSON.parse(localStorage.getItem("currentDataSet"));
-  // console.log("Data Set About to be Shown: ",dataSet)
-  let stringToPrint="";
-  // let firstPropertyToPrint = getFirstPropertyToPrint(currentPage);
-  // console.log("First Property To Print: ",firstPropertyToPrint)
-  // console.log(dataSet)
-  /////////////////////////////////////PROBLEMA CON EL SLICE 
-  // console.log(dataSet.slice(8,10))
-  console.log(firstPropertyToPrint)
-  if (firstPropertyToPrint===null||firstPropertyToPrint===undefined){
-    firstPropertyToPrint=0;
+    //INSTER CITY NAMES INTO SELECT  
+    result.map(function(element){
+      if (regions.includes(element.city)===false){
+        regions.push(element.city);
+      }
+    });
     
+    //LIST REGIONS AND OCCURRENCIES FOR EACH REGION
+    const regionsCounted = regions.map(region=>{
+      return region +" ("+result.filter(element=>{return (element.city===region)}).length+")";
+    }).sort();
+
+    //CREATE THE OPTION SELECT ELEMENT FOR EACH REGION AND EXTRACT THE NUMBER OF OCCURRENCES FROM VALUE
+    regionsCounted.forEach(region=>{
+      let newCity = document.createElement("Option");
+        newCity.value = region.slice(0,region.indexOf("(")-1);
+        newCity.innerHTML=region;
+        selectorCiudades.appendChild(newCity)
+    });
+
+    // console.log(regionsCounted)
+    document.getElementById("city-selector").value = selectedCity;
+  
   }
-  dataSet.slice(firstPropertyToPrint,firstPropertyToPrint+10).map(element=>{
-    // console.log("Inside the map")
-    stringToPrint+=getCardStr(element)
-  });
+  // const tr=saveAllDataToLS();
 
-  let paginationStr = createPagination(countPagesNeeded(dataSet),currentPage);
-  document.getElementsByClassName("cards-container")[0].innerHTML=paginationStr+stringToPrint;
-}
-plotCurrentPageProperties(1)
+  const initialLoad = async () => {
+    console.log("pageloaded");
+    const dataSet = JSON.parse(localStorage.getItem("dataSet"));
+    await saveAllDataToLS()
+    await saveCurrentFilteredData()
+    let stringToPrint="";
+    const numPages =countPagesNeeded(dataSet)
+    dataSet.sort(function(a,b){return b.profit-a.profit;}).slice(1,11).map(
+      element=>{
+      //PLOT PROPERTIES INTO THE HTML FILE
+      stringToPrint+=getCardStr(element)
+    });
+    
+    let detailsSection = document.getElementById("details-container")
+    // detailsSection.style.display="flex";
 
-function saveCurrentFilteredData (){
-  //USE THIS FUNCTION WITH "BUSCAR" BUTTON UNDER THE FILTERS
-  const dataSet = JSON.parse(localStorage.getItem("dataSet"));
-  //GET FILTERS VARIABLES
-  let maxDownPayment=Number(document.getElementById("max-price").value);
-  let minimumProfit=Number(document.getElementById("minimum-profit").value);
-  let selectedCity=document.getElementById("city-selector").value;
-  // console.log("Main Data Set: ",dataSet)
 
-  if (window.screen.width <= 650){showHideFilters()}
-  
-  const currentData=dataSet.filter(element=>{
-    //DISPLAY PROPERTIES THAT MATCH THE FILTERS
-    if (filterMaxDownPayment(element.downpayment,maxDownPayment) && filterMinimumProfit(element.profit,minimumProfit) && filterCity(element.city,selectedCity)){
-      return true;
+    const paginationStr = createPagination(numPages,1)
+    document.getElementsByClassName("cards-container")[0].innerHTML=paginationStr+stringToPrint;
+  }
+  document.addEventListener('load',initialLoad())
+
+  const plotCurrentPageProperties =(firstPropertyToPrint)=>{
+    //USE THIS FUNCTION WITH THE PAGES NUMBERS
+    // console.log(document.getElementById('pagination').getElementsByClassName("active-page")[0].textContent)
+    if (firstPropertyToPrint===999){
+      var currentPage=1
+      firstPropertyToPrint=undefined
     } else {
-      return false;
+      var currentPage=document.getElementById('pagination').getElementsByClassName("active-page")[0].textContent;
     }
-
-  }).sort(function(a,b){
-    //SORT PROPERTIES ACCORDING TO SORTING CRITERIA
-    let sortMethod=document.getElementById("sort-method-selector").value;
-    switch (sortMethod){
-      case "Mayor Rentabilidad":return b.profit-a.profit;
-      case "Menor Capital Inicial":return a.downpayment-b.downpayment;
-      case "Menor Precio del Inmueble":return a.price-b.price;
-      case "Mayores Ingresos":return b.income-a.income;
-      case "Menores Gastos":return a.expenses-b.expenses;
-      case "Mayor Balance":return b.balance-a.balance;
+    // const currentPage=document.getElementById('pagination').getElementsByClassName("active-page")[0].textContent;
+    
+    // console.log("Current Page: ",currentPage)
+    const dataSet = JSON.parse(localStorage.getItem("currentDataSet"));
+    // console.log("Data Set About to be Shown: ",dataSet)
+    let stringToPrint="";
+    // let firstPropertyToPrint = getFirstPropertyToPrint(currentPage);
+    // console.log("First Property To Print: ",firstPropertyToPrint)
+    // console.log(dataSet)
+    /////////////////////////////////////PROBLEMA CON EL SLICE 
+    // console.log(dataSet.slice(8,10))
+    // console.log(firstPropertyToPrint)
+    if (firstPropertyToPrint===null||firstPropertyToPrint===undefined){
+      firstPropertyToPrint=0;
+      
     }
-  })
-  // console.log("Main Data Set Filtered and About to be Saved: ",currentData)
-  localStorage.setItem("currentDataSet",JSON.stringify(currentData));
-  
-  plotCurrentPageProperties(999);
-}
-// const collectProperties = async () =>{
-//     const dataSet = await getProperties();
+    dataSet.slice(firstPropertyToPrint,firstPropertyToPrint+10).map(element=>{
+      // console.log("Inside the map")
+      stringToPrint+=getCardStr(element)
+    });
 
-//     let result = dataSet.slice(1,30).map((element,index)=>{
-//         let propertyId=element.listing_id;
-//         let title=element.address.line;
-//         let nBaths=rndBetween(1,4);
-//         let nHabs=rndBetween(1,4);
-//         let surface=rndBetween(40,300);
-//         let profit=rndBetween(3,18);
-//         let price=rndBetween(80000,28000);
-//         let downpayment=0.2*price;
-//         let income=rndBetween(500,3000);
-//         let expenses=0.35*income;
-//         let balance=income-expenses;
-//         let mainPicture=element.photos[0].href;
-//         let city=element.address.city;
+    let paginationStr = createPagination(countPagesNeeded(dataSet),currentPage);
+    document.getElementsByClassName("cards-container")[0].innerHTML=paginationStr+stringToPrint;
+  }
+  plotCurrentPageProperties(1)
 
-//         returnElement ={
-//             propertyId:propertyId,
-//             title:title,
-//             nBaths:nBaths,
-//             nHabs:nHabs,
-//             surface:surface,
-//             profit:profit,
-//             downpayment:downpayment.toFixed(0),
-//             price:price,
-//             income:income,
-//             city:city,
-//             expenses:expenses.toFixed(0),
-//             balance:balance.toFixed(0),
-//             mainPicture:mainPicture
-//         };
+  async function saveCurrentFilteredData (){
+    //USE THIS FUNCTION WITH "BUSCAR" BUTTON UNDER THE FILTERS
+    const dataSet = JSON.parse(localStorage.getItem("dataSet"));
+    // console.log(dataSet)
+    //GET FILTERS VARIABLES
+    let maxDownPayment=Number(document.getElementById("max-price").value);
+    let minimumProfit=Number(document.getElementById("minimum-profit").value);
+    let selectedCity=document.getElementById("city-selector").value;
+    // console.log("Main Data Set: ",dataSet)
 
-//         return returnElement;
-//     })
+    if (window.screen.width <= 650){showHideFilters()}
+    
+    const currentData=dataSet.filter(element=>{
+      //DISPLAY PROPERTIES THAT MATCH THE FILTERS
+      if (filterMaxDownPayment(element.downpayment,maxDownPayment) && filterMinimumProfit(element.profit,minimumProfit) && filterCity(element.city,selectedCity)){
+        return true;
+      } else {
+        return false;
+      }
 
-//     //GET FILTERS VARIABLES
-//     let maxDownPayment=Number(document.getElementById("max-price").value);
-//     let minimumProfit=Number(document.getElementById("minimum-profit").value);
-//     let selectedCity=document.getElementById("city-selector").value;
+    }).sort(function(a,b){
+      //SORT PROPERTIES ACCORDING TO SORTING CRITERIA
+      let sortMethod=document.getElementById("sort-method-selector").value;
+      // console.log(b.downpayment)
+      switch (sortMethod){
+        // Number(a..replace(/\D/g,''))-Number(b..replace(/\D/g,''))
+        // Number(b..replace(/\D/g,''))-Number(a..replace(/\D/g,''))
+        case "Mayor Rentabilidad":return Number(b.profit.replace(/\D/g,''))-Number(a.profit.replace(/\D/g,''))
+        case "Menor Capital Inicial": return  Number(a.downpayment.replace(/\D/g,''))-Number(b.downpayment.replace(/\D/g,''))
+        case "Menor Precio del Inmueble":return  Number(a.price.replace(/\D/g,''))-Number(b.price.replace(/\D/g,''))
+        case "Mayores Ingresos":return Number(b.income.replace(/\D/g,''))-Number(a.income.replace(/\D/g,''))
+        case "Menores Gastos": return  Number(a.expenses.replace(/\D/g,''))-Number(b.expenses.replace(/\D/g,''))
+        case "Mayor Balance": return Number(b.balance.replace(/\D/g,''))-Number(a.balance.replace(/\D/g,''))
+      }
+    })
+    // console.log("Main Data Set Filtered and About to be Saved: ",currentData)
+    localStorage.setItem("currentDataSet",JSON.stringify(currentData));
+    
+    plotCurrentPageProperties(999);
+  }
+  // const collectProperties = async () =>{
+  //     const dataSet = await getProperties();
 
-//     //GET AUXILIAR VARIABLES
-//     let stringToPrint="";
-//     let regions=[];
+  //     let result = dataSet.slice(1,30).map((element,index)=>{
+  //         let propertyId=element.listing_id;
+  //         let title=element.address.line;
+  //         let nBaths=rndBetween(1,4);
+  //         let nHabs=rndBetween(1,4);
+  //         let surface=rndBetween(40,300);
+  //         let profit=rndBetween(3,18);
+  //         let price=rndBetween(80000,28000);
+  //         let downpayment=0.2*price;
+  //         let income=rndBetween(500,3000);
+  //         let expenses=0.35*income;
+  //         let balance=income-expenses;
+  //         let mainPicture=element.photos[0].href;
+  //         let city=element.address.city;
 
-//     //INSERT "All Regions" OPTION INTO SELECT
-//     document.getElementById("city-selector").innerHTML="";
-//     let selectorCiudades = document.getElementById("city-selector");
-//     let allCitiesOption = document.createElement("Option");
-//     allCitiesOption.value = "All Regions";
-//     allCitiesOption.innerHTML="All Regions";
-//     selectorCiudades.appendChild(allCitiesOption)
+  //         returnElement ={
+  //             propertyId:propertyId,
+  //             title:title,
+  //             nBaths:nBaths,
+  //             nHabs:nHabs,
+  //             surface:surface,
+  //             profit:profit,
+  //             downpayment:downpayment.toFixed(0),
+  //             price:price,
+  //             income:income,
+  //             city:city,
+  //             expenses:expenses.toFixed(0),
+  //             balance:balance.toFixed(0),
+  //             mainPicture:mainPicture
+  //         };
 
-//     //INSTER CITY NAMES INTO SELECT  
-//     result.slice(1,30).map(function(element){
-//       if (regions.includes(element.city)===false){
-//         regions.push(element.city);
-//         let newCity = document.createElement("Option");
-//         newCity.value = element.city;
-//         newCity.innerHTML=element.city;
-//         selectorCiudades.appendChild(newCity)
-//       }
-//     });
-//     document.getElementById("city-selector").value = selectedCity;
-   
+  //         return returnElement;
+  //     })
+
+  //     //GET FILTERS VARIABLES
+  //     let maxDownPayment=Number(document.getElementById("max-price").value);
+  //     let minimumProfit=Number(document.getElementById("minimum-profit").value);
+  //     let selectedCity=document.getElementById("city-selector").value;
+
+  //     //GET AUXILIAR VARIABLES
+  //     let stringToPrint="";
+  //     let regions=[];
+
+  //     //INSERT "All Regions" OPTION INTO SELECT
+  //     document.getElementById("city-selector").innerHTML="";
+  //     let selectorCiudades = document.getElementById("city-selector");
+  //     let allCitiesOption = document.createElement("Option");
+  //     allCitiesOption.value = "All Regions";
+  //     allCitiesOption.innerHTML="All Regions";
+  //     selectorCiudades.appendChild(allCitiesOption)
+
+  //     //INSTER CITY NAMES INTO SELECT  
+  //     result.slice(1,30).map(function(element){
+  //       if (regions.includes(element.city)===false){
+  //         regions.push(element.city);
+  //         let newCity = document.createElement("Option");
+  //         newCity.value = element.city;
+  //         newCity.innerHTML=element.city;
+  //         selectorCiudades.appendChild(newCity)
+  //       }
+  //     });
+  //     document.getElementById("city-selector").value = selectedCity;
+    
 
 
-//     result.filter(element=>{
-//       //DISPLAY PROPERTIES THAT MATCH THE FILTERS
-//       if (filterMaxDownPayment(element.downpayment,maxDownPayment) && filterMinimumProfit(element.profit,minimumProfit) && filterCity(element.city,selectedCity)){
-//         return true;
-//       } else {
-//         return false;
-//       }
+  //     result.filter(element=>{
+  //       //DISPLAY PROPERTIES THAT MATCH THE FILTERS
+  //       if (filterMaxDownPayment(element.downpayment,maxDownPayment) && filterMinimumProfit(element.profit,minimumProfit) && filterCity(element.city,selectedCity)){
+  //         return true;
+  //       } else {
+  //         return false;
+  //       }
 
-//     }).sort(function(a,b){
-//       //SORT PROPERTIES ACCORDING TO SORTING CRITERIA
-//       let sortMethod=document.getElementById("sort-method-selector").value;
-//       switch (sortMethod){
+  //     }).sort(function(a,b){
+  //       //SORT PROPERTIES ACCORDING TO SORTING CRITERIA
+  //       let sortMethod=document.getElementById("sort-method-selector").value;
+  //       switch (sortMethod){
 
-//         // case "Mayor Rentabilidad":if(a.profit>b.profit){return 1;} else {return -1;}break;
-//         // case "Menor Capital Inicial":if(a.downpayment<b.downpayment){return 1;} else {return -1;}break;
-//         // case "Menor Precio del Inmueble":if(a.price<b.price){return 1;} else {return -1;}break;
-//         // case "Mayores Ingresos":if(a.income>b.income){return 1;} else {return -1;}break;
-//         // case "Menores Gastos":if(a.expenses<b.expenses){return 1;} else {return -1;}break;
-//         // case "Mayor Balance":if(a.balance<b.balance){return 1;} ;if(a.balance>b.balance) {return -1;}break;
+  //         // case "Mayor Rentabilidad":if(a.profit>b.profit){return 1;} else {return -1;}break;
+  //         // case "Menor Capital Inicial":if(a.downpayment<b.downpayment){return 1;} else {return -1;}break;
+  //         // case "Menor Precio del Inmueble":if(a.price<b.price){return 1;} else {return -1;}break;
+  //         // case "Mayores Ingresos":if(a.income>b.income){return 1;} else {return -1;}break;
+  //         // case "Menores Gastos":if(a.expenses<b.expenses){return 1;} else {return -1;}break;
+  //         // case "Mayor Balance":if(a.balance<b.balance){return 1;} ;if(a.balance>b.balance) {return -1;}break;
 
-//         case "Mayor Rentabilidad":return b.profit-a.profit;
-//         case "Menor Capital Inicial":return a.downpayment-b.downpayment;
-//         case "Menor Precio del Inmueble":return a.price-b.price;
-//         case "Mayores Ingresos":return b.income-a.income;
-//         case "Menores Gastos":return a.expenses-b.expenses;
-//         case "Mayor Balance":return b.balance-a.balance;
-//       }
+  //         case "Mayor Rentabilidad":return b.profit-a.profit;
+  //         case "Menor Capital Inicial":return a.downpayment-b.downpayment;
+  //         case "Menor Precio del Inmueble":return a.price-b.price;
+  //         case "Mayores Ingresos":return b.income-a.income;
+  //         case "Menores Gastos":return a.expenses-b.expenses;
+  //         case "Mayor Balance":return b.balance-a.balance;
+  //       }
 
-//     }).map(element=>{
-//       //PLOT PROPERTIES INTO THE HTML FILE
-//       stringToPrint+=`<!-- TARJETA A RELLENAR CON JS --><div class = "card panel" onclick='selectProperty(this)'><div class="img-card-container"><img src="`+element.mainPicture+`">
-//       </div><!-- CARD(CENTRAL) --><div class="card-central"><div class="cc-main"><div class="cc-main-sub"><div class="top-tag-label-rentabilidad">Rentabilidad</div>
-//       <div class="tag font-green top-card-tag tag-short">`+element.profit+`%</div></div><div class="cc-main-sub "><div class="top-tag-label-capital-inicial">Capital Inicial</div>
-//       <div class="tag font-green top-card-tag tag-long">`+element.downpayment+` €</div></div><div class="cc-main-sub cc-main-sub-capital-inicial"><div class="top-tag-label-precio-inmueble ">
-//       Precio Inmueble</div><div class="tag font-green tag-long">`+element.price+` €</div></div></div><div class="cc-details"><div class="cc-details-icons"><i class="fas fa-bed"></i>
-//       `+element.nHabs+`<i class="fas fa-bath"></i>`+element.nBaths+`<i class="fas fa-ruler-combined"></i>`+element.surface+`m<sup>2</sup></div></div><div class="cc-title">
-//       `+element.title+` | `+element.city+`</div><div class="cc-info">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tristique diam pretium est hendrerit, nec varius velit bibendum. Etiam gravida nibh sit amet metus ultricies lacinia.
-//       </div></div><!-- CARD(RIGHT) --><div class="card-right"><b>Analisis Mensual</b><div class="cr-container"><div class="cr-tags"><div class="white-card-tag">Ingresos</div>
-//       <div class="white-card-tag">Gastos</div><div class="white-card-tag">Balance</div></div><div class="cr-amounts"><div class="tag font-blue">+`+element.income+`€</div>
-//       <div class="tag font-red">-`+element.expenses+`€</div><div class="tag font-green">+`+element.balance+`€</div></div></div></div></div><!-- FIN TARJETA A RELLENAR CON JS -->`;
-//     })
-//     let paginationStr = `<div class="pagination"><a><p>1</p></a><a><p>2</p></a><a><p>3</p></a><a><p>4</p></a><a><p>5</p></a></div>`;
-//     document.getElementsByClassName("cards-container")[0].innerHTML=paginationStr+stringToPrint;
-//   }
+  //     }).map(element=>{
+  //       //PLOT PROPERTIES INTO THE HTML FILE
+  //       stringToPrint+=`<!-- TARJETA A RELLENAR CON JS --><div class = "card panel" onclick='selectProperty(this)'><div class="img-card-container"><img src="`+element.mainPicture+`">
+  //       </div><!-- CARD(CENTRAL) --><div class="card-central"><div class="cc-main"><div class="cc-main-sub"><div class="top-tag-label-rentabilidad">Rentabilidad</div>
+  //       <div class="tag font-green top-card-tag tag-short">`+element.profit+`%</div></div><div class="cc-main-sub "><div class="top-tag-label-capital-inicial">Capital Inicial</div>
+  //       <div class="tag font-green top-card-tag tag-long">`+element.downpayment+` €</div></div><div class="cc-main-sub cc-main-sub-capital-inicial"><div class="top-tag-label-precio-inmueble ">
+  //       Precio Inmueble</div><div class="tag font-green tag-long">`+element.price+` €</div></div></div><div class="cc-details"><div class="cc-details-icons"><i class="fas fa-bed"></i>
+  //       `+element.nHabs+`<i class="fas fa-bath"></i>`+element.nBaths+`<i class="fas fa-ruler-combined"></i>`+element.surface+`m<sup>2</sup></div></div><div class="cc-title">
+  //       `+element.title+` | `+element.city+`</div><div class="cc-info">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tristique diam pretium est hendrerit, nec varius velit bibendum. Etiam gravida nibh sit amet metus ultricies lacinia.
+  //       </div></div><!-- CARD(RIGHT) --><div class="card-right"><b>Analisis Mensual</b><div class="cr-container"><div class="cr-tags"><div class="white-card-tag">Ingresos</div>
+  //       <div class="white-card-tag">Gastos</div><div class="white-card-tag">Balance</div></div><div class="cr-amounts"><div class="tag font-blue">+`+element.income+`€</div>
+  //       <div class="tag font-red">-`+element.expenses+`€</div><div class="tag font-green">+`+element.balance+`€</div></div></div></div></div><!-- FIN TARJETA A RELLENAR CON JS -->`;
+  //     })
+  //     let paginationStr = `<div class="pagination"><a><p>1</p></a><a><p>2</p></a><a><p>3</p></a><a><p>4</p></a><a><p>5</p></a></div>`;
+  //     document.getElementsByClassName("cards-container")[0].innerHTML=paginationStr+stringToPrint;
+  //   }
   function rndBetween(min,max){
     return Math.floor(Math.random()*(max-min+1)+min).toFixed(0);
   }
@@ -664,13 +674,11 @@ function saveCurrentFilteredData (){
     // console.log(precioDeCompra)
     document.getElementById("details-precio-compra").textContent = numberToCurrency(precioDeCompra)
   }
-
   function calcularProcentajeFinanciadoDetails(){
     let porcentajeFinanciado = Number(document.getElementById("profile-porcentaje-financiado").value)
     // console.log(porcentajeFinanciado)
     document.getElementById("details-porcentaje-financiado").value = porcentajeFinanciado
   }
-
   function calcularCapitalFinanciado(){
     let precioDeCompra = document.getElementById("details-precio-compra").textContent;
     // console.log(precioDeCompra)
@@ -684,7 +692,6 @@ function saveCurrentFilteredData (){
     // console.log(printCapitalFinanciado)
     document.getElementById("details-capital-financiado").textContent = printCapitalFinanciado
   }
-
   function calcularCuotaMensual(){
     let capitalFinanciado = document.getElementById("details-capital-financiado").textContent
     // console.log(capitalFinanciado)
@@ -699,7 +706,6 @@ function saveCurrentFilteredData (){
     document.getElementById("details-cuota-mensual").textContent = numberToCurrency(cuotaMensual)
     document.getElementById("details-cuota-hipoteca").textContent = numberToCurrency(cuotaMensual)
   }
-
   function calcularTotalHipoteca(){
     let capitalFinanciado = document.getElementById("details-capital-financiado").textContent
     // console.log(capitalFinanciado)
@@ -715,7 +721,6 @@ function saveCurrentFilteredData (){
     // console.log(TotalHipoteca);
     document.getElementById("details-total-hipoteca").textContent = numberToCurrency(totalHipoteca)
   }
-
   function calcularInteresesHipoteca(){
     let totalHipoteca = document.getElementById("details-total-hipoteca").textContent
     // console.log(totalHipoteca)
@@ -729,7 +734,6 @@ function saveCurrentFilteredData (){
     // console.log(interesesHipoteca)
     document.getElementById("details-intereses-hipoteca").textContent = numberToCurrency(interesesHipoteca)
   }
-
   function calculateITP(){
     let birthDate = document.getElementById("birth-date").value
     // console.log(birthDate)
@@ -745,12 +749,10 @@ function saveCurrentFilteredData (){
     // console.log(itp)
     document.getElementById("details-itp").textContent= numberToCurrency(itp)
   }
-
   function calcAge(dateString) {
     var birthday = +new Date(dateString);
     return ~~((Date.now() - birthday) / (31557600000));
   }
-
   function calcuarGastosDeApertura(){
     let capitalFinanciado = document.getElementById("details-capital-financiado").textContent
     // console.log(capitalFinanciado)
@@ -764,7 +766,6 @@ function saveCurrentFilteredData (){
     // console.log(gastosDeApertura)
     document.getElementById("details-gastos-apertura").textContent = numberToCurrency(gastosDeApertura)
   }
-
   function calcularGastosDeCompraVenta(){
     let itp = document.getElementById("details-itp").textContent;
     // console.log(itp)
@@ -784,7 +785,6 @@ function saveCurrentFilteredData (){
     // console.log(gastosDeCompraventa)
     document.getElementById("details-gastos-compraventa").textContent =numberToCurrency(gastosDeCompraventa)
   }
-
   function calcularTotalGastosMensuales(){
     let ibi=Number(document.getElementById("details-ibi").value)
     // console.log(ibi)
@@ -802,13 +802,11 @@ function saveCurrentFilteredData (){
     // console.log(totalGastosMensuales)
     document.getElementById("details-total-gastos-mensuales").textContent = numberToCurrency(totalGastosMensuales)
   }
-
   function calcularSuperficiePiso(prop){
     let superifice = prop[0].surface;
     // console.log(superifice)
     document.getElementById("details-superficie-piso").innerHTML=superifice+"m<sup>2</sup>"
   }
-
   function calcularIngresosMensuales(prop){
     let superifice = Number(prop[0].surface);
     // console.log(superifice)
@@ -821,7 +819,6 @@ function saveCurrentFilteredData (){
     document.getElementById("details-ingresos-mensuales").textContent = numberToCurrency(ingresosMensuales)
 
   }
-
   function calcularInversionInicial(){
     let precioDeCompra = document.getElementById("details-precio-compra").textContent;
     // console.log(precioDeCompra)
@@ -839,7 +836,6 @@ function saveCurrentFilteredData (){
     // console.log(inversionInicial)
     document.getElementById("details-inversion-inicial").textContent = numberToCurrency(inversionInicial)
   }
-
   function calcularGastosAnuales(){
     let gastosMensuales = document.getElementById("details-total-gastos-mensuales").textContent
     // console.log(gastosMensuales)
@@ -849,7 +845,6 @@ function saveCurrentFilteredData (){
     // console.log(gastosAnuales)
     document.getElementById("details-gastos-anuales").textContent = numberToCurrency(gastosAnuales)
   }
-
   function calcularIngresosAnuales(){
     let ingresosMensuales = document.getElementById("details-ingresos-mensuales").textContent
     // console.log(ingresosMensuales)
@@ -862,7 +857,6 @@ function saveCurrentFilteredData (){
     let ingresosAnuales = numeroIngresosMensuales * numeroOcupacion*12
     document.getElementById("details-ingresos-anuales").textContent = numberToCurrency(ingresosAnuales)
   }
-
   function calcularBalanceAnual(){
     let ingreosAnuales = document.getElementById("details-ingresos-anuales").textContent
     // console.log(ingreosAnuales)
@@ -876,7 +870,6 @@ function saveCurrentFilteredData (){
     // console.log(balanceAnual)
     document.getElementById("details-balance-anual").textContent = numberToCurrency(balanceAnual)
   }
-
   function calcularRentabilidadNeta(){
     let gastosMensuales = document.getElementById("details-total-gastos-mensuales").textContent
     // console.log(gastosMensuales)
@@ -894,7 +887,6 @@ function saveCurrentFilteredData (){
     // console.log(rentabilidadNeta)
     document.getElementById("details-rentabilidad-neta").textContent = (rentabilidadNeta+"%")
   }
-
   function calcularRoi(){
     let rentabilidadNeta =  document.getElementById("details-rentabilidad-neta").textContent
     // console.log(rentabilidadNeta)
@@ -904,7 +896,6 @@ function saveCurrentFilteredData (){
     // console.log(roi)
     document.getElementById("details-roi").textContent = (roi+"%")
   }
-
   function calcularPayback(){
     let inversionInicial=document.getElementById("details-inversion-inicial").textContent
     // console.log(inversionInicial)
@@ -917,7 +908,6 @@ function saveCurrentFilteredData (){
     let payback = (numeroinversionInicial / numerobalanceAnual).toFixed(1)
     document.getElementById("details-payback").textContent = payback+" Años"
   }
-
   function calcularPer() {
     let ingreosAnuales = document.getElementById("details-ingresos-anuales").textContent
     // console.log(ingreosAnuales)
