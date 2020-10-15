@@ -94,9 +94,13 @@
         propertyCard.classList.add('active-card');
       }
     } else{
+      let details=document.getElementById("details-container")
+      details.style.display="flex";
       if (propertyCard.classList.contains('active-card')){
         //Si el elemento seleccionado tiene la clase, se le quita.
         propertyCard.classList.remove('active-card')
+        let details=document.getElementById("details-container")
+        details.style.display="none";
       } else{
         // Remove 'active-card' class from every element
         for (cardId=0;cardId<allCards.length;cardId++){
@@ -144,5 +148,5 @@
     console.log("AFTER CHANGES: Active Button: ",activeButton,"  |  Disabled Button: ",disabledButton)
   }
 
-  
+
 

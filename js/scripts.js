@@ -295,7 +295,7 @@
   function actualizarCalculos(element){
     console.log("Update function was trigered")
     let id = element.id
-    console.log(id)
+    // console.log(id)
     if (id==="details-rebaja-negociacion" ){
       //HIPOTECA
         calcularPrecioDeCompra()
@@ -505,7 +505,60 @@
       
     }
 
+    checkFaltanDatos()
+
    
+  }
+
+  function checkFaltanDatos(){
+    let mostrar=false;
+    let importeRebaja= document.getElementById("details-rebaja-negociacion").value
+    // console.log(importeRebaja)
+    let porcentajeFinanciado = document.getElementById("details-porcentaje-financiado").value
+    // console.log(porcentajeFinanciado)
+    let tae = document.getElementById("details-tae").value
+    // console.log(tae)
+    let años = (document.getElementById("details-plazo-hipoteca").value)
+    // console.log(años)
+    let tasacion = (document.getElementById("details-tasacion").value)
+    // console.log(tasacion)
+    let nota = (document.getElementById("details-nota-simple").value)
+    // console.log(nota)
+    let registro = (document.getElementById("details-registro").value)
+    // console.log(registro)
+    let gastosDeApertura = document.getElementById("details-comision-apertura").value 
+    // console.log(gastosDeApertura)
+    let ibi=(document.getElementById("details-ibi").value)
+    // console.log(ibi)
+    let basuras=(document.getElementById("details-impuesto-basuras").value)
+    // console.log(basuras)
+    let comunidad=(document.getElementById("details-gastos-comunidad").value)
+    // console.log(comunidad)
+    let seguro=(document.getElementById("details-seguro").value)
+    // console.log(seguro)
+    let ocupacion = document.getElementById("details-ocupacion").value
+    // console.log(ocupacion)
+    if(importeRebaja===""){mostrar=true;}
+    if(porcentajeFinanciado===""){mostrar=true;}
+    if(tae===""){mostrar=true;}
+    if(años===""){mostrar=true;}
+    if(tasacion===""){mostrar=true;}
+    if(nota===""){mostrar=true;}
+    if(registro===""){mostrar=true;}
+    if(gastosDeApertura===""){mostrar=true;}
+    if(ibi===""){mostrar=true;}
+    if(basuras===""){mostrar=true;}
+    if(comunidad===""){mostrar=true;}
+    if(seguro===""){mostrar=true;}
+    if(ocupacion===""){mostrar=true;}
+    errContainer=document.getElementById("error-faltan-datos")
+    // console.log(errContainer)
+    if (mostrar===true){
+      errContainer.style.display="block"
+    }else{
+      errContainer.style.display="none"
+    }
+
   }
   function rellenarDetails(prop){
     //HIPOTECA

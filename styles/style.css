@@ -240,7 +240,8 @@ nav .menu-hamburger{
 	flex-wrap: wrap;
 	justify-content: flex-start;
 	align-items: center;
-	align-content: center;
+    align-content: center;
+    padding:0px 10px;
     
 }
 .cc-details-icons i{
@@ -311,16 +312,19 @@ nav .menu-hamburger{
     padding-top:25px;
 }
 
-
+#details-container{
+    display:none;
+}
 
 .details-error-msg{
-    margin: 15px;
+    margin: 15px 15px 0px 15px;
     font-size: 10pt;
+    display:none;
     /* width: 80%; */
     
 }
 .details-title{
-    margin:0px 15px 15px 15px;
+    margin:15px 15px 15px 15px;
 }
 .details-section{
     margin:0px 15px 15px 15px;
@@ -393,6 +397,7 @@ nav .menu-hamburger{
 }
 .details-fields>b{
     margin-top: 5px;
+    
 }
 .details-fields>.small-input{
     background-color: transparent;
