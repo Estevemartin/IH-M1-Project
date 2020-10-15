@@ -106,10 +106,12 @@
     
     let detailsSection = document.getElementById("details-container")
     // detailsSection.style.display="flex";
-
+    
 
     const paginationStr = createPagination(numPages,1)
+
     document.getElementsByClassName("cards-container")[0].innerHTML=paginationStr+stringToPrint;
+    await saveCurrentFilteredData()
   }
   document.addEventListener('load',initialLoad())
 
